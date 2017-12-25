@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>V</b> - buddy',
 
-    'logo_mini' => '<b>A</b>LT',
+    'logo_mini' => '<b>V</b> - b',
 
     /*
     |--------------------------------------------------------------------------
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'skin' => 'blue',
+    'skin' => 'black',
 
     /*
     |--------------------------------------------------------------------------
@@ -108,18 +108,62 @@ return [
     */
 
     'menu' => [
-        'MAIN NAVIGATION',
+        'Data',
         [
-            'text' => 'Blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text' => 'Users',
+            'icon' =>'users',
+            'submenu' => [
+                [
+                    'text' => 'Faculty',
+                    'url' => '#',
+                    'icon' => 'user-circle-o',
+                    'icon_color' => 'blue',
+                ],
+                [
+                    'text' => 'Students',
+                    'url' => '#',
+                    'icon' => 'user-circle-o',
+                    'icon_color' => 'yellow',
+                ],
+            ],
         ],
         [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'text' => 'Placement News',
+            'icon' =>'data',
+            'url' => '#',
+            'icon' => 'suitcase',
+        ],
+        [
+            'text' => 'Faculty Announcements',
+            'icon' =>'data',
+            'url' => '#',
+            'icon' => 'bullhorn',
+        ],
+        [
+            'text' => 'Feedback',
+            'icon' =>'data',
+            'url' => '#',
+            'icon' => 'comments',
+        ],
+        [
+            'text' => 'Holidays',
+            'icon' =>'data',
+            'url'=>'#',
+            'icon' => 'calendar',
+        ],
+        [
+            'text' => 'Events',
+            'icon' =>'data',
+            'url'=>'#',
+            'icon' => 'calendar-o',
+            'icon_color' => 'blue',
+        ],
+        [
+            'text' => 'Event Enrollments',
+            'icon' =>'data',
+            'url'=>'#',
+            'icon' => 'info-circle',
+            'icon_color' => 'green',            
         ],
         'ACCOUNT SETTINGS',
         [
@@ -131,57 +175,6 @@ return [
             'text' => 'Change Password',
             'url'  => 'admin/settings',
             'icon' => 'lock',
-        ],
-        [
-            'text'    => 'Multilevel',
-            'icon'    => 'share',
-            'submenu' => [
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'Level One',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'Level Two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'Level Two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        'LABELS',
-        [
-            'text'       => 'Important',
-            'icon_color' => 'red',
-        ],
-        [
-            'text'       => 'Warning',
-            'icon_color' => 'yellow',
-        ],
-        [
-            'text'       => 'Information',
-            'icon_color' => 'aqua',
         ],
     ],
 
