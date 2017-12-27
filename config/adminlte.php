@@ -115,13 +115,13 @@ return [
             'submenu' => [
                 [
                     'text' => 'Faculty',
-                    'url' => '#',
+                    'url' => '/admin/users',
                     'icon' => 'user-circle-o',
                     'icon_color' => 'blue',
                 ],
                 [
                     'text' => 'Students',
-                    'url' => '#',
+                    'url' => '/admin/students',
                     'icon' => 'user-circle-o',
                     'icon_color' => 'yellow',
                 ],
@@ -130,45 +130,46 @@ return [
         [
             'text' => 'Placement News',
             'icon' =>'data',
-            'url' => '#',
+            'url' => '/admin/placement',
             'icon' => 'suitcase',
         ],
         [
             'text' => 'Faculty Announcements',
             'icon' =>'data',
-            'url' => '#',
+            'url' => '/admin/faculty_announcements',
             'icon' => 'bullhorn',
         ],
         [
             'text' => 'Feedback',
             'icon' =>'data',
-            'url' => '#',
+            'url' => '/admin/feedbacks',
             'icon' => 'comments',
-        ],
-        [
-            'text' => 'Holidays',
-            'icon' =>'data',
-            'url'=>'#',
-            'icon' => 'calendar',
         ],
         [
             'text' => 'Events',
             'icon' =>'data',
-            'url'=>'#',
+            'url'=>'/admin/events',
             'icon' => 'calendar-o',
             'icon_color' => 'blue',
         ],
         [
             'text' => 'Event Enrollments',
             'icon' =>'data',
-            'url'=>'#',
+            'url'=>'/admin/event_enrolls',
             'icon' => 'info-circle',
             'icon_color' => 'green',            
         ],
-        'ACCOUNT SETTINGS',
+        [
+            'text' => 'Holidays',
+            'icon' =>'data',
+            'url'=>'/admin/holidays',
+            'icon' => 'calendar',
+        ],
+        
+        'Account Settings',
         [
             'text' => 'Profile',
-            'url'  => 'admin/settings',
+            'url'  => 'admin/profile',
             'icon' => 'user',
         ],
         [
