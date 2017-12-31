@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class UsersController extends Controller
 {
@@ -13,7 +14,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        
+        $users = User::where('status', 1)->paginate(10);
+        return view('admin.user.index', compact('users'));
     }
 
     /**
@@ -23,7 +25,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.user.create');
     }
 
     /**
@@ -34,7 +36,22 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this -> validate($request, [
+            'name' => 'required',
+            'email' => 'required|unique:users|email',
+            'password' => 'required',
+            'role' => 'required',
+        ]);
+
+        User::create([
+            'name' => request('name'),
+            'email' => request('email'),
+            'password' => bcrypt(request('password')),
+            'role' => request('role'),
+        ]);
+
+        \Session::flash('create', 'Data stored successfully.');
+        return redirect('admin/users/');
     }
 
     /**
@@ -56,7 +73,8 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('admin.user.edit', compact('user'));
     }
 
     /**
@@ -68,7 +86,16 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->name = request('name');
+        $user->email = request('email');
+        $user->password = bcrypt(request('password'));
+        $user->role = request('role');
+
+        $user->save();
+
+        \Session :: flash('update','Updated Successfully!');
+        return redirect('/admin/users/');
     }
 
     /**
@@ -79,6 +106,11 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->status = 0;
+        $user->save();
+
+        \Session :: flash('delete','Deleted Successfully! If you want to undo changes, please go to phpmyadmin');
+        return redirect('/admin/users/');
     }
 }

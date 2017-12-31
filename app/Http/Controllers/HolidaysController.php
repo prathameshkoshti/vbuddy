@@ -40,10 +40,12 @@ class HolidaysController extends Controller
             'name' => 'required',
             'date' => 'required',
         ]);
+
         Holiday::Create([
             'name' => request('name'),
             'date' => request('date'),
         ]);
+        
         \Session::flash('create', 'Data stored successfully.');
         return redirect('admin/holidays/');
     }

@@ -25,6 +25,15 @@ Route::prefix('admin')->group(function(){
     */
     Route::prefix('users')->group(function(){
         Route::get('/', 'UsersController@index');
+        
+        Route::get('create', 'UsersController@create');
+        Route::put('store', 'UsersController@store');
+
+        Route::get('edit/{id}', 'UsersController@edit');
+        Route::put('update/{id}', 'UsersController@update');
+
+        Route::get('delete/{id}', 'UsersController@destroy');
+        
     });
     /*
         Routes for Students 
@@ -57,7 +66,6 @@ Route::prefix('admin')->group(function(){
         Route::put('update/{id}', 'HolidaysController@update');
 
         Route::get('delete/{id}', 'HolidaysController@destroy');
-
     });
     /*
         Routes for holidays 
