@@ -9,7 +9,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-offset-10">
-            <button onClick="parent.location='/admin/users/create'" type="button" class="btn btn-success">
+            <button onClick="parent.location='/admin/students/create'" type="button" class="btn btn-success">
                 <span class="fa fa-plus" aria-hidden="true"></span> Create
              </button>
         </div>
@@ -20,29 +20,35 @@
             <table class="table table-hover">
                 <tr>
                     <th>ID</th>
-                    <th>Faculty Name</th>
+                    <th>Student Name</th>
+                    <th>Roll No.</th>
                     <th>Email</th>
                     <th>Password</th>
-                    <th>Role</th>
+                    <th>Year</th>
+                    <th>Branch</th>
+                    <th>Division</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
-                @foreach ($users as $value)
+                @foreach ($students as $value)
                 <tr>
                     <td>{{ $value->id }}</td>
                     <td>{{ $value->name }}</td>
+                    <td>{{ $value->roll }}</td>
                     <td>{{ $value->email }}</td>
                     <td>{{ $value->password }}</td>
-                    <td>{{ $value->role }}</td>
+                    <td>{{ $value->year }}</td>
+                    <td>{{ $value->branch }}</td>
+                    <td>{{ $value->division }}</td>  
                     @if( $value->status == 1)
                         <td>Active</td>
                     @else
                         <td>Inactive</td>
                     @endif
                     <td>
-                        <a href="/admin/users/edit/{{$value->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
-                        &nbsp;&nbsp;&nbsp;&nbsp; 
-                        <a href="/admin/users/delete/{{$value->id}}"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+                        <a href="/admin/students/edit/{{$value->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                        &nbsp;
+                        <a href="/admin/students/delete/{{$value->id}}"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
                     </td>
                 </tr>
                 @endforeach

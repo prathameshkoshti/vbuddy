@@ -9,7 +9,7 @@
 @section('content')
     <div class="row">
         <div class="">
-            <h4 style="text-align:center">Create New Holiday</h4>
+            <h4 style="text-align:center">Create New Faculty User</h4>
         </div>
     </div>
     <br><br>
@@ -34,7 +34,15 @@
                     </tr>
                     <tr>
                         <td>
-                            <input type="text" class="form-control" placeholder="Role" name="role">
+                            <select name="role" class="form-control">
+                                <option disabled selected>Role</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Faculty">Faculty</option>
+                                <option value="Exam Coordinator">Exam Coordinator</option>
+                                <option value="Placement Coordinator">Placement Coordinator</option>
+                                <option value="Event Coordinator">Event Coordinator</option>
+                                <option value="Academic Coordinator">Academic Coordinator</option>
+                            </select>
                         </td>
                     </tr>
                     <tr>

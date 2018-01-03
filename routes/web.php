@@ -38,6 +38,18 @@ Route::prefix('admin')->group(function(){
     /*
         Routes for Students 
     */
+    Route::prefix('students')->group(function(){
+        Route::get('/', 'StudentsController@index');
+        
+        Route::get('create', 'StudentsController@create');
+        Route::put('store', 'StudentsController@store');
+
+        Route::get('edit/{id}', 'StudentsController@edit');
+        Route::put('update/{id}', 'StudentsController@update');
+
+        Route::get('delete/{id}', 'StudentsController@destroy');
+        
+    });
     /*
         Routes for Placement Announcements 
     */
