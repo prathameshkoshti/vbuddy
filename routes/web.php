@@ -67,6 +67,17 @@ Route::prefix('admin')->group(function(){
     /*
         Routes for Faculty Announcemnets 
     */
+    Route::prefix('faculty_announcements')->group(function(){
+        Route::get('/', 'AnnouncementsController@index');
+
+        Route::get('create', 'AnnouncementsController@create');
+        Route::put('store', 'AnnouncementsController@store');
+
+        Route::get('edit/{id}', 'AnnouncementsController@edit');
+        Route::put('update/{id}', 'AnnouncementsController@update');
+
+        Route::get('delete/{id}', 'AnnouncementsController@destroy');
+    });
     /*
         Routes for Feedback 
     */

@@ -15,7 +15,7 @@ class HolidaysController extends Controller
     public function index()
     {
         $holiday = Holiday::where('status', 1)->paginate(10);
-        return view('admin.holiday.index', compact('holiday'));
+        return view('admin.holidays.index', compact('holiday'));
     }
 
     /**
@@ -25,7 +25,7 @@ class HolidaysController extends Controller
      */
     public function create()
     {
-        return view('admin.holiday.create');
+        return view('admin.holidays.create');
     }
 
     /**
@@ -71,7 +71,7 @@ class HolidaysController extends Controller
     {
         $holiday = Holiday::find($id);
         //return view(dd($id));
-        return view('admin.holiday.edit', compact('holiday'));
+        return view('admin.holidays.edit', compact('holiday'));
     }
 
     /**

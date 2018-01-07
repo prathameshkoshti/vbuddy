@@ -15,7 +15,7 @@ class StudentsController extends Controller
     public function index()
     {
         $students = Student::where('status', 1)->paginate(10);
-        return view('admin.student.index', compact('students'));
+        return view('admin.students.index', compact('students'));
         
     }
 
@@ -26,7 +26,7 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        return view('admin.student.create');
+        return view('admin.students.create');
     }
 
     /**
@@ -72,7 +72,7 @@ class StudentsController extends Controller
     public function edit($id)
     {
         $student = Student::find($id);
-        return view('admin.student.edit', compact('student'));
+        return view('admin.students.edit', compact('student'));
     }
 
     /**

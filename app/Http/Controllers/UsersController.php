@@ -15,7 +15,7 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::where('status', 1)->paginate(10);
-        return view('admin.user.index', compact('users'));
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -25,7 +25,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        return view('admin.users.create');
     }
 
     /**
@@ -74,7 +74,7 @@ class UsersController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('admin.user.edit', compact('user'));
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
