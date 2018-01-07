@@ -21,7 +21,7 @@ class CreatePlacementsTable extends Migration
             $table->string('branch');
             $table->date('date');
             $table->integer('issued_by');
-            $table->integer('status');
+            $table->integer('status')->status(1);
             $table->timestamps();
         });
     }

@@ -11,7 +11,7 @@ class CreateTableStudents extends Migration
      *
      * @return void
      */
-    public function up()`
+    public function up()
     {
         Schema::create('students', function (Blueprint $table) {
             $table->increments('id');
@@ -23,7 +23,7 @@ class CreateTableStudents extends Migration
             $table->string('branch');
             $table->string('division');
             $table->string('admission_year');
-            $table->integer('status');
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }

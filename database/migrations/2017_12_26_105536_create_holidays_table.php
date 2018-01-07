@@ -17,6 +17,7 @@ class CreateHolidaysTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->date('date');
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }
