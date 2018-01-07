@@ -21,7 +21,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('admin')->group(function(){
     /*
-        Routes for Users i.e. Faculties
+        Routes for Users i.e. Faculties and other users
     */
     Route::prefix('users')->group(function(){
         Route::get('/', 'UsersController@index');
@@ -53,6 +53,17 @@ Route::prefix('admin')->group(function(){
     /*
         Routes for Placement Announcements 
     */
+    Route::prefix('placements')->group(function(){
+        Route::get('/', 'PlacementsController@index');
+
+        Route::get('create', 'PlacementsController@create');
+        Route::put('store', 'PlacementsController@store');
+
+        Route::get('edit/{id}', 'PlacementsController@edit');
+        Route::put('update/{id}', 'PlacementsController@update');
+
+        Route::get('delete/{id}', 'PlacementsController@destroy');
+    });
     /*
         Routes for Faculty Announcemnets 
     */

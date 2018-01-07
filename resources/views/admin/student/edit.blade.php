@@ -3,13 +3,13 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <h1 style="text-align:center">Student</h1>
+    <h1 style="text-align:center">Students</h1>
 @stop
 
 @section('content')
     <div class="row">
         <div class="">
-            <h4 style="text-align:center">Create New Student</h4>
+            <h4 style="text-align:center">Edit Student Details</h4>
         </div>
     </div>
     <br><br>

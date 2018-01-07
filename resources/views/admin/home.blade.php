@@ -7,5 +7,5 @@
 @stop
 
 @section('content')
-    <p style="text-align:center">You are logged in!</p>
+    <p style="text-align:center">You are logged in as Admin</p>
 @stop

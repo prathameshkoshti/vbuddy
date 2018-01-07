@@ -9,7 +9,7 @@
 @section('content')
     <div class="row">
         <div class="">
-            <h4 style="text-align:center">Edit Holiday:</h4>
+            <h4 style="text-align:center">Edit Holiday Details</h4>
         </div>
     </div>
     <br><br>
