@@ -1,0 +1,63 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Auth;
+use App\User;
+use Illuminate\Support\Facades\Hash;
+
+class ProfilesController extends Controller
+{
+    public function profile()
+    {
+        $profile = Auth::user();
+        return view('profile', compact('profile'));
+    }
+
+    public function update(Request $request)
+    {
+        $this -> validate($request, [
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+
+        $id = request('id');
+        $user = User::find($id);
+
+        $user->name = request('name');
+        $user->email = request('email');
+
+        $user->save();
+        \Session :: flash('update','Updated Successfully!');
+        return redirect('/admin/profile/');
+    }
+
+    public function changePassword()
+    {
+        $profile = Auth::user()->id;
+        return view('change_password', compact('profile'));
+    }
+    public function updatePassword(Request $request)
+    {
+        $this->validate($request,[
+            'old_password' => 'required',
+            'new_password' => 'required',
+        ]);
+
+        $id = request('id');
+        $user = User::find($id);
+
+        $old_password = request('old_password');
+        if(Hash::check($old_password, $user->password))
+        {
+            $user->password = bcrypt(request('new_password'));
+            $user->save();
+            \Session::flash('update', 'Password updated successfully.');
+            return redirect('/admin/profile');
+        }
+
+        \Session::flash('update', 'Password updated failed!.');
+        return redirect('/admin/profile');
+    }
+}

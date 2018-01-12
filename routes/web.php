@@ -15,11 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('404', function(){
+    return view('errors.404');
+});
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::prefix('admin')->group(function(){
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
+    Route::get('/home', 'HomeController@index')->name('home');
     /*
         Routes for Users i.e. Faculties and other users
     */
@@ -102,11 +106,15 @@ Route::prefix('admin')->group(function(){
         Route::get('delete/{id}', 'HolidaysController@destroy');
     });
     /*
-        Routes for holidays 
+        Route for Profile 
     */
-    /*
-        Routes for holidays 
-    */
+    Route::prefix('profile')->group(function(){
+        Route::get('/', 'ProfilesController@profile');
+        Route::put('/update', 'ProfilesController@update');
+
+        Route::get('/change_password', 'ProfilesController@changePassword');
+        Route::put('/update_password', 'ProfilesController@updatePassword');
+    });
     
 });
 
