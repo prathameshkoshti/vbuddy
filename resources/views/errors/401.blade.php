@@ -20,15 +20,15 @@
     button{
         width:12%;
         height:7%;
-        color: #FF6767;
-        border: 5px solid #FF6767;
+        color: #9367FF;
+        border: 5px solid #9367FF;
         background-color: #fff;
         font-size: 1.2em;
         font-weight: bold;
     }
     button:hover{
         color: #fff;
-        background-color: #FF6767;
+        background-color: #9367FF;
         cursor: pointer;
     }
 </style>
@@ -49,20 +49,15 @@
             <circle id="path-10" cx="136.140276" cy="30.3744653" r="8.20195645"></circle>
         </defs>
         <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <g id="Artboard" transform="translate(-127.000000, -135.000000)">
-                <text id="Hey-Captain!-Looks-l" font-family="Montserrat-Regular, Montserrat" font-size="40" font-weight="normal" fill="#FF6767">
-                    <tspan x="145.74" y="810.550684">Hey Captain! Looks like you’re heading to a wrong planet!</tspan>
+            <g id="401" transform="translate(-127.000000, -135.000000)">
+                <text id="Hey-Captain!-Looks-l" font-family="Montserrat-Regular, Montserrat" font-size="40" font-weight="normal" fill="#9367FF">
+                    <tspan x="125.86" y="810.550684">Hey Captain! Looks like you’re heading to a radiated planet!</tspan>
+                    <tspan x="565.74" y="859.550684">Turn back now.</tspan>
                 </text>
-                <g id="4O4" transform="translate(330.500000, 394.000000)">
-                    <g id="4" transform="translate(0.000000, 31.946352)">
-                        <g transform="translate(0.000000, 1.000000)">
-                            <path d="M146.333704,160.4 L179.033704,160.4 L179.033704,199.1 L146.333704,199.1 L146.333704,239.6 L107.333704,239.6 L107.333704,199.1 L10.4337044,199.1 L10.4337044,156.5 L99.2337044,8.6 L146.333704,8.6 L146.333704,160.4 Z M48.5337044,160.4 L107.333704,160.4 L107.333704,59.3 L48.5337044,160.4 Z" id="4-copy" fill="#FF6767"></path>
-                            <path d="M136.333704,152.4 L169.033704,152.4 L169.033704,191.1 L136.333704,191.1 L136.333704,231.6 L97.3337044,231.6 L97.3337044,191.1 L0.433704379,191.1 L0.433704379,148.5 L89.2337044,0.6 L136.333704,0.6 L136.333704,152.4 Z M38.5337044,152.4 L97.3337044,152.4 L97.3337044,51.3 L38.5337044,152.4 Z" stroke="#000000" stroke-width="5"></path>
-                        </g>
-                    </g>
-                    <g id="4" transform="translate(600.000000, 31.946352)">
-                        <g transform="translate(0.000000, 1.000000)">
-                            <path d="M146.333704,160.4 L179.033704,160.4 L179.033704,199.1 L146.333704,199.1 L146.333704,239.6 L107.333704,239.6 L107.333704,199.1 L10.4337044,199.1 L10.4337044,156.5 L99.2337044,8.6 L146.333704,8.6 L146.333704,160.4 Z M48.5337044,160.4 L107.333704,160.4 L107.333704,59.3 L48.5337044,160.4 Z" id="4-copy" fill="#FF6767"></path>
+                <g id="4O1" transform="translate(330.500000, 394.000000)">
+                    <g id="Purple-4" transform="translate(0.000000, 31.950012)">
+                        <g id="4" transform="translate(0.000000, 1.000000)">
+                            <path d="M146.333704,160.4 L179.033704,160.4 L179.033704,199.1 L146.333704,199.1 L146.333704,239.6 L107.333704,239.6 L107.333704,199.1 L10.4337044,199.1 L10.4337044,156.5 L99.2337044,8.6 L146.333704,8.6 L146.333704,160.4 Z M48.5337044,160.4 L107.333704,160.4 L107.333704,59.3 L48.5337044,160.4 Z" id="4-copy" fill="#9367FF"></path>
                             <path d="M136.333704,152.4 L169.033704,152.4 L169.033704,191.1 L136.333704,191.1 L136.333704,231.6 L97.3337044,231.6 L97.3337044,191.1 L0.433704379,191.1 L0.433704379,148.5 L89.2337044,0.6 L136.333704,0.6 L136.333704,152.4 Z M38.5337044,152.4 L97.3337044,152.4 L97.3337044,51.3 L38.5337044,152.4 Z" stroke="#000000" stroke-width="5"></path>
                         </g>
                     </g>
@@ -71,21 +66,21 @@
                         <circle id="Oval" stroke="#000000" stroke-width="5" cx="117.026524" cy="116.705166" r="113.741186"></circle>
                     </g>
                     <g id="Planet-Copy" transform="translate(223.500000, 0.000000)">
-                        <circle id="Oval-Copy" fill="#FF6767" cx="171.026524" cy="158.705166" r="116.241186"></circle>
+                        <circle id="Oval-Copy" fill="#9367FF" cx="171.026524" cy="158.705166" r="116.241186"></circle>
                         <circle id="Oval" stroke="#000000" stroke-width="5" cx="161.026524" cy="148.705166" r="113.741186"></circle>
                         <g id="Group" transform="translate(0.500000, 0.000000)">
                             <path d="M69.4403262,217.576101 C-16.7552483,295.075446 124.685505,240.583135 190.199332,190.591707 C255.713159,140.600279 373.364469,22.6608434 255.713159,85.8245246" id="Path-2" stroke="#000000" stroke-width="5"></path>
                             <path d="M58.5692543,98.0947782 C-76.0040456,56.1650229 50.2259285,169.534884 149.041905,194.419196 C247.857882,219.303508 426.029872,220.700131 271.660262,168" id="Path-3" stroke="#000000" stroke-width="5"></path>
                             <g id="Oval-2">
-                                <use fill="#FF6767" fill-rule="evenodd" xlink:href="#path-1"></use>
+                                <use fill="#9367FF" fill-rule="evenodd" xlink:href="#path-1"></use>
                                 <circle stroke="#000000" stroke-width="4" cx="224.716071" cy="161" r="16"></circle>
                             </g>
                             <g id="Oval-2-Copy">
-                                <use fill="#FF6767" fill-rule="evenodd" xlink:href="#path-2"></use>
+                                <use fill="#9367FF" fill-rule="evenodd" xlink:href="#path-2"></use>
                                 <circle stroke="#000000" stroke-width="4" cx="110.291187" cy="126.575116" r="11.5751161"></circle>
                             </g>
                             <g id="Oval-2-Copy-2">
-                                <use fill="#FF6767" fill-rule="evenodd" xlink:href="#path-3"></use>
+                                <use fill="#9367FF" fill-rule="evenodd" xlink:href="#path-3"></use>
                                 <circle stroke="#000000" stroke-width="4" cx="114.352737" cy="220.636666" r="5.6366661"></circle>
                             </g>
                             <g id="?" transform="translate(186.025966, 156.940387) rotate(33.000000) translate(-186.025966, -156.940387) translate(177.525966, 142.440387)" fill="#000000">
@@ -237,6 +232,12 @@
                     </g>
                     <g id="Star" transform="translate(1029.853479, 61.721252)">
                         <path d="M8.62817246,9.04109339 C8.91851561,10.4973949 9.06432554,11.9597405 9.06432554,13.42646 C9.06432554,15.2180167 8.84679185,17.1109238 8.41502436,19.1065803 C10.2479547,18.5752092 12.0926764,18.3073166 13.9451821,18.3073166 C15.4562087,18.3073166 16.9681952,18.4855271 18.4792655,18.8394838 C18.0630775,17.3721028 17.8528371,15.8911993 17.8528371,14.3996617 C17.8528371,12.5824622 18.1648486,10.714199 18.7811644,8.79496878 C16.7945844,9.27634434 14.8579506,9.5188051 12.9719805,9.5188051 C11.44749,9.5188051 9.99796795,9.35982629 8.62817246,9.04109339 Z" id="Rectangle" transform="translate(14.000000, 14.000000) rotate(-45.000000) translate(-14.000000, -14.000000) "></path>
+                    </g>
+                </g>
+                <g id="1" transform="translate(958.500000, 431.000000)">
+                    <g id="Group-2">
+                        <polygon id="1-copy" fill="#9367FF" points="10.9363941 7.66539803 99.275325 7.66539803 99.275325 237.872054 60.5244185 237.872054 60.5244185 42.4755344 10.9363941 42.4755344"></polygon>
+                        <polygon id="1" stroke="#000000" stroke-width="5" points="0.936394097 0.665398025 89.275325 0.665398025 89.275325 230.872054 50.5244185 230.872054 50.5244185 35.4755344 0.936394097 35.4755344"></polygon>
                     </g>
                 </g>
             </g>
