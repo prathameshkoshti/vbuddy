@@ -3,19 +3,19 @@
 @section('title', 'V-Buddy')
 
 @section('content_header')
-    <h1 style="text-align:center">Faculty Announcement</h1>
+    <h1 style="text-align:center">Placement News</h1>
 @stop
 
 @section('content')
     <div class="row">
         <div class="">
-            <h4 style="text-align:center">Create New Faculty Announcement</h4>
+            <h4 style="text-align:center">Create New Placement News</h4>
         </div>
     </div>
     <br><br>
-    <form method="post" action="/admin/faculty_announcements/store" class="form form-group box-body">
+    <form method="post" action="/admin/placements/store" class="form form-group box-body">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-4 col-md-offset-4">
                 <table class="table">
                     <tr>
                         <td colspan=2>
@@ -66,29 +66,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <div>
-                                <b>Division :</b>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" name="division[]" type="checkbox" value="A">
-                                <label class="form-check-label" for="inft">A</label>
-                                <input class="form-check-input" name="division[]" type="checkbox" value="B">
-                                <label class="form-check-label" for="comp">B</label>     
-                                <input class="form-check-input" name="division[]" type="checkbox" value="C">
-                                <label class="form-check-label" for="etrx">C</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
                         <td colspan=2>
-                            <input type="date" class="form-control" placeholder="Date" name="date">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan=2>
+                                <input type="hidden" class="form-control" value="{{Auth::user()->id}}" name="issued_by">
                             <input type="submit" class="form-control btn btn-success" value="Submit" name="submit">
                         </td>                        
                     </tr>

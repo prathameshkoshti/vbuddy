@@ -129,25 +129,29 @@ Route::group(['prefix' => 'faculty', 'middleware' => 'faculty'], function(){
     Route::prefix('faculty_announcements')->group(function(){
         Route::get('/', 'FacultiesController@announcmentsHome');
 
+        Route::get('/', 'FacultiesController@announcmentsIndex');
+
         Route::get('create', 'FacultiesController@announcementsCreate');
-        Route::get('store', 'FacultiesController@store');
+        Route::get('store', 'FacultiesController@announcementsStore');
 
-        Route::get('edit/{id}', 'FacultiesController@edit');
-        Route::get('update/{id}', 'FacultiesController@update');
+        Route::get('edit/{id}', 'FacultiesController@announcementsEdit');
+        Route::get('update/{id}', 'FacultiesController@announcementsUpdate');
 
-        Route::get('delete/{id}', 'FacultiesController@destroy');
+        Route::get('delete/{id}', 'FacultiesController@announcementsDestroy');
     });
 
     Route::prefix('placements')->group(function(){
         Route::get('/', 'FacultiesController@placementsHome');
 
-        Route::get('create', 'FacultiesController@create');
-        Route::get('store', 'FacultiesController@store');
+        Route::get('/', 'FacultiesController@placementsIndex');
 
-        Route::get('edit/{id}', 'FacultiesController@edit');
-        Route::get('update/{id}', 'FacultiesController@update');
+        Route::get('create', 'FacultiesController@placementsCreate');
+        Route::get('store', 'FacultiesController@placementsStore');
 
-        Route::get('delete/{id}', 'FacultiesController@destroy');
+        Route::get('edit/{id}', 'FacultiesController@placementsEdit');
+        Route::get('update/{id}', 'FacultiesController@placementsUpdate');
+
+        Route::get('delete/{id}', 'FacultiesController@placementsDestroy');
     });
 
 });
