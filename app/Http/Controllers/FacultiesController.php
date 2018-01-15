@@ -14,4 +14,8 @@ class FacultiesController extends Controller
     public function announcemntsHome(){
         return view('faculty.announcements.home');
     }
+
+    public function announcementsCreate(){
+        return view('faculty.anniuncements.create');
+    }
 }
