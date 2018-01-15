@@ -43,7 +43,6 @@ class AnnouncementsController extends Controller
             'year' => 'required',
             'branch' => 'required',
             'division' => 'required',
-            'date' => 'required|date',
             'issued_by' => 'required',
         ]);
 
@@ -57,7 +56,6 @@ class AnnouncementsController extends Controller
             'year' => $year,
             'branch' => $branch,
             'division' => $division,
-            'date' => request('date'),
             'issued_by' => request('issued_by'), 
         ]);
 
@@ -106,7 +104,6 @@ class AnnouncementsController extends Controller
             'year' => 'required',
             'branch' => 'required',
             'division' => 'required',
-            'date' => 'required|date',
             'issued_by' => 'required',
         ]);
 
@@ -121,7 +118,6 @@ class AnnouncementsController extends Controller
         $announcement->year = $year;
         $announcement->branch = $branch;
         $announcement->division = $division;
-        $announcement->date = request('date');
         $announcement->issued_by = request('issued_by');
 
         $announcement->save();

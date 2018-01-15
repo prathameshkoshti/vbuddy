@@ -85,11 +85,6 @@
                     </tr>
                     <tr>
                         <td colspan=2>
-                            <input type="date" class="form-control" placeholder="Date" name="date"  value="{{$announcement->date}}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan=2>
                             <input type="text" class="form-control" placeholder="Isseud By" name="issued_by" value="{{$announcement->issued_by}}">
                         </td>
                     </tr>

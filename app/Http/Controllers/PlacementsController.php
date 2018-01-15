@@ -42,7 +42,6 @@ class PlacementsController extends Controller
             'body' => 'required',
             'year' => 'required',
             'branch' => 'required',
-            'date' => 'required|date',
             'issued_by' => 'required',
         ]);
 
@@ -54,7 +53,6 @@ class PlacementsController extends Controller
             'body' => request('body'),
             'year' => $year,
             'branch' => $branch,
-            'date' => request('date'),
             'issued_by' => request('issued_by'), 
         ]);
 
@@ -102,7 +100,6 @@ class PlacementsController extends Controller
             'body' => 'required',
             'year' => 'required',
             'branch' => 'required',
-            'date' => 'required|date',
             'issued_by' => 'required',
         ]);
 
@@ -115,7 +112,6 @@ class PlacementsController extends Controller
         $placement->body = request('body');
         $placement->year = $year;
         $placement->branch = $branch;
-        $placement->date = request('date');
         $placement->issued_by = request('issued_by');
 
         $placement->save();
