@@ -127,9 +127,9 @@ Route::group(['prefix' => 'faculty', 'middleware' => 'faculty'], function(){
     Route::get('/home','FacultiesController@home');
 
     Route::prefix('faculty_announcements')->group(function(){
-        Route::get('/', 'FacultiesController@announcmentsHome');
+        Route::get('/', 'FacultiesController@announcementsHome');
 
-        Route::get('/index', 'FacultiesController@announcmentsIndex');
+        Route::get('/index', 'FacultiesController@announcementsIndex');
 
         Route::get('create', 'FacultiesController@announcementsCreate');
         Route::get('store', 'FacultiesController@announcementsStore');
