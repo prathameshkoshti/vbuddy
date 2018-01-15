@@ -10,4 +10,8 @@ class FacultiesController extends Controller
     {
         return view('faculty.home');
     }
+
+    public function announcemntsHome(){
+        return view('faculty.announcements.home');
+    }
 }
