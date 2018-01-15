@@ -1,6 +1,6 @@
 @extends('Layouts.faculty_layout')
 @section('content')
-<form action="">
+
 
     <div class="row">
         <div class="">
@@ -8,7 +8,7 @@
         </div>
     </div>
     <br><br>
-    <form method="post" action="/admin/faculty_announcements/store" class="form form-group box-body">
+    <form method="post" action="/faculty/faculty_announcements/store" class="form form-group box-body">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <table class="table">
@@ -90,6 +90,7 @@
                 </table>
             </div>
         </div>
+    </form>
 
 
 
