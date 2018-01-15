@@ -13,7 +13,7 @@
         </div>
     </div>
     <br><br>
-    <form method="post" action="/admin/placements/store" class="form form-group box-body">
+    <form method="post" action="/faculty/placements/store" class="form form-group box-body">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <table class="table">

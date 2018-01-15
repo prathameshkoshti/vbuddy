@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \App\Announcement;
 
 class FacultiesController extends Controller
 {
@@ -21,6 +22,11 @@ class FacultiesController extends Controller
 
     public function announcemntsIndex()
     {
+        $userId = Auth::user()->id;
+        $announcement = Announcement::where([
+            ['status', '=', 1],
+            ['issued_by', '=', $userId]
+        ])->paginate();
         return view('faculty.announcements.home');
     }
 
@@ -34,9 +40,10 @@ class FacultiesController extends Controller
 
     }
 
-    public function announcementsEdit()
+    public function announcementsEdit($id)
     {
-
+        $announcement = Announcement::find($id);
+        return view('faculty.announcements.edit', compact('announcement'));
     }
 
     public function announcementsUpdate()
