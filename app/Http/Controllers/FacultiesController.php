@@ -68,7 +68,10 @@ class FacultiesController extends Controller
     public function announcementsEdit($id)
     {
         $announcement = Announcement::find($id);
-        return view('faculty.announcements.edit', compact('announcement'));
+        $year = explode(',', $announcement->year);
+        $branch = explode(',', $announcement->branch);
+        $division = explode(',', $announcement->division);
+        return view('faculty.announcements.edit', compact('announcement', 'year', 'branch', 'division'));
     }
 
     public function announcementsUpdate(Request $request, $id)
@@ -79,7 +82,6 @@ class FacultiesController extends Controller
             'year' => 'required',
             'branch' => 'required',
             'division' => 'required',
-            'issued_by' => 'required',
         ]);
 
         $announcement = Announcement::find($id);

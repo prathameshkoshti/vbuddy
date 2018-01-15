@@ -24,7 +24,6 @@
                     <th>Body</th>
                     <th>Year</th>
                     <th>Branch</th>
-                    <th>Date</th>
                     <th>Issued By</th>
                     <th>Status</th>
                     <th>Actions</th>
@@ -36,7 +35,6 @@
                     <td>{{ $value->body }}</td>
                     <td>{{ $value->year }}</td>
                     <td>{{ $value->branch }}</td>
-                    <td>{{ $value->date }}</td>
                     <td>{{ $value->issued_by }}</td>
                     @if( $value->status == 1)
                         <td>Active</td>

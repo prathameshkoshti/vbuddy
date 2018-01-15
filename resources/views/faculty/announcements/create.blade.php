@@ -1,7 +1,12 @@
 @extends('Layouts.faculty_layout')
+
+@section('title', 'V-Buddy')
+
+@section('content_header')
+    <h1 style="text-align:center">Faculty Announcement</h1>
+@stop
+
 @section('content')
-
-
     <div class="row">
         <div class="">
             <h4 style="text-align:center">Create New Faculty Announcement</h4>
@@ -27,7 +32,7 @@
                             <div>
                                 <b>Year :</b>
                             </div>
-                        </td>
+                       </td>
                         <td>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" name="year[]" type="checkbox" value="FE">
@@ -71,7 +76,7 @@
                                 <input class="form-check-input" name="division[]" type="checkbox" value="A">
                                 <label class="form-check-label" for="inft">A</label>
                                 <input class="form-check-input" name="division[]" type="checkbox" value="B">
-                                <label class="form-check-label" for="comp">B</label>
+                                <label class="form-check-label" for="comp">B</label>     
                                 <input class="form-check-input" name="division[]" type="checkbox" value="C">
                                 <label class="form-check-label" for="etrx">C</label>
                             </div>
@@ -79,19 +84,14 @@
                     </tr>
                     <tr>
                         <td colspan=2>
-                            <input type="hidden" class="form-control" placeholder="Isseud By" name="issued_by" value="{{Auth::user()->id}}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan=2>
+                            <input type="hidden" name="issued_by" value="{{Auth::user()->id}}">
                             <input type="submit" class="form-control btn btn-success" value="Submit" name="submit">
-                        </td>
+                        </td>                        
                     </tr>
                 </table>
             </div>
         </div>
+        {{csrf_field()}}
+		{{method_field('PUT')}}
     </form>
-
-
-
 @stop
