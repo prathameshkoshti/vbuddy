@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Announcement;
+use Auth;
 
 class FacultiesController extends Controller
 {
@@ -20,14 +21,14 @@ class FacultiesController extends Controller
         return view('faculty.announcements.home');
     }
 
-    public function announcemntsIndex()
+    public function announcementsIndex()
     {
         $userId = Auth::user()->id;
         $announcement = Announcement::where([
             ['status', '=', 1],
             ['issued_by', '=', $userId]
         ])->paginate();
-        return view('faculty.announcements.home');
+        return view('faculty.announcements.index');
     }
 
     public function announcementsCreate()
