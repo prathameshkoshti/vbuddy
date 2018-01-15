@@ -15,7 +15,7 @@
     <br><br>
     <form method="post" action="/faculty/placements/update/{{$placement->id}}" class="form form-group box-body">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-4 col-md-offset-4">
                 <table class="table">
                     <tr>
                         <td colspan=2>
@@ -63,16 +63,6 @@
                                 <input class="form-check-input" name="branch[]" type="checkbox" value="ETRX" {{in_array('ETRX', $branch) ? 'checked' : ''}}>
                                 <label class="form-check-label" for="etrx">ETRX</label>
                             </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan=2>
-                            <input type="date" class="form-control" placeholder="Date" name="date"  value="{{$placement->date}}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan=2>
-                            <input type="text" class="form-control" placeholder="Isseud By" name="issued_by" value="{{$placement->issued_by}}">
                         </td>
                     </tr>
                     <tr>

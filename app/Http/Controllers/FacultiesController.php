@@ -37,7 +37,7 @@ class FacultiesController extends Controller
         return view('faculty.announcements.create');
     }
 
-    public function announcementsStore()
+    public function announcementsStore(Request $request)
     {
         $this -> validate($request, [
             'head' => 'required',
@@ -71,14 +71,44 @@ class FacultiesController extends Controller
         return view('faculty.announcements.edit', compact('announcement'));
     }
 
-    public function announcementsUpdate()
+    public function announcementsUpdate(Request $request, $id)
     {
+        $this -> validate($request, [
+            'head' => 'required',
+            'body' => 'required',
+            'year' => 'required',
+            'branch' => 'required',
+            'division' => 'required',
+            'issued_by' => 'required',
+        ]);
 
+        $announcement = Announcement::find($id);
+
+        $year = implode(',', $request->get('year'));
+        $branch = implode(',', $request->get('branch'));
+        $division = implode(',', $request->get('division'));
+
+        $announcement->head = request('head');
+        $announcement->body = request('body');
+        $announcement->year = $year;
+        $announcement->branch = $branch;
+        $announcement->division = $division;
+
+        $announcement->save();
+
+        \Session :: flash('update','Updated Successfully!');
+        return redirect('/faculty/faculty_announcements/index');
     }
 
-    public function announcementsDestroy()
+    public function announcementsDestroy($id)
     {
+        $announcement = Announcement::find($id);
 
+        $announcement->status=0;
+        $announcement->save();
+
+        \Session::flash('delete', 'Deleted successfully.');
+        return redirect('faculty/faculty_announcements/index');
     }
 
     /*
@@ -87,7 +117,7 @@ class FacultiesController extends Controller
 
     public function placementsHome()
     {
-        
+        return view('faculty.placements.home');
     }
 
     public function placementsIndex()
@@ -141,11 +171,37 @@ class FacultiesController extends Controller
 
     public function placementsUpdate(Request $request, $id)
     {
+        $this -> validate($request, [
+            'head' => 'required',
+            'body' => 'required',
+            'year' => 'required',
+            'branch' => 'required',
+        ]);
 
+        $placement = Placement::find($id);
+
+        $year = implode(',', $request->get('year'));
+        $branch = implode(',', $request->get('branch'));
+
+        $placement->head = request('head');
+        $placement->body = request('body');
+        $placement->year = $year;
+        $placement->branch = $branch;
+
+        $placement->save();
+
+        \Session :: flash('update','Updated Successfully!');
+        return redirect('/faculty/placements/index');
     }
 
-    public function placementsDestroy()
+    public function placementsDestroy($id)
     {
+        $placement = Placement::find($id);
 
+        $placement->status = 0;
+        $placement->save();
+
+        \Session::flash('delete', 'Deleted successfully.');
+        return redirect('faculty/placements/index');
     }
 }
