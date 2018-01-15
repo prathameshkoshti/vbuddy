@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Announcement;
+use \App\Placement;
 use Auth;
 
 class FacultiesController extends Controller
@@ -16,7 +17,7 @@ class FacultiesController extends Controller
     /*
         functions for announcements
     */
-    public function announcemntsHome()
+    public function announcementsHome()
     {
         return view('faculty.announcements.home');
     }
@@ -68,7 +69,13 @@ class FacultiesController extends Controller
 
     public function placementsIndex()
     {
-        
+        $userId = Auth::user()->id;
+        $placement = Placement::where([
+            ['status', '=', 1],
+            ['issued_by', '=', $userId]
+        ]);
+
+        return view('faculty.placement.index');
     }
 
     public function placementsCreate()
@@ -83,7 +90,8 @@ class FacultiesController extends Controller
 
     public function placementsEdit()
     {
-
+        $placement = Placement::find($id);
+        return view('faculty.placements.edit', compact('placement'));
     }
 
     public function placementsUpdate()
