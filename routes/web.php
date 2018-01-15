@@ -122,4 +122,32 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     
 });
 
+Route::group(['prefix' => 'faculty', 'middleware' => 'faculty'], function(){
+    
+    Route::get('/home','FacultiesController@home');
 
+    Route::prefix('faculty_announcements')->group(function(){
+        Route::get('/', 'AnnouncementsController@index');
+
+        Route::get('create', 'AnnouncementsController@create');
+        Route::get('store', 'AnnouncementsController@store');
+
+        Route::get('edit/{id}', 'AnnouncementsController@edit');
+        Route::get('update/{id}', 'AnnouncementsController@update');
+
+        Route::get('delete/{id}', 'AnnouncementsController@destroy');
+    });
+
+    Route::prefix('placements')->group(function(){
+        Route::get('/', 'AnnouncementsController@index');
+
+        Route::get('create', 'AnnouncementsController@create');
+        Route::get('store', 'AnnouncementsController@store');
+
+        Route::get('edit/{id}', 'AnnouncementsController@edit');
+        Route::get('update/{id}', 'AnnouncementsController@update');
+
+        Route::get('delete/{id}', 'AnnouncementsController@destroy');
+    });
+
+});

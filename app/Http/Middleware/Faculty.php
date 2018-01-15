@@ -19,12 +19,12 @@ class Faculty
         if(!Auth::user()){
             return redirect('login');
         }
-        if($request->user()->role != 'Faculty' || 
-            $request->user()->role != 'Event Coordinator' ||
-            $request->user()->role != 'Placement Coordinator'
+        if($request->user()->role == 'Faculty' || 
+            $request->user()->role == 'Event Coordinator' ||
+            $request->user()->role == 'Placement Coordinator'
         ){
-            return redirect('404');
+            return $next($request);
         }
-        return $next($request);
+        return redirect('404');
     }
 }

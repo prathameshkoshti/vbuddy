@@ -18,9 +18,9 @@ class Admin
         if(!Auth::user()){
             return redirect('login');
         }
-        if($request->user()->role != 'Admin'){
-            return redirect('404');
+        if($request->user()->role == 'Admin'){
+            return $next($request);   
         }
-        return $next($request);
+        return redirect('404');
     }
 }
