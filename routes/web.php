@@ -132,10 +132,10 @@ Route::group(['prefix' => 'faculty', 'middleware' => 'faculty'], function(){
         Route::get('index', 'FacultiesController@announcementsIndex');
 
         Route::get('create', 'FacultiesController@announcementsCreate');
-        Route::get('store', 'FacultiesController@announcementsStore');
+        Route::put('store', 'FacultiesController@announcementsStore');
 
         Route::get('edit/{id}', 'FacultiesController@announcementsEdit');
-        Route::get('update/{id}', 'FacultiesController@announcementsUpdate');
+        Route::put('update/{id}', 'FacultiesController@announcementsUpdate');
 
         Route::get('delete/{id}', 'FacultiesController@announcementsDestroy');
     });
@@ -146,10 +146,10 @@ Route::group(['prefix' => 'faculty', 'middleware' => 'faculty'], function(){
         Route::get('index', 'FacultiesController@placementsIndex');
 
         Route::get('create', 'FacultiesController@placementsCreate');
-        Route::get('store', 'FacultiesController@placementsStore');
+        Route::put('store', 'FacultiesController@placementsStore');
 
         Route::get('edit/{id}', 'FacultiesController@placementsEdit');
-        Route::get('update/{id}', 'FacultiesController@placementsUpdate');
+        Route::put('update/{id}', 'FacultiesController@placementsUpdate');
 
         Route::get('delete/{id}', 'FacultiesController@placementsDestroy');
     });

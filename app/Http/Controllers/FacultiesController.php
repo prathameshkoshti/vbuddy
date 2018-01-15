@@ -25,11 +25,11 @@ class FacultiesController extends Controller
     public function announcementsIndex()
     {
         $userId = Auth::user()->id;
-        $announcement = Announcement::where([
+        $announcements = Announcement::where([
             ['status', '=', 1],
             ['issued_by', '=', $userId]
         ])->paginate();
-        return view('faculty.announcements.index');
+        return view('faculty.announcements.index', compact('announcements'));
     }
 
     public function announcementsCreate()
@@ -39,7 +39,30 @@ class FacultiesController extends Controller
 
     public function announcementsStore()
     {
+        $this -> validate($request, [
+            'head' => 'required',
+            'body' => 'required',
+            'year' => 'required',
+            'branch' => 'required',
+            'division' => 'required',
+            'issued_by' => 'required',
+        ]);
 
+        $year = implode(',', $request->get('year'));
+        $branch = implode(',', $request->get('branch'));
+        $division = implode(',', $request->get('division'));
+
+        Announcement::create([
+            'head' => request('head'),
+            'body' => request('body'),
+            'year' => $year,
+            'branch' => $branch,
+            'division' => $division,
+            'issued_by' => request('issued_by'), 
+        ]);
+
+        \Session::flash('create', 'Data stored successfully.');
+        return redirect('/faculty/faculty_announcements/index');
     }
 
     public function announcementsEdit($id)
@@ -100,12 +123,11 @@ class FacultiesController extends Controller
             'body' => request('body'),
             'year' => $year,
             'branch' => $branch,
-            'date' => request('date'),
             'issued_by' => request('issued_by'), 
         ]);
 
         \Session::flash('create', 'Data stored successfully.');
-        return redirect('admin/placements/');
+        return redirect('faculty/placements/index');
 
     }
 
