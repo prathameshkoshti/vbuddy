@@ -5,19 +5,11 @@
         body{
             background-color:#e8e8e8;
         }
-
     </style>
-<?php
-    $x=2
-?>
     <div class="row">
-        <p>{{$x}}</p>
         <div >
             <h1 style="text-align:center">Faculty Announcements</h1>
         </div><br><br>
-
-
-
         <div class="col-md-offset-1 col-md-2">
             <div class="form-group">
                 <div class=" card mb-3 " style="border-color: limegreen; border-style:solid; border-width:5px;width: 200px;height: 200px;padding:5%;background-color: white">
@@ -25,10 +17,8 @@
                         <div class="create" style="right:50%; font-size:230%"><a href=""><span class="glyphicon glyphicon-plus-sign" style="color: limegreen"></span></a></div>
                     </div>
                 </div>
-
             </div>
         </div>
-
             <div class="col-md-2">
                 <div class="form-group">
                     <div class=" card  mb-3 " style="border-color:coral ;border-style:solid; border-width:5px;width: 200px;height: 200px;padding: 5%;background-color: white">
@@ -38,7 +28,6 @@
                     </div>
                 </div>
         </div>
-
         <div class="col-md-2">
             <div class="form-group">
                 <div class=" card  mb-3 " style="border-color:cornflowerblue ;border-style:solid; border-width:5px;width: 200px;height: 200px;padding: 5%;background-color: white">
@@ -48,8 +37,6 @@
                 </div>
             </div>
         </div>
-
-
         <div class="col-md-2">
             <div class="form-group">
                 <div class=" card mb-3 " style=" border: 5px solid orangered;width: 200px;height: 200px; padding:5%;background-color: white">
@@ -59,9 +46,6 @@
                 </div>
             </div>
         </div>
-
-
-
         <div class="col-md-2">
             <div class="form-group">
                 <div class=" card mb-3 " style="border: 5px solid orange;;width: 200px;height: 200px; padding:5%;background-color: white"><br>
@@ -71,12 +55,5 @@
                 </div>
             </div>
         </div>
-
-
-
-
     </div>
-
-
-
-    @stop
+@stop
