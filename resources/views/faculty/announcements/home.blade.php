@@ -2,67 +2,94 @@
 
 @section('content')
     <style>
-        body{
-            background-color:#e8e8e8;
-        }
-
         .animate{
-            transition: transform .8s;
+            transition: ease-in-out 0.8s;
         }
         .animate:hover{
             transform: scale(1.2);
         }
+        .card-header{
+            text-align: center;
+            color: #fff;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto 0%;
+            padding-top:10%;
+        }
+        .container-fluid{
+            text-align:center;
+        }
+        .create{
+            background-color: #00C853;
+            box-shadow: 0 5px 15px 0 rgba(0,200,83,0.7), 6px 0px 15px 0 rgba(0,200,83,0.5);
+            
+        }
+        .back{
+            background-color: #FF5722;
+            box-shadow: 0 5px 15px 0 rgba(255,87,34,0.7), 6px 0px 15px 0 rgba(255,87,34,0.5);
+        }
+        .view{
+            background-color: #40C4FF;
+            box-shadow: 0 5px 15px 0 rgba(64,196,255,0.7), 6px 0px 15px 0 rgba(64,196,255,0.5);
+        }
         .card{
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            z-index: -1;
+            position: relative;
+            width: 200px;
+            height: 200px;
+            padding-left: 12%;
+            padding-right: 12%;
+            padding-top: 10%;
+            padding-bottom: 10%;
+            border-radius: 5px;
+            text-align: center;
         }
-        .card:hover:after{
-            box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.5), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
-        }
-
     </style>
-    <div class="row">
-        <div >
-            <h1 style="text-align:center">Faculty Announcements</h1>
-        </div><br><br><br>
+    <div class="container-fluid">
+        <div class="row">
+            <div >
+                <h2 style="text-align:center">Faculty Announcements</h1>
+            </div><br><br><br>
 
-    <div class="col-md-offset-2 col-md-2 ">
-
-            <div class="form-group animate">
-                <a href="">
-                <div class="card mb-3 " style="border-color: limegreen; border-style:solid; border-width:5px;width: 200px;height: 200px;padding:5%;background-color:limegreen">
-                    <div class="card-header" style="text-align: center;color: white "><h3>Create <br>Announcements</h3><br>
-                        <div class="create" style="right:50%; font-size:230%;z-index: 2"><span class="glyphicon glyphicon-plus-sign" style="color: white"></span></div>
-                     </div>
-                </div>
-                </a>
-            </div>
-
-        </div>
-            <div class="col-md-2 col-md-offset-1 ">
+            <div class="col-md-2 col-xs-offset-2 col-xs-6 col-sm-2">
                 <div class="form-group animate">
-                    <a href="">
-                    <div class=" card  mb-3 " style="border-color:coral ;border-style:solid; border-width:5px;width: 200px;height: 200px;padding: 5%;background-color: coral">
-                        <div class="card-header " style="text-align: center;color:white"><h3>view <br> Announcements</h3><br>
-
-                            <div style="right:50%; font-size:230%;z-index: 2"><span class="glyphicon glyphicon-list" style="color:white"></span></div>
-
+                    <a href="/faculty/faculty_announcements/create">
+                        <div class="create card">
+                            <div class="card-header">
+                                <h3>Create Announcements</h3><br>
+                                <span class="fa fa-3x fa-plus-circle"></i>
+                            </div>
                         </div>
-                    </div>
                     </a>
                 </div>
-        </div>
+            </div>
 
-
-        <div class="col-md-2 col-md-offset-1 ">
-            <div class="form-group animate">
-                <a href="">
-                <div class=" card mb-3 " style="border: 5px solid orange;;width: 200px;height: 200px; padding:5%;background-color:orange"><br>
-                    <div class="card-header" style="text-align: center;color:white"><h3>Back</h3><br>
-                        <div style="right:50%; font-size:230%;z-index: 2"> <i class="fa fa-chevron-circle-left fa-lg" aria-hidden="true" style="color:white"></i></div>
-                    </div>
+            <div class="col-md-2 col-md-offset-1 col-xs-offset-2 col-xs-6">
+                <div class="form-group animate">
+                    <a href="/faculty/faculty_announcements/index">
+                        <div class="view card">
+                            <div class="card-header">
+                                <h3>View Announcements</h3><br>
+                                <i class="fa fa-3x fa-list"></i>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-                </a>
+            </div>
+
+            <div class="col-md-2 col-md-offset-1 col-xs-offset-2 col-xs-6">
+                <div class="form-group animate">
+                    <a href="">
+                        <div class="back card mb-3"><br>
+                            <div class="back card-header">
+                                <h3>Back</h3><br><br>
+                                <i class="fa fa-chevron-circle-left fa-3x"></i>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
