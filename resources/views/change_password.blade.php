@@ -19,7 +19,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <input placeholder="Old Password" class="form-control" type="password" name="new_password">
+                            <input placeholder="New Password" class="form-control" type="password" name="new_password">
                         </td>
                     </tr>
                     <tr>
