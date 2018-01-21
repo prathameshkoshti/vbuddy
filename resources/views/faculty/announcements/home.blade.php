@@ -81,7 +81,7 @@
 
             <div class="col-md-2 col-md-offset-1 col-xs-offset-2 col-xs-6">
                 <div class="form-group animate">
-                    <a href="">
+                    <a onclick="window.history.back();">
                         <div class="back card mb-3"><br>
                             <div class="back card-header">
                                 <h3>Back</h3><br><br>
