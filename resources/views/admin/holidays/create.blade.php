@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'AdminLTE :: Holidays')
 
 @section('content_header')
-    <h1 style="text-align:center">Holiday</h1>
+    <h1 style="text-align:center">Holidays</h1>
 @stop
 
 @section('content')
@@ -38,4 +38,5 @@
         {{csrf_field()}}
 		{{method_field('PUT')}}
     </form>
+    @include('layouts.resource')
 @stop

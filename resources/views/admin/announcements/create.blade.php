@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'AdminLTE :: Faculty Announcement')
 
 @section('content_header')
     <h1 style="text-align:center">Faculty Announcement</h1>
@@ -98,4 +98,5 @@
         {{csrf_field()}}
 		{{method_field('PUT')}}
     </form>
+    @include('layouts.resource')
 @stop

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'AdminLTE :: Change Password')
 
 @section('content_header')
     <h1 style="text-align:center">Profile : Change Password</h1>

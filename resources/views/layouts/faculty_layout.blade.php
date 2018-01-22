@@ -60,10 +60,10 @@
     }
     body{
         color:#fff !important;
-        background-image: linear-gradient(to bottom right, rgba(241,23,18,0.7), #0099f7);
+        background-image: linear-gradient(to bottom right, rgba(0,0,0,0.7), #434343);
     }
     .dropdown-menu{
-        background: rgba(241,23,18,0.3) !important;
+        background: rgba(0,0,0,0.3) !important;
     }
     .dropdown-menu li a{
         color: #fff !important;
@@ -81,6 +81,23 @@
     }
     .navbar{
         background: rgba(0,0,0,0.3) !important;
+    }
+
+    .btn{
+        background-color: #00B0FF !important;
+        border : 0px !important;
+    }
+    textarea, input[type="text"]{
+        border : 0px;
+        border-radius: 3px !important;
+    }
+    .table-borderless > tbody > tr > td,
+    .table-borderless > tbody > tr > th,
+    .table-borderless > tfoot > tr > td,
+    .table-borderless > tfoot > tr > th,
+    .table-borderless > thead > tr > td,
+    .table-borderless > thead > tr > th {
+        border: none !important;
     }
 </style>
 @section('body')

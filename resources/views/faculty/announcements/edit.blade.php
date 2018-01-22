@@ -1,6 +1,6 @@
 @extends('layouts.faculty_layout')
 
-@section('title', 'AdminLTE')
+@section('title', 'V-Buddy :: Faculty Announcements')
 
 @section('content_header')
     <h1 style="text-align:center">Faculty Announcements</h1>
@@ -16,7 +16,7 @@
     <form method="post" action="/faculty/faculty_announcements/update/{{$announcement->id}}" class="form form-group box-body">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
-                <table class="table">
+                <table class="table table-borderless">
                     <tr>
                         <td colspan=2>
                             <input type="text" class="form-control" placeholder="Head" name="head" value="{{$announcement->head}}">

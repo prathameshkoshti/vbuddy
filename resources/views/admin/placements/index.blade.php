@@ -1,23 +1,24 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'AdminLTE :: Placements News')
 
 @section('content_header')
-    <h1 style="text-align:center">Placements</h1>
+    <h1 style="text-align:center">Placements News</h1>
 @stop
 
 @section('content')
     <div class="row">
-        <div class="col-md-offset-9">
-            <button onClick="parent.location='/admin/placements/create'" type="button" class="btn btn-success">
-                <span class="fa fa-plus" aria-hidden="true"></span> Create
-             </button>
-        </div>
-    </div>
-    <br>
-    <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <table class="table table-hover">
+                <tr>
+                    <td colspan=8>
+                        <div class="col-md-offset-9">
+                            <button onClick="parent.location='/admin/placements/create'" type="button" class="btn btn-success table-btn">
+                                <span class="fa fa-plus" aria-hidden="true"></span> Create
+                            </button>
+                        </div>
+                    </td>
+                </tr>
                 <tr>
                     <th>ID</th>
                     <th>Head</th>
@@ -52,4 +53,9 @@
         </div>
     </div>
     @include('layouts.resource')
+    <style>
+        .table-btn{
+            margin-left:60%;
+        }
+    </style>
 @stop

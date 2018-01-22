@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'AdminLTE :: Profile')
 
 @section('content_header')
     <h1 style="text-align:center">Profile</h1>
@@ -12,6 +12,11 @@
             <form method="post" action="/admin/profile/update/" class="form form-group box-body">
                 <input type="hidden" name="id" value="{{$profile->id}}">
                 <table class="table table-hover">
+                    <tr>
+                        <td colspan=2 align="center">
+                                <i class="fa fa-user-circle-o fa-5x" aria-hidden="true"></i>
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             Name:

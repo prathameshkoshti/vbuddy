@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'AdminLTE :: V-Buddy')
 
 @section('content_header')
     <h1 style="text-align:center">Dashboard</h1>
