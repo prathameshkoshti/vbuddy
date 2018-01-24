@@ -131,7 +131,7 @@
 
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a>
+                                        <a href="/faculty/profile">
                                         Profile 
                                         </a>
                                     </li>

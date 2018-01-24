@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="table-responsive">
-                <table class="table table-hover form-table">
+                <table class="table table-hover table-borderless">
                     <tr>
                         <td colspan=6>
                             <button onClick="parent.location='/faculty/placements/create'" type="button" class="btn btn-success table-btn">                            

@@ -14,7 +14,7 @@ class AnnouncementsController extends Controller
      */
     public function index()
     {
-        $announcements = Announcement::where('status', 1)->paginate(10);
+        $announcements = Announcement::paginate(10);
         //dd($announcements);
         return view('admin.announcements.index', compact('announcements'));
     }

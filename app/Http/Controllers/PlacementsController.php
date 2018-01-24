@@ -15,7 +15,7 @@ class PlacementsController extends Controller
      */
     public function index()
     {
-        $placements = Placement::where('status', 1)->paginate(10);
+        $placements = Placement::paginate(10);
         return view('admin.placements.index', compact('placements'));
     }
 
@@ -83,7 +83,6 @@ class PlacementsController extends Controller
         $year = explode(',', $placement->year);
         $branch = explode(',', $placement->branch);
         return view('admin.placements.edit', compact('placement', 'year', 'branch'));
-
     }
 
     /**

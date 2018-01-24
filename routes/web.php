@@ -92,6 +92,19 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     /*
         Routes for Events 
     */
+    Route::prefix('events')->group(function(){
+        Route::get('/', 'EventsController@index');
+
+        Route::get('view/{id}   ', 'EventsController@show');
+
+        Route::get('create', 'EventsController@create');
+        Route::put('store', 'EventsController@store');
+
+        Route::get('edit/{id}', 'EventsController@edit');
+        Route::put('update/{id}', 'EventsController@update');
+
+        Route::get('delete/{id}', 'EventsController@destroy');
+    });
     /*
         Routes for Event's Enrollments 
     */
@@ -154,4 +167,11 @@ Route::group(['prefix' => 'faculty', 'middleware' => 'faculty'], function(){
         Route::get('delete/{id}', 'FacultiesController@placementsDestroy');
     });
 
+    Route::prefix('profile')->group(function(){
+        Route::get('/', 'ProfilesController@facultyProfile');
+        Route::put('update', 'ProfilesController@facultyProfileUpdate');
+
+        Route::get('change_password', 'ProfilesController@facultyChangePassword');
+        Route::put('update_password', 'ProfilesController@facultyUpdatePassword');
+    });
 });

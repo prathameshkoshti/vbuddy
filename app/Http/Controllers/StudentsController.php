@@ -14,7 +14,7 @@ class StudentsController extends Controller
      */
     public function index()
     {
-        $students = Student::where('status', 1)->paginate(10);
+        $students = Student::paginate(10);
         return view('admin.students.index', compact('students'));
         
     }
