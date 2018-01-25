@@ -26,7 +26,10 @@ class PlacementsController extends Controller
      */
     public function create()
     {
-        $users = User::where('status', '1')->get();
+        $users = User::where([
+            ['status', '=', '1'],
+            ['role', '=', 'Event Coordinator'],
+            ])->get();
         return view('admin.placements.create', compact('users'));
     }
 
@@ -80,7 +83,10 @@ class PlacementsController extends Controller
      */
     public function edit($id)
     {
-        $users = User::where('status', '1')->get();
+        $users = User::where([
+            ['status', '=', '1'],
+            ['role' , '=', 'Event Coordinator']
+        ])->get();
         $placement = Placement::find($id);
         $issued_by = $placement->issued_by;
         $year = explode(',', $placement->year);
