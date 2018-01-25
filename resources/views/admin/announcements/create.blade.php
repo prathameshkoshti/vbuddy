@@ -84,7 +84,11 @@
                     </tr>
                     <tr>
                         <td colspan=2>
-                            <input type="text" class="form-control" placeholder="Isseud By" name="issued_by">
+                            <select class="form-control" name="issued_by">
+                                @foreach($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                @endforeach
+                            </select>
                         </td>
                     </tr>
                     <tr>

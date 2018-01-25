@@ -26,7 +26,8 @@ class PlacementsController extends Controller
      */
     public function create()
     {
-        return view('admin.placements.create');
+        $users = User::where('status', '1')->get();
+        return view('admin.placements.create', compact('users'));
     }
 
     /**
@@ -79,10 +80,12 @@ class PlacementsController extends Controller
      */
     public function edit($id)
     {
+        $users = User::where('status', '1')->get();
         $placement = Placement::find($id);
+        $issued_by = $placement->issued_by;
         $year = explode(',', $placement->year);
         $branch = explode(',', $placement->branch);
-        return view('admin.placements.edit', compact('placement', 'year', 'branch'));
+        return view('admin.placements.edit', compact('placement', 'year', 'branch', 'users', 'issued_by'));
     }
 
     /**

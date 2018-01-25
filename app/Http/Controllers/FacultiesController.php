@@ -24,11 +24,8 @@ class FacultiesController extends Controller
 
     public function announcementsIndex()
     {
-        $userId = Auth::user()->id;
-        $announcements = Announcement::where([
-            ['status', '=', 1],
-            ['issued_by', '=', $userId]
-        ])->paginate();
+        $user = Auth::user();
+        $announcements = $user->announcements()->where('status', '1')->paginate();
         return view('faculty.announcements.index', compact('announcements'));
     }
 
@@ -124,10 +121,8 @@ class FacultiesController extends Controller
 
     public function placementsIndex()
     {
-        $id = Auth::user()->id;
-        $placements = Placement::where('status', '=', 1)
-                                ->where('issued_by', '=', Auth::user()->id)
-                                ->paginate(10);
+        $user = Auth::user();
+        $placements = $user->placements()->where('status', '1')->paginate(10);
 
         return view('faculty.placements.index', compact('placements'));
     }

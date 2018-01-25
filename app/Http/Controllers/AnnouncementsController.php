@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Announcement;
+use App\User;
 
 class AnnouncementsController extends Controller
 {
@@ -26,7 +27,8 @@ class AnnouncementsController extends Controller
      */
     public function create()
     {
-        return view('admin.announcements.create');
+        $users = User::where('status', '1')->get();
+        return view('admin.announcements.create', compact('users'));
     }
 
     /**
@@ -82,11 +84,13 @@ class AnnouncementsController extends Controller
      */
     public function edit($id)
     {
+        $users = User::where('status', '1')->get();
         $announcement = Announcement::find($id);
+        $issued_by = $announcement->issued_by;
         $year = explode(',', $announcement->year);
         $branch = explode(',', $announcement->branch);
         $division = explode(',', $announcement->division);
-        return view('admin.announcements.edit', compact('announcement', 'year', 'branch', 'division'));
+        return view('admin.announcements.edit', compact('announcement', 'year', 'branch', 'division', 'users', 'issued_by'));
     }
 
     /**

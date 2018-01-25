@@ -6,17 +6,6 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-md-3" style="background-color: white">
-                <div class="card" >
-                    <div class="card-block" >
-                        <p>
-                        <h3 class="card-title" style="text-align:center;color: black">Designation:Faculty </h3>
-                        <h4 class="card-text" style="color: black">Name:Kiran Wadkar <br> <br>Mail-id:kiranwadkar9@gmail.com <br><br>Contact No: 969782539</h4>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
             <a href="">
             <div class="col-md-3">
                 <div class="card">
