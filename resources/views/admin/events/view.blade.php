@@ -15,12 +15,12 @@
     <br><br>
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <table class="table table-borderless">
+                <table class="table table-hover">
                     <tr>
                         <td>
                             Name
                         </td>
-                        <td>
+                        <td colspan=2>
                             {{$event->name}}
                         </td>
                     </tr>
@@ -28,7 +28,7 @@
                         <td>
                             Details
                         </td>
-                        <td>
+                        <td colspan=2>
                             {{$event->details}}
                         </td>
                     </tr>
@@ -36,7 +36,7 @@
                         <td>
                             Commitee Name
                         </td>
-                        <td>
+                        <td colspan=2>
                             {{$event->commitee_name}}
                         </td>
                     </tr>
@@ -44,7 +44,7 @@
                         <td>
                             Year
                         </td>
-                        <td>
+                        <td colspan=2>
                             {{$event->year}}
                         </td>
                     </tr>
@@ -52,7 +52,7 @@
                         <td>
                             Branch
                         </td>
-                        <td>
+                        <td colspan=2>
                             {{$event->branch}}
                         </td>    
                     </tr>
@@ -60,7 +60,7 @@
                         <td>
                             Date
                         </td>
-                        <td>
+                        <td colspan=2>
                             {{$event->date}}
                         </td>
                     </tr>
@@ -68,7 +68,7 @@
                         <td>
                             Time
                         </td>
-                        <td>
+                        <td colspan=2>
                             {{$event->time}}
                         </td>
                     </tr>
@@ -76,7 +76,7 @@
                         <td>
                             Location
                         </td>
-                        <td>
+                        <td colspan=2>
                             {{$event->location}}
                         </td>
                     </tr>
@@ -85,7 +85,7 @@
                         <td>
                             Price
                         </td>
-                        <td>
+                        <td colspan=2>
                             Rs. {{$event->price}}
                         </td>
                     </tr>
@@ -94,7 +94,7 @@
                         <td>
                             Contact Name
                         </td>
-                        <td>
+                        <td colspan=2>
                             {{$event->contact_name}}
                         </td>
                     </tr>
@@ -102,7 +102,7 @@
                         <td>
                             Contact No.
                         </td>
-                        <td>
+                        <td colspan=2>
                             {{$event->contact_no}}
                         </td>
                     </tr>
@@ -112,6 +112,9 @@
                         </td>
                         <td>
                             <input type="button" class="form-control btn btn-danger" value="Delete" onclick="parent.location='/admin/events/delete/{{$event->id}}'">
+                        </td>
+                        <td>
+                            <input type="button" class="form-control btn-primary" value="View" onclick="parent.location='/admin/event_registrations/{{$event->id}}'">
                         </td>
                     </tr>
                 </table>

@@ -90,6 +90,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
         Routes for Feedback 
     */
     /*
+        Routes for IA Timetable 
+    */
+    Route::prefix('ia_timetable')->group(function(){
+        Route::get('/', 'IATimetablesController@index');
+
+        Route::get('/', 'IATimetablesController@view');
+    });
+    /*
         Routes for Events 
     */
     Route::prefix('events')->group(function(){

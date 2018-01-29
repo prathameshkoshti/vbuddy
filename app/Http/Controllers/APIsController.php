@@ -7,9 +7,31 @@ use App\Holiday;
 use App\Event;
 use App\Placement;
 use App\Announcement;
+use App\Student;
+use Illuminate\Support\Facades\Hash;
 
 class APIsController extends Controller
 {
+    public function login($email, $password)
+    {
+        $auth_user = Student::where('email', '=', $email)->first();
+        if(Hash::check($password, $auth_user->password))
+        {
+            return response()->json([
+                'STATUS'=> true,
+                'MESSAGE'=>'success',
+                'Profile' => $auth_user
+            ], 200);
+        }
+        else
+        {
+            return response()->json([
+                'STATUS'=> false,
+                'MESSAGE'=>'Username or Password Incorrect.',
+                'DATA' => null
+            ], 200);
+        }
+    }
     public function holiday()
     {
         $holiday = Holiday::where('status', '=', '1')->get();
@@ -34,7 +56,6 @@ class APIsController extends Controller
             }
         }
         return response()->json(['placement'=>$placement],200);
-        
     }
 
     public function announcement($year, $branch)
@@ -48,8 +69,7 @@ class APIsController extends Controller
                 array_push($result, $announcement);
             }
         }
-        return response()->json(['announcement'=>$result],200);
-        
+        return response()->json(['announcement'=>$result],200);    
     }
 
 }

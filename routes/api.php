@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::get('/login/{email}/{password}', 'APIsController@login');
+
 Route::get('/holidays', 'APIsController@holiday');
 
 Route::get('/events', 'APIsController@event');
