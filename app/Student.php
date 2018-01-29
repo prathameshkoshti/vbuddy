@@ -13,4 +13,9 @@ class Student extends Model
     protected $hidden = [
         'password',
     ];
+
+    public function event_registration()
+    {
+        $this->hasMany('App\EventRegistration');
+    }
 }

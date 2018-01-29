@@ -14,4 +14,9 @@ class Event extends Model
     {
         $this->belongsTo('App\User');
     }
+
+    public function event_registration()
+    {
+        $this->hasMany('App\EventRegistration');
+    }
 }

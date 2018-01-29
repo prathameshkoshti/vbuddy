@@ -7,6 +7,7 @@ use App\Holiday;
 use App\Event;
 use App\Placement;
 use App\Announcement;
+
 class APIsController extends Controller
 {
     public function holiday()
