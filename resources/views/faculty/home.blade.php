@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
 
-            <a href="">
+            <a href="/faculty/faculty_announcements/index">
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-block" style="background-color:#ff6600">
@@ -40,7 +40,7 @@
             </div>
             </a>
 
-            <a href="">
+            <a href="placements/index">
                 <div class="col-md-3">
                     <div class="card">
                         <div class="card-block" style="background-color:#33cc33">
