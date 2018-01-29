@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/holidays', 'APIsController@holiday');
+
+Route::get('/events', 'APIsController@event');
+
+Route::get('/placements/{year}/{branch}', 'APIsController@placement');
+
+Route::get('/announcements/{year}/{branch}', 'APIsController@announcement');
