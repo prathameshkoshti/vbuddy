@@ -116,6 +116,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     /*
         Routes for Event's Enrollments 
     */
+    Route::prefix('event_registrations')->group(function(){
+        Route::get('/', 'EventRegistrationsController@index');
+
+        Route::get('view/{id}', 'EventRegistrationsController@show');
+    });
     /*
         Routes for Holidays 
     */

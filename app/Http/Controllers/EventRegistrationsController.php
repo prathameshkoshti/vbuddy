@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Event;
+use App\EventRegistration;
 
 class EventRegistrationsController extends Controller
 {
@@ -13,28 +15,8 @@ class EventRegistrationsController extends Controller
      */
     public function index()
     {
-        
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        $events = Event::withCount('event_registration')->where('status', '=', 1)->get();
+        return view('admin.event_registrations.index', compact('events'));
     }
 
     /**
@@ -45,40 +27,9 @@ class EventRegistrationsController extends Controller
      */
     public function show($id)
     {
-        //
+        $students = EventRegistration::with('student')->where('event_id', '=', $id)->get();
+        $count = Event::withCount('event_registration')->find($id);        
+        return view('admin.event_registrations.view', compact('students', 'count'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
