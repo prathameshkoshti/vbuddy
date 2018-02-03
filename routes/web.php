@@ -95,7 +95,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::prefix('ia_timetable')->group(function(){
         Route::get('/', 'IATimetablesController@index');
 
-        Route::get('/', 'IATimetablesController@view');
+        Route::get('/{id}', 'IATimetablesController@view');
     });
     /*
         Routes for Events 
