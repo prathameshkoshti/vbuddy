@@ -60,7 +60,7 @@
     }
     body{
         color:#fff !important;
-        background-image: linear-gradient(to bottom right, rgba(0,0,0,0.7), #434343);
+        background-image: linear-gradient(to bottom right, rgba(0,0,0,0.5), #434343);
     }
     .dropdown-menu{
         background: rgba(0,0,0,0.3) !important;

@@ -180,6 +180,34 @@ Route::group(['prefix' => 'faculty', 'middleware' => 'faculty'], function(){
         Route::get('delete/{id}', 'FacultiesController@placementsDestroy');
     });
 
+    Route::prefix('events')->group(function(){
+        Route::view('/', 'faculty.events.home');
+
+        Route::get('index', 'FacultiesController@eventsIndex');
+
+        Route::get('create', 'FacultiesController@eventsCreate');
+        Route::put('store', 'FacultiesController@eventsStore');
+
+        Route::get('edit/{id}', 'FacultiesController@eventsEdit');
+        Route::put('update/{id}', 'FacultiesController@eventsUpdate');
+
+        Route::get('delete/{id}', 'FacultiesController@eventsDestroy');
+    });
+
+    Route::prefix('event_registrations')->group(function(){
+        Route::view('/', 'faculty.events.home');
+
+        Route::get('index', 'FacultiesController@eventRegistrationsIndex');
+
+        Route::get('create', 'FacultiesController@eventRegistrationsCreate');
+        Route::put('store', 'FacultiesController@eventRegistrationsStore');
+
+        Route::get('edit/{id}', 'FacultiesController@eventRegistrationsEdit');
+        Route::put('update/{id}', 'FacultiesController@eventRegistrationsUpdate');
+
+        Route::get('delete/{id}', 'FacultiesController@eventRegistrationsDestroy');
+    });
+
     Route::prefix('profile')->group(function(){
         Route::get('/', 'ProfilesController@facultyProfile');
         Route::put('update', 'ProfilesController@facultyProfileUpdate');

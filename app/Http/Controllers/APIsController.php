@@ -15,7 +15,7 @@ class APIsController extends Controller
     public function login($email, $password)
     {
         $auth_user = Student::where('email', '=', $email)->first();
-        if(Hash::check($password, $auth_user->password))
+        if($auth_user && Hash::check($password, $auth_user->password))
         {
             return response()->json([
                 'STATUS'=> true,

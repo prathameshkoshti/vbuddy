@@ -2,21 +2,21 @@
 
 @section('content')
     @include('layouts.cards_style')
-    @section('title', 'V-buddy :: Faculty Announcements')
+    @section('title', 'V-buddy :: Events')
     <div class="container-fluid">
         <div class="row">
             <div>
-                <h2 style="text-align:center">Faculty Announcements</h1>
+                <h2 style="text-align:center">Events</h1>
             </div>
             <br><br><br>
 
             <div class="col-md-2 col-xs-offset-2 col-xs-6 col-sm-2 card-holder">
                 <div class="form-group animate">
-                    <a href="/faculty/faculty_announcements/create">
+                    <a href="/faculty/placements/create">
                         <div class="create card">
                             <div class="card-header">
-                                <h3>Create Announcements</h3><br>
-                                <span class="fa fa-5x fa-plus-circle"></i>
+                                <h3>Create Event</h3><br>
+                                <i class="fa fa-5x fa-plus-circle"></i>
                             </div>
                         </div>
                     </a>
@@ -25,10 +25,10 @@
 
             <div class="col-md-2 col-md-offset-1 col-xs-offset-2 col-xs-6 card-holder">
                 <div class="form-group animate">
-                    <a href="/faculty/faculty_announcements/index">
+                    <a href="/faculty/placements/index">
                         <div class="view card">
                             <div class="card-header">
-                                <h3>View Announcements</h3><br>
+                                <h3>View Events</h3><br>
                                 <i class="fa fa-5x fa-list"></i>
                             </div>
                         </div>

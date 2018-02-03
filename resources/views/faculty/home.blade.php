@@ -9,7 +9,7 @@
             <div class="col-md-2 col-xs-offset-2 col-xs-6 col-sm-2 card-holder">
                 <div class="form-group animate">
                     <a href="/faculty/faculty_announcements">
-                        <div class="create card">
+                        <div class="announcement card">
                             <i class="fa fa-5x fa-bullhorn"></i>
                             <div class="card-title">
                                 <h3>Announcements</h3><br>
@@ -21,7 +21,7 @@
 
             <div class="col-md-2 col-xs-offset-2 col-md-offset-1 col-xs-6 col-sm-2 card-holder">
                 <div class="form-group animate">
-                    <a href="/faculty/placements">
+                    <a href="/faculty/attendance">
                         <div class="attendance card">
                             <i class="fa fa-5x fa-users"></i>
                             <div class="card-title">
@@ -47,7 +47,7 @@
 
             <div class="col-md-2 col-xs-offset-2 col-md-offset-2 col-xs-6 col-sm-2 card-holder">
                 <div class="form-group animate">
-                    <a href="/faculty/placements">
+                    <a href="/faculty/events">
                         <div class="event card">
                             <i class="fa fa-5x fa-calendar-o"></i>
                             <div class="card-title">
@@ -60,7 +60,7 @@
 
             <div class="col-md-2 col-xs-offset-2 col-md-offset-1 col-xs-6 col-sm-2 card-holder">
                 <div class="form-group animate">
-                    <a href="/faculty/placements">
+                    <a href="/faculty/event_registrations">
                         <div class="registration card">
                             <i class="fa fa-5x fa-calendar-check-o"></i>
                             <div class="card-title">
@@ -73,7 +73,7 @@
 
             <div class="col-md-2 col-xs-offset-2 col-md-offset-1 col-xs-6 col-sm-2 card-holder">
                 <div class="form-group animate">
-                    <a href="/faculty/placements">
+                    <a href="/faculty/exam">
                         <div class="exam card">
                             <i class="fa fa-5x fa-pencil-square-o"></i>
                             <div class="card-title">

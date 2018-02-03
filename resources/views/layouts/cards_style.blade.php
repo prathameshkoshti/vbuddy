@@ -1,9 +1,9 @@
 <style>
         .animate{
-            transition: ease-in-out 0.5s;
+            transition: ease-in-out 0.3s;
         }
         .animate:hover{
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
         .card-header{
             text-align: center;
@@ -42,6 +42,10 @@
         }
         .container-fluid{
             text-align:center;
+        }
+        .announcement
+        {
+            background-color: #00E676;
         }
         .attendance
         {
