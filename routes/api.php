@@ -17,7 +17,7 @@ Route::get('/login/{email}/{password}', 'APIsController@login');
 
 Route::get('/holidays', 'APIsController@holiday');
 
-Route::get('/events', 'APIsController@event');
+Route::get('/events/{commitee}', 'APIsController@event');
 
 Route::get('/placements/{year}/{branch}', 'APIsController@placement');
 

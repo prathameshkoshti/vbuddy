@@ -7,9 +7,10 @@
 @stop
 
 @section('content')
+
     <div class="row">
         <div class="">
-            <h4 style="text-align:center">View Event</h4>
+            <h4 style="text-align:center">View Event Details</h4>
         </div>
     </div>
     <br><br>
@@ -106,19 +107,13 @@
                             {{$event->contact_no}}
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            <input type="button" class="form-control btn btn-warning" value="Edit" onclick="parent.location='/admin/events/edit/{{$event->id}}'">
-                        </td>
-                        <td>
-                            <input type="button" class="form-control btn btn-danger" value="Delete" onclick="parent.location='/admin/events/delete/{{$event->id}}'">
-                        </td>
-                        <td>
-                            <input type="button" class="form-control btn-primary" value="View" onclick="parent.location='/admin/event_registrations/{{$event->id}}'">
-                        </td>
-                    </tr>
                 </table>
             </div>
+        </div>
+        <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-4"><button class="btn btn-block btn-warning" onclick="parent.location='/admin/events/edit/{{$event->id}}'"><i style="color:white" class="fa fa-pencil fa-lg" aria-hidden="true"></i> Edit</button></div>
+            <div class="col-md-4"><button class="btn btn-danger btn-block" onclick="parent.location='/admin/events/delete/{{$event->id}}'"><i style="color:white" class="fa fa-trash fa-lg" aria-hidden="true"></i> Delete</button></div>
+            <div class="col-md-4"><button class="btn btn-primary btn-block" onclick="parent.location='/admin/event_registrations/view/{{$event->id}}'"><i style="color:white" class="fa fa-eye fa-lg" aria-hidden="true"></i> Registrations</button></div>
         </div>
         {{csrf_field()}}
 		{{method_field('PUT')}}

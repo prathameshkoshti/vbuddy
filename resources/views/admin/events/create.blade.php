@@ -33,6 +33,7 @@
                                 <option disabled selected>Commitee Name</option>
                                 <option>IEEE</option>
                                 <option>ACM</option>
+                                <option>Other</option>
                             </select>
                         </td>
                     </tr>

@@ -149,7 +149,7 @@ return [
         ],
         [
             'text'       => 'Event Enrollments',
-            'url'        =>'/admin/event_enrolls',
+            'url'        =>'/admin/event_registrations',
             'icon'       => 'info-circle',
             'icon_color' => 'green',            
         ],

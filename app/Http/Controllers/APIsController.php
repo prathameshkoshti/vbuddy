@@ -38,9 +38,12 @@ class APIsController extends Controller
         return response()->json(['holiday'=>$holiday],200);
     }
 
-    public function event()
+    public function event($commitee)
     {
-        $event = Event::where('status', '=', '1')->get();
+        $event = Event::where([
+            ['status', '=', '1'],
+            ['commitee_name', '=', $commitee ],
+            ])->get();
         return response()->json(['event'=>$event],200);
     }
 

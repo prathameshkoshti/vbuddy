@@ -33,7 +33,7 @@
 
                     <tr>
                         <td style="background-color:#3FEEE6"><a href=""><span class="glyphicon glyphicon-hand-right"> INFT</span> </a></td>
-                        <td style="background-color: #55BCC9"><a href=""><span class="glyphicon glyphicon-hand-right"> COMPUTER</span></a></td>
+                        <td style="background-color: #55BCC9"><a href=""><span class="glyphicon glyphicon-hand-right"> COMP</span></a></td>
                     </tr>
                     <tr>
                         <td style="background-color: #97CAEF"><a href=""><span class="glyphicon glyphicon-hand-right"> EXTC</span> </a></td>
