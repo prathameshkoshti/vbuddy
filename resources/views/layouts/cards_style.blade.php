@@ -16,8 +16,52 @@
             margin: auto 0%;
             padding-top:10%;
         }
+        h3
+        {
+            text-align:center;
+            color: #fff;
+            position: absolute;
+            top: 6 0;
+            bottom: -10;
+            left: 0;
+            right: 0;
+            background-color: rgba(0,0,0,0.3);
+            padding:5%;
+            border-radius: 0 0 5px 5px;
+        }
+        .fa-5x{
+            text-align: center;
+            position: absolute;
+            color:white;
+            top: 20;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto 0%;
+            padding-top:10%;
+        }
         .container-fluid{
             text-align:center;
+        }
+        .attendance
+        {
+            background-color: #EF6C00;
+        }
+        .placement
+        {
+            background-color: #0097A7;
+        }
+        .event
+        {
+            background-color:#9C27B0;
+        }
+        .registration
+        {
+            background-color: #AB47BC;
+        }
+        .exam
+        {
+            background-color: #3949AB;
         }
         .create{
             background-color: #00C853;

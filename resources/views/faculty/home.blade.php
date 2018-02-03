@@ -1,67 +1,88 @@
 @extends('layouts.faculty_layout')
+@section('title', 'Faculty :: Home')
 
 @section('content')
-
-    <p>Dashboard <br>You are loged in as faculty</p>
+@include('layouts.cards_style')
     <div class="container">
         <div class="row">
 
-            <a href="/faculty/faculty_announcements/index">
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-block" style="background-color:#ff6600">
-                        <h1 class="card-title" style="background-color: #ff9933;text-align: center;font-size: 8em;color: white;padding: 10px"><i class="fa fa-bullhorn" aria-hidden="true"></i>
-                            <h3 class="card-text"  style="background-color:#ff6600;color:white;text-align: center;padding-bottom: 13px">Announcements</h3></h1>
-                    </div>
-                </div>
-            </div>
-            </a>
-
-            <a href="">
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-block" style="background-color:#3300cc">
-                        <h1 class="card-title" style="background-color:#3366ff;text-align: center;font-size: 8em;color: white;padding: 10px"><i class="fa fa-users" aria-hidden="true"></i>
-                            <h3 class="card-text"  style="background-color:#3300cc;color:white;text-align: center;padding-bottom: 13px">Attendence</h3></h1>
-                    </div>
-                </div>
-            </div>
-            </a>
-
-
-            <a href="">
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-block" style="background-color:#E00000">
-                        <h1 class="card-title" style="background-color: orangered;text-align: center;font-size: 8em;color: white;padding: 10px"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                            <h3 class="card-text"  style="background-color:#E00000;color:white;text-align: center;padding-bottom: 13px">Exam Section</h3></h1>
-                    </div>
-                </div>
-            </div>
-            </a>
-
-            <a href="placements/index">
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-block" style="background-color:#33cc33">
-                            <h1 class="card-title" style="background-color:#33ff66;text-align: center;font-size: 8em;color: white;padding: 10px"><i class="fa fa-briefcase" aria-hidden="true"></i>
-                                <h3 class="card-text"  style="background-color:#33cc33;color:white;text-align: center;padding-bottom: 13px">Placements</h3></h1>
+            <div class="col-md-2 col-xs-offset-2 col-xs-6 col-sm-2 card-holder">
+                <div class="form-group animate">
+                    <a href="/faculty/faculty_announcements">
+                        <div class="create card">
+                            <i class="fa fa-5x fa-bullhorn"></i>
+                            <div class="card-title">
+                                <h3>Announcements</h3><br>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
-            </a>
+            </div>
 
-            <a href="">
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-block" style="background-color:#ff3333">
-                            <h1 class="card-title" style="background-color:#ff0000;text-align: center;font-size: 8em;color: white;padding: 10px"><i class="fa fa-calendar" aria-hidden="true"></i>
-                                <h3 class="card-text"  style="background-color:#ff3333;color:white;text-align: center;padding-bottom: 13px">Events</h3></h1>
+            <div class="col-md-2 col-xs-offset-2 col-md-offset-1 col-xs-6 col-sm-2 card-holder">
+                <div class="form-group animate">
+                    <a href="/faculty/placements">
+                        <div class="attendance card">
+                            <i class="fa fa-5x fa-users"></i>
+                            <div class="card-title">
+                                <h3>Attendance</h3><br>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
-            </a>
+            </div>
 
+            <div class="col-md-2 col-xs-offset-2 col-md-offset-1 col-xs-6 col-sm-2 card-holder">
+                <div class="form-group animate">
+                    <a href="/faculty/placements">
+                        <div class="placement card">
+                            <i class="fa fa-5x fa-briefcase"></i>
+                            <div class="card-title">
+                                <h3>Placements</h3><br>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-2 col-xs-offset-2 col-md-offset-2 col-xs-6 col-sm-2 card-holder">
+                <div class="form-group animate">
+                    <a href="/faculty/placements">
+                        <div class="event card">
+                            <i class="fa fa-5x fa-calendar-o"></i>
+                            <div class="card-title">
+                                <h3>Events</h3><br>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-2 col-xs-offset-2 col-md-offset-1 col-xs-6 col-sm-2 card-holder">
+                <div class="form-group animate">
+                    <a href="/faculty/placements">
+                        <div class="registration card">
+                            <i class="fa fa-5x fa-calendar-check-o"></i>
+                            <div class="card-title">
+                                <h3>Registrations</h3><br>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-2 col-xs-offset-2 col-md-offset-1 col-xs-6 col-sm-2 card-holder">
+                <div class="form-group animate">
+                    <a href="/faculty/placements">
+                        <div class="exam card">
+                            <i class="fa fa-5x fa-pencil-square-o"></i>
+                            <div class="card-title">
+                                <h3>Exam Timetable</h3><br>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 @stop

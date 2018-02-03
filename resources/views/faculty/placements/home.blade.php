@@ -16,7 +16,7 @@
                         <div class="create card">
                             <div class="card-header">
                                 <h3>Create Placement News</h3><br>
-                                <span class="fa fa-3x fa-plus-circle"></i>
+                                <i class="fa fa-3x fa-plus-circle"></i>
                             </div>
                         </div>
                     </a>

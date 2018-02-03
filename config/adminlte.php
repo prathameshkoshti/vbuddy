@@ -144,7 +144,7 @@ return [
         [
             'text'       => 'Events',
             'url'        => '/admin/events',
-            'icon'       => 'calendar-o',
+            'icon'       => 'calendar-check-o',
             'icon_color' => 'blue',
         ],
         [
@@ -163,7 +163,7 @@ return [
         [
             'text' => 'Profile',
             'url'  => 'admin/profile',
-            'icon' => 'user',
+            'icon' => 'id-card-o',
         ],
         [
             'text' => 'Change Password',

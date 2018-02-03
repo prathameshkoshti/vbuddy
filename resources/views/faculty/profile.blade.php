@@ -1,6 +1,6 @@
 @extends('layouts.faculty_layout')
 
-@section('title', 'AdminLTE :: Profile')
+@section('title', 'Faculty :: Profile')
 
 @section('content_header')
     <h1 style="text-align:center">Profile</h1>
