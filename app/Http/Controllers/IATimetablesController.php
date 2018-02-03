@@ -8,6 +8,6 @@ class IATimetablesController extends Controller
 {
     public function index()
     {
-        return view('admin.ia_timetable.index');
+        return view();
     }
 }

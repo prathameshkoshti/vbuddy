@@ -12,11 +12,11 @@ class EventRegistration extends Model
 
     public function event()
     {
-        return $this->belongsTo('App\Event');
+        $this->belongsTo('App\Event');
     }
 
     public function student()
     {
-        return $this->belongsTo('App\Student');
+        $this->belongsTo('App\Student');
     }
 }

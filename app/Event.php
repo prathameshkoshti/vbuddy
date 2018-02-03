@@ -12,11 +12,11 @@ class Event extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        $this->belongsTo('App\User');
     }
 
     public function event_registration()
     {
-        return $this->hasMany('App\EventRegistration', 'event_id');
+        $this->hasMany('App\EventRegistration');
     }
 }

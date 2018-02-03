@@ -16,6 +16,6 @@ class Student extends Model
 
     public function event_registration()
     {
-        return $this->hasMany('App\EventRegistration', 'student_id');
+        $this->hasMany('App\EventRegistration');
     }
 }
