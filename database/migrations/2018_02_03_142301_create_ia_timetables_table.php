@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableIaTimetable extends Migration
+class CreateIaTimetablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTableIaTimetable extends Migration
      */
     public function up()
     {
-        Schema::create('ia_timetable', function (Blueprint $table) {
+        Schema::create('ia_timetables', function (Blueprint $table) {
             $table->increments('id');
             $table->string('branch');
             $table->integer('sem');
@@ -32,6 +32,6 @@ class CreateTableIaTimetable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ia_timetable');
+        Schema::dropIfExists('ia_timetables');
     }
 }

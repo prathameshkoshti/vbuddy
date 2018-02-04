@@ -20,6 +20,9 @@
         }
     </style>
 
+    @php($inft="INFT")
+    @php($comp="COMP")
+
     <h2 style="text-align: center">IA Timetable </h2>
 
     <div class="row">
@@ -32,8 +35,8 @@
                     </tr>
 
                     <tr>
-                        <td style="background-color:#3FEEE6"><a href=""><span class="glyphicon glyphicon-hand-right"> INFT</span> </a></td>
-                        <td style="background-color: #55BCC9"><a href=""><span class="glyphicon glyphicon-hand-right"> COMP</span></a></td>
+                        <td style="background-color:#3FEEE6"><a href="/admin/ia_timetable/{{$inft}}/{{$i}}"><span class="glyphicon glyphicon-hand-right"> INFT</span> </a></td>
+                        <td style="background-color: #55BCC9"><a href="/admin/ia_timetable/{{$comp}}/{{$i}}"><span class="glyphicon glyphicon-hand-right"> COMP</span></a></td>
                     </tr>
                     <tr>
                         <td style="background-color: #97CAEF"><a href=""><span class="glyphicon glyphicon-hand-right"> EXTC</span> </a></td>
