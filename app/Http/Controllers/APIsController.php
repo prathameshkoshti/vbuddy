@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Holiday;
 use App\Event;
+use App\EventRegistration;
 use App\Placement;
 use App\Announcement;
 use App\Student;
@@ -38,13 +39,38 @@ class APIsController extends Controller
         return response()->json(['holiday'=>$holiday],200);
     }
 
-    public function event($commitee)
+    public function event($year, $branch, $commitee)
     {
-        $event = Event::where([
+        $events = Event::where([
             ['status', '=', '1'],
             ['commitee_name', '=', $commitee ],
             ])->get();
-        return response()->json(['event'=>$event],200);
+        $result = [];
+        foreach($events as $event)
+        {
+            if(in_array($year,explode(',', $event->year)) && in_array($branch,explode(',', $event->branch)))
+            {
+                array_push($result, $event);
+            }
+        }
+        return response()->json(['event'=>$result],200);
+    }
+
+    public function registerToEvent($event_id, $student_id)
+    {
+        $reg = EventRegistration::where([
+            ['student_id', '=', $student_id],
+            ['event_id', '=', $event_id],
+        ])->first();
+        if($reg)
+        {
+            return response()->json(['MESSAGE' => 'Do not worry! You are already in our list.'],200);
+        }
+        EventRegistration::Create([
+            'event_id' => $event_id,
+            'student_id' => $student_id,
+        ]);
+        return response()->json(['MESSAGE' => 'Registered Successfully'],200);
     }
 
     public function placement($year, $branch)
@@ -61,13 +87,13 @@ class APIsController extends Controller
         return response()->json(['placement'=>$placement],200);
     }
 
-    public function announcement($year, $branch)
+    public function announcement($year, $branch, $div)
     {
         $announcements = Announcement::where('status', '=', '1')->get();
         $result = [];
         foreach($announcements as $announcement)
         {
-            if(in_array($year,explode(',', $announcement->year)) && in_array($branch,explode(',', $announcement->branch)))
+            if(in_array($year,explode(',', $announcement->year)) && in_array($branch,explode(',', $announcement->branch)) && in_array($div,explode(',', $announcement->division)))
             {
                 array_push($result, $announcement);
             }
