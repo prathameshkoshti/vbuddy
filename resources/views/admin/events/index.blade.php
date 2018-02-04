@@ -52,6 +52,7 @@
             </div>
         </div>
     </div>
+    {{$events->render()}}
     @include('layouts.resource')
     <style>
         .table-btn{

@@ -94,4 +94,5 @@
         {{csrf_field()}}
 		{{method_field('PUT')}}
     </form>
+    @include('layouts.resource')
 @stop

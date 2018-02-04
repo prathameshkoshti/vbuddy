@@ -52,6 +52,7 @@
             </table>
         </div>
     </div>
+    {{$placements->render()}}
     @include('layouts.resource')
     <style>
         .table-btn{

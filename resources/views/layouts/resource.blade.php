@@ -9,9 +9,29 @@
             <p class="flash label label-danger"><h5>{{Session :: get('delete')}}</p></div>
     @endif
 </div>
+<div class="row">
+    @if( $errors->any() )
+        <div class="col-md-ofsset-4 col-md-4">
+            @foreach($errors->all() as $error)
+                <div class="alert alert-danger col-md-12">
+                    <ul>
+                        <li>{{$error}}</li>
+                    </ul>
+                </div>
+            @endforeach
+        </div>
+    @endif
+</div>
 <style>
 .fa-trash{
     color: red;
+}
+.alert{
+    margin: 1 !important;
+}
+.alert ul li{
+    position: relative;
+    --top:-10px;
 }
 .fa-pencil{
     color:orange;
@@ -20,6 +40,12 @@
     margin-left:90%;
     background-color: #00C853 !important;
     border: 0;
+}
+.btn-danger{
+    background-color: #E53935 !important;
+}
+.btn-warning{
+    background-color: #EF6C00 !important;
 }
 textarea, input[type="text"], input[type="password"], input[type="email"],  select, input[type="date"]{
     border : 0px !important;

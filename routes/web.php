@@ -185,7 +185,9 @@ Route::group(['prefix' => 'faculty', 'middleware' => 'faculty'], function(){
 
         Route::get('index', 'FacultiesController@eventsIndex');
 
-        Route::get('create', 'FacultiesController@eventsCreate');
+        Route::get('view/{id}', 'FacultiesController@eventsShow');
+
+        Route::view('create', 'faculty.events.create');
         Route::put('store', 'FacultiesController@eventsStore');
 
         Route::get('edit/{id}', 'FacultiesController@eventsEdit');

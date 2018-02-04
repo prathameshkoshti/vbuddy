@@ -85,18 +85,29 @@
                             <input type="text" class="form-control" placeholder="Time" name="time" value="{{$event->time}}"> 
                         </td>
                     </tr>
-                    </tr>
                     <tr>
                         <td colspan=2>
                             <input type="text" class="form-control" placeholder="Location" name="location" value="{{$event->location}}"> 
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan=2>
+                            <select name="issued_by" class="form-control">
+                                <option disabled>Issued By</option>
+                                @foreach($event_coordinator as $user)
+                                <option value="{{ $user->id }}"
+                                    @if($event->issued_by == $user->id)
+                                        selected="selected"
+                                    @endif
+                                >{{ $user->name }}</option>
+                            @endforeach
+                            </select>
+                        </td>
                     </tr>
                     <tr>
                         <td colspan=2>
                             <input type="text" class="form-control" placeholder="Price" name="price" value="{{$event->price}}"> 
                         </td>
-                    </tr>
                     </tr>
                     <tr>
                         <td colspan=2>

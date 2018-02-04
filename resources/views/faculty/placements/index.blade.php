@@ -48,5 +48,6 @@
             </div>
         </div>
     </div>
+    {{$placements->render()}}
     @include('layouts.resource')
 @stop

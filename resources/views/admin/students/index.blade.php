@@ -56,6 +56,7 @@
             </table>
         </div>
     </div>
+    {{$students->render()}}
     @include('layouts.resource')
     <style>
         .table-btn{

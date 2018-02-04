@@ -48,6 +48,7 @@
             </div>
         </div>
     </div>
+    {{$holiday->render()}}
     @include('layouts.resource')
     <style>
         .table-btn{

@@ -50,6 +50,7 @@
             </table>
         </div>
     </div>
+    {{$users->render()}}
     @include('layouts.resource')
     <style>
         .table-btn{

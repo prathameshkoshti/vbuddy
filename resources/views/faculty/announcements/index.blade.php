@@ -50,5 +50,6 @@
             </div>
         </div>
     </div>
+    {{$announcements->render()}}
     @include('layouts.resource')
 @stop
