@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Event;
+use App\User;
 
 class EventsController extends Controller
 {
@@ -25,7 +26,12 @@ class EventsController extends Controller
      */
     public function create()
     {
-        return view('admin.events.create');
+        $event_coordinator = User::where([
+            ['role', '=', 'Event Coordinator'],
+            ['status', '=', 1],
+        ])->get();
+        //return dd($event_coordinator);
+        return view('admin.events.create', compact('event_coordinator'));
     }
 
     /**
@@ -46,6 +52,7 @@ class EventsController extends Controller
             'time' => 'required',
             'location' => 'required',
             'price' => 'required',
+            'issued_by' => 'required',
             'contact_name' => 'required',
             'contact_no' => 'required',
         ]);
@@ -62,6 +69,7 @@ class EventsController extends Controller
             'date' => request('date'),
             'time' => request('time'),
             'location' => request('location'),
+            'issued_by' => request('issued_by'),
             'price' => request('price'),
             'contact_name' => request('contact_name'),
             'contact_no' => request('contact_no'),
@@ -91,10 +99,14 @@ class EventsController extends Controller
      */
     public function edit($id)
     {
+        $event_coordinator = User::where([
+            ['role', '=', 'Event Coordinator'],
+            ['status', '=', 1],
+        ])->get();
         $event = Event::find($id);
         $year = explode(',', $event->year);
         $branch = explode(',', $event->branch);
-        return view('admin.events.edit', compact('event', 'year', 'branch'));
+        return view('admin.events.edit', compact('event', 'year', 'branch', 'event_coordinator'));
     }
 
     /**
@@ -116,6 +128,7 @@ class EventsController extends Controller
             'time' => 'required',
             'location' => 'required',
             'price' => 'required',
+            'issued_by' => 'required',
             'contact_name' => 'required',
             'contact_no' => 'required',
         ]);
@@ -133,6 +146,7 @@ class EventsController extends Controller
         $event->date = request('date');
         $event->time = request('time');
         $event->location = request('location');
+        $event->issued_by = request('issued_by');
         $event->price = request('price');
         $event->contact_name = request('contact_name');
         $event->contact_no = request('contact_no');

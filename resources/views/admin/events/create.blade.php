@@ -83,18 +83,25 @@
                             <input type="text" class="form-control" placeholder="Time" name="time"> 
                         </td>
                     </tr>
-                    </tr>
                     <tr>
                         <td colspan=2>
                             <input type="text" class="form-control" placeholder="Location" name="location"> 
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan=2>
+                            <select name="issued_by" class="form-control">
+                                <option selected disabled>Issued By</option>
+                                @foreach($event_coordinator as $user)
+                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                @endforeach
+                            </select>
+                        </td>
                     </tr>
                     <tr>
                         <td colspan=2>
                             <input type="text" class="form-control" placeholder="Price" name="price"> 
                         </td>
-                    </tr>
                     </tr>
                     <tr>
                         <td colspan=2>

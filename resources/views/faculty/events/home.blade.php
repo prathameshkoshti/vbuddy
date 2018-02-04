@@ -1,8 +1,8 @@
-@extends('Layouts.faculty_layout')
+@extends('layouts.faculty_layout')
 
+@section('title', 'V-buddy :: Events')
 @section('content')
     @include('layouts.cards_style')
-    @section('title', 'V-buddy :: Events')
     <div class="container-fluid">
         <div class="row">
             <div>
@@ -12,7 +12,7 @@
 
             <div class="col-md-2 col-xs-offset-2 col-xs-6 col-sm-2 card-holder">
                 <div class="form-group animate">
-                    <a href="/faculty/placements/create">
+                    <a href="/faculty/events/create">
                         <div class="create card">
                             <div class="card-header">
                                 <h3>Create Event</h3><br>
@@ -25,7 +25,7 @@
 
             <div class="col-md-2 col-md-offset-1 col-xs-offset-2 col-xs-6 card-holder">
                 <div class="form-group animate">
-                    <a href="/faculty/placements/index">
+                    <a href="/faculty/events/index">
                         <div class="view card">
                             <div class="card-header">
                                 <h3>View Events</h3><br>

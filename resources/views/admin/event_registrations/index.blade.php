@@ -33,5 +33,6 @@
             </div>
         </div>
     </div>
+    {{$events->render()}}
     @include('layouts.resource')
 @stop
