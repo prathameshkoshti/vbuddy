@@ -19,8 +19,6 @@ class APIsController extends Controller
         if($auth_user && Hash::check($password, $auth_user->password))
         {
             return response()->json([
-                'STATUS'=> true,
-                'MESSAGE'=>'success',
                 'Profile' => $auth_user
             ], 200);
         }

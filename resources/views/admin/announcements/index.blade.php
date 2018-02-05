@@ -54,6 +54,6 @@
             </div>
         </div>
     </div>
-    {{$announcements->render}}
+    {{$announcements->render()}}
     @include('layouts.resource')
 @stop
