@@ -77,12 +77,12 @@ class APIsController extends Controller
         $result = [];
         foreach($placements as $placement)
         {
-            if(in_array($year,explode(',', $placement->year)) && in_array($branch,explode(',', $placement->branch)))
+            if(in_array($year, explode(',', $placement->year)) && in_array($branch, explode(',', $placement->branch)))
             {
                 array_push($result, $placement);
             }
         }
-        return response()->json(['placement'=>$placement],200);
+        return response()->json(['placement'=>$result],200);
     }
 
     public function announcement($year, $branch, $div)
@@ -91,7 +91,7 @@ class APIsController extends Controller
         $result = [];
         foreach($announcements as $announcement)
         {
-            if(in_array($year,explode(',', $announcement->year)) && in_array($branch,explode(',', $announcement->branch)) && in_array($div,explode(',', $announcement->division)))
+            if(in_array($year, explode(',', $announcement->year)) && in_array($branch, explode(',', $announcement->branch)) && in_array($div,explode(',', $announcement->division)))
             {
                 array_push($result, $announcement);
             }
