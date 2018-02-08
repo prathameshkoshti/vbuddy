@@ -73,7 +73,7 @@
 
             <div class="col-md-2 col-xs-offset-2 col-md-offset-1 col-xs-6 col-sm-2 card-holder">
                 <div class="form-group animate">
-                    <a href="/faculty/exam">
+                    <a href="/faculty/ia_timetables/">
                         <div class="exam card">
                             <i class="fa fa-5x fa-pencil-square-o"></i>
                             <div class="card-title">

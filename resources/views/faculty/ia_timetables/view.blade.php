@@ -1,17 +1,19 @@
-@extends('adminlte::page')
+@extends('layouts.faculty_layout')
+@section('title', 'Faculty :: Home')
 
-@section('title', 'AdminLTE :: Placements News')
-
-@section('content_header')
-
-@stop
 <style>
     table{
         text-align: center;
         align-content: center;
+        background-color: white;
+        border-collapse: collapse;
+        border: 1px solid black;
     }
     p{
         text-align: center;
+    }
+    tr:hover{
+        background-color: #ddd;
     }
 </style>
 
@@ -40,7 +42,7 @@
                             <td>{{$day->start_time}}</td>
                             <td>{{$day->end_time}}</td>
                             <td>{{$day->subject}}</td>
-                            <td><a href="/admin/ia_timetable/edit/{{$day->id}}" style="color: orange"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>
+                            <td><a href="/faculty/ia_timetables/edit/{{$day->id}}" style="color: orange"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>
                         </tr>
                             @endforeach
 
@@ -49,21 +51,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 @stop

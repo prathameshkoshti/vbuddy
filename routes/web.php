@@ -94,8 +94,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     */
     Route::prefix('ia_timetable')->group(function(){
         Route::get('/', 'IATimetablesController@index');
-
-        Route::get('/{branch}/{id}', 'IATimetablesController@view');
+        Route::get('view/{branch}/{id}', 'IATimetablesController@view');
+        Route::get('edit/{id}','IATimetablesController@edit');
+        Route::put('update/{id}','IATimetablesController@update');
     });
     /*
         Routes for Events 
@@ -217,4 +218,17 @@ Route::group(['prefix' => 'faculty', 'middleware' => 'faculty'], function(){
         Route::get('change_password', 'ProfilesController@facultyChangePassword');
         Route::put('update_password', 'ProfilesController@facultyUpdatePassword');
     });
+
+    /*
+       Routes for IA Timetable
+   */
+
+    Route::prefix('ia_timetables')->group(function(){
+        Route::get('/', 'IATimetablesController@findex');
+        Route::get('view/{branch}/{id}', 'IATimetablesController@fview');
+        Route::get('edit/{id}','IATimetablesController@fedit');
+        Route::put('update/{id}','IATimetablesController@fupdate');
+    });
+
+
 });

@@ -1,10 +1,5 @@
-@extends('adminlte::page')
-
-@section('title', 'AdminLTE :: Placements News')
-
-@section('content_header')
-
-@stop
+@extends('layouts.faculty_layout')
+@section('title', 'Faculty :: Home')
 
 @section('content')
 
@@ -28,15 +23,15 @@
     <div class="row">
         @for($i=1;$i<9;$i++)
         <div class="col-md-3" style="margin-left:70px;margin-top: 20px">
-            <div class="card" style="border: 1px solid black;">
+            <div class="card" style="">
                 <table class="table">
                     <tr style="background-color:#FC4445">
                         <td colspan="2"><p style="text-align: center;font-size: 20px; font-weight: bold">Semester {{$i}}</p></td>
                     </tr>
 
                     <tr>
-                        <td style="background-color:#3FEEE6"><a href="/admin/ia_timetable/view/{{$inft}}/{{$i}}"><span class="glyphicon glyphicon-hand-right"> INFT</span> </a></td>
-                        <td style="background-color: #55BCC9"><a href="/admin/ia_timetable/view/{{$comp}}/{{$i}}"><span class="glyphicon glyphicon-hand-right"> COMP</span></a></td>
+                        <td style="background-color:#3FEEE6"><a href="/faculty/ia_timetables/view/{{$inft}}/{{$i}}"><span class="glyphicon glyphicon-hand-right"> INFT</span> </a></td>
+                        <td style="background-color: #55BCC9"><a href="/faculty/ia_timetables/view/{{$comp}}/{{$i}}"><span class="glyphicon glyphicon-hand-right"> COMP</span></a></td>
                     </tr>
                     <tr>
                         <td style="background-color: #97CAEF"><a href=""><span class="glyphicon glyphicon-hand-right"> EXTC</span> </a></td>
