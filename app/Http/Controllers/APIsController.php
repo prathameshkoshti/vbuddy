@@ -90,12 +90,17 @@ class APIsController extends Controller
     {
         $placement = Placement::where([
             ['status', '=', 1],
-            ['year', '=', $year],
-            ['branch', '=', $branch],
             ['id', '=', $id],
         ])->first();
 
-        return response()->json(['placement' => $placement], 200);
+        if($placement)
+        {
+            if(in_array($year, explode(',', $placement->year)) && in_array($branch, explode(',', $placement->branch)))
+                return response()->json(['placement' => $placement], 200);
+        }
+
+        return response()->json(['placement' => 'Oops! Data not found'], 200);
+
     }
 
     public function announcement($year, $branch, $div)
@@ -112,17 +117,21 @@ class APIsController extends Controller
         return response()->json(['announcement' => $result], 200);    
     }
 
-    public function announcementView($year, $branch, $id)
+    public function announcementView($year, $branch, $div, $id)
     {
         $announcement = Announcement::where([
             ['status', '=', 1],
-            ['year', '=', $year],
-            ['branch', '=', $branch],
-            ['div', '=', $div],
             ['id', '=', $id],
         ])->first();
-
-        return response()->json(['announcement' => $announcement], 200);
+        
+        if($announcement)
+        {
+            if(in_array($year, explode(',', $announcement->year)) && in_array($branch, explode(',', $announcement->branch)) && in_array($div,explode(',', $announcement->division)))
+            {
+                return response()->json(['announcement' => $announcement], 200);
+            }
+        }
+        return response()->json(['announcement' => 'Oops! Data not found'], 200);
     }
 
 }
