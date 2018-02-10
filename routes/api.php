@@ -21,7 +21,11 @@ Route::get('/events/{commitee}', 'APIsController@event');
 
 Route::get('/placements/{year}/{branch}', 'APIsController@placement');
 
+Route::get('/placements/{year}/{branch}/{id}', 'APIsController@placementView');
+
 Route::get('/announcements/{year}/{branch}/{div}', 'APIsController@announcement');
+
+Route::get('/announcements/{year}/{branch}/{div}/{id}', 'APIsController@announcementView');
 
 Route::get('/events/{year}/{branch}/{commitee}', 'APIsController@event');
 

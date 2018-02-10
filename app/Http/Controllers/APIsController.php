@@ -31,10 +31,11 @@ class APIsController extends Controller
             ], 200);
         }
     }
+
     public function holiday()
     {
         $holiday = Holiday::where('status', '=', '1')->get();
-        return response()->json(['holiday'=>$holiday],200);
+        return response()->json(['holiday' => $holiday], 200);
     }
 
     public function event($year, $branch, $commitee)
@@ -51,7 +52,7 @@ class APIsController extends Controller
                 array_push($result, $event);
             }
         }
-        return response()->json(['event'=>$result],200);
+        return response()->json(['event' => $result], 200);
     }
 
     public function registerToEvent($event_id, $student_id)
@@ -68,7 +69,7 @@ class APIsController extends Controller
             'event_id' => $event_id,
             'student_id' => $student_id,
         ]);
-        return response()->json(['MESSAGE' => 'Registered Successfully'],200);
+        return response()->json(['MESSAGE' => 'Registered Successfully'], 200);
     }
 
     public function placement($year, $branch)
@@ -82,7 +83,19 @@ class APIsController extends Controller
                 array_push($result, $placement);
             }
         }
-        return response()->json(['placement'=>$result],200);
+        return response()->json(['placement' => $result], 200);
+    }
+
+    public function placementView($year, $branch, $id)
+    {
+        $placement = Placement::where([
+            ['status', '=', 1],
+            ['year', '=', $year],
+            ['branch', '=', $branch],
+            ['id', '=', $id],
+        ])->first();
+
+        return response()->json(['placement' => $placement], 200);
     }
 
     public function announcement($year, $branch, $div)
@@ -96,7 +109,20 @@ class APIsController extends Controller
                 array_push($result, $announcement);
             }
         }
-        return response()->json(['announcement'=>$result],200);    
+        return response()->json(['announcement' => $result], 200);    
+    }
+
+    public function announcementView($year, $branch, $id)
+    {
+        $announcement = Announcement::where([
+            ['status', '=', 1],
+            ['year', '=', $year],
+            ['branch', '=', $branch],
+            ['div', '=', $div],
+            ['id', '=', $id],
+        ])->first();
+
+        return response()->json(['announcement' => $announcement], 200);
     }
 
 }
