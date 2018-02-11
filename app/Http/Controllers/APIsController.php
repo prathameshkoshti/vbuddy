@@ -47,12 +47,28 @@ class APIsController extends Controller
         $result = [];
         foreach($events as $event)
         {
-            if(in_array($year,explode(',', $event->year)) && in_array($branch,explode(',', $event->branch)))
+            if(in_array($year, explode(',', $event->year)) && in_array($branch, explode(',', $event->branch)))
             {
                 array_push($result, $event);
             }
         }
-        return response()->json(['event' => $result], 200);
+        return response()->json(['events' => $result], 200);
+    }
+
+    public function viewEvent($year, $branch, $commitee, $id)
+    {
+        $event = Event::where([
+            ['status', '=', '1'],
+            ['commitee_name', '=', $commitee ],
+            ['id', '=', $id]
+        ])->first();
+
+        if(in_array($year, explode(',', $event->year)) && in_array($branch, explode(',', $event->branch)))
+        {
+            return response()->json(['event' => $event], 200);
+        }
+
+        return response()->json(['event' => 'Oops! Data not found.']);
     }
 
     public function registerToEvent($event_id, $student_id)
@@ -86,7 +102,7 @@ class APIsController extends Controller
         return response()->json(['placement' => $result], 200);
     }
 
-    public function placementView($year, $branch, $id)
+    public function viewPlacement($year, $branch, $id)
     {
         $placement = Placement::where([
             ['status', '=', 1],
@@ -117,7 +133,7 @@ class APIsController extends Controller
         return response()->json(['announcement' => $result], 200);    
     }
 
-    public function announcementView($year, $branch, $div, $id)
+    public function viewAnnouncement($year, $branch, $div, $id)
     {
         $announcement = Announcement::where([
             ['status', '=', 1],
