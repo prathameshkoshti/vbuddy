@@ -5,7 +5,6 @@
 @include('layouts.cards_style')
     <div class="container">
         <div class="row">
-
             <div class="col-md-2 col-xs-offset-2 col-xs-6 col-sm-2 card-holder">
                 <div class="form-group animate">
                     <a href="/faculty/faculty_announcements">

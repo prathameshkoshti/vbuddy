@@ -60,7 +60,6 @@
     }
     body{
         color:#fff !important;
-        --background-image: linear-gradient(to bottom right, rgba(0,0,0,0.5), #434343);
         background-image: url('/images/background.jpg');
     }
     .dropdown-menu{
@@ -80,10 +79,6 @@
         right:10;
         top:0;
     }
-    .navbar{
-        background: rgba(0,0,0,0.3) !important;
-    }
-
     .btn{
         background-color: #00B0FF !important;
         border : 0px !important;
