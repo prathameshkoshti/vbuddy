@@ -9,6 +9,7 @@ use App\EventRegistration;
 use App\Placement;
 use App\Announcement;
 use App\Student;
+use App\IATimetable;
 use Illuminate\Support\Facades\Hash;
 
 class APIsController extends Controller
@@ -148,6 +149,16 @@ class APIsController extends Controller
             }
         }
         return response()->json(['announcement' => 'Oops! Data not found'], 200);
+    }
+
+    public function viewIATimetable($branch, $sem)
+    {
+        $ia_timetable = IATimetable::where([
+            ['branch', '=', $branch],
+            ['sem', '=', $sem]
+        ])->get();
+
+        return response()->json(['ia_timetable' => $ia_timetable], 200);
     }
 
 }
