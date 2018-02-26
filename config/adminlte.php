@@ -71,7 +71,7 @@ return [
     |
     */
 
-    'collapse_sidebar' => false,
+    'collapse_sidebar' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -130,22 +130,25 @@ return [
             'text' => 'Placement News',
             'url'  => '/admin/placements',
             'icon' => 'suitcase',
+            'icon_color' => 'orange',
         ],
         [
             'text' => 'Faculty Announcements',
             'url'  => '/admin/faculty_announcements',
             'icon' => 'bullhorn',
+            'icon_color' => 'limegreen',
         ],
         [
             'text' => 'Feedback',
             'url'  => '/admin/feedbacks',
             'icon' => 'comments',
+            'icon_color' => 'purple',            
         ],
         [
             'text'       => 'Events',
             'url'        => '/admin/events',
             'icon'       => 'calendar-check-o',
-            'icon_color' => 'blue',
+            'icon_color' => 'light-blue',
         ],
         [
             'text'       => 'Event Enrollments',
@@ -154,9 +157,22 @@ return [
             'icon_color' => 'green',            
         ],
         [
+            'text'       => 'IA Timetable',
+            'url'        =>'/admin/ia_timetable',
+            'icon'       => 'edit',
+            'icon_color' => '',            
+        ],
+        [
+            'text'       => 'Timetable',
+            'url'        =>'/admin/timetable',
+            'icon'       => 'calendar-plus-o',
+            'icon_color' => 'green',            
+        ],
+        [
             'text' => 'Holidays',
             'url'  => '/admin/holidays',
             'icon' => 'calendar',
+            'icon_color' => 'blue',
         ],
         
         'Account Settings',
@@ -164,11 +180,13 @@ return [
             'text' => 'Profile',
             'url'  => 'admin/profile',
             'icon' => 'id-card-o',
+            'icon_color' => 'pink',
         ],
         [
             'text' => 'Change Password',
             'url'  => 'admin/profile/change_password',
             'icon' => 'lock',
+            'icon_color' => 'red',
         ],
     ],
 
