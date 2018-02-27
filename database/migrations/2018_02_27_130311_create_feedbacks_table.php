@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableFeedbackAnswers extends Migration
+class CreateFeedbacksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -102,6 +102,6 @@ class CreateTableFeedbackAnswers extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('feedback_answers');
+        Schema::dropIfExists('feedbacks');
     }
 }
