@@ -15,7 +15,7 @@ class CreateFeedbacksTable extends Migration
     {
         Schema::create('feedbacks', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('roll');
+            $table->integer('student_id');
             $table->integer('sem');
             $table->string('division');
             $table->string('branch');
@@ -66,7 +66,7 @@ class CreateFeedbacksTable extends Migration
             $table->integer('water_facility');
             $table->integer('restroom');
             $table->integer('canteen');
-            $table->string('suggestion',500);
+            $table->string('suggestion',500)->nullable();
 
             $table->boolean('study_material_by_teacher');
             $table->string('completeness1');
@@ -86,10 +86,10 @@ class CreateFeedbacksTable extends Migration
             $table->integer('ques4');
             $table->integer('ques5');
             $table->integer('ques6');
-            $table->integer('ques7')->null();
-            $table->integer('ques8')->null();
-            $table->integer('ques9')->null();
-            $table->integer('ques10')->null();
+            $table->integer('ques7')->nullable();
+            $table->integer('ques8')->nullable();
+            $table->integer('ques9')->nullable();
+            $table->integer('ques10')->nullable();
 
             $table->timestamps();
         });
