@@ -10,6 +10,7 @@ use App\Placement;
 use App\Announcement;
 use App\Student;
 use App\IATimetable;
+use App\Timetable;
 use Illuminate\Support\Facades\Hash;
 
 class APIsController extends Controller
@@ -20,6 +21,7 @@ class APIsController extends Controller
         if($auth_user && Hash::check($password, $auth_user->password))
         {
             return response()->json([
+                'MESSAGE' => 'Login Successful.',
                 'Profile' => $auth_user
             ], 200);
         }
@@ -155,10 +157,35 @@ class APIsController extends Controller
     {
         $ia_timetable = IATimetable::where([
             ['branch', '=', $branch],
-            ['sem', '=', $sem]
+            ['sem', '=', $sem]      
         ])->get();
 
         return response()->json(['ia_timetable' => $ia_timetable], 200);
+    }
+
+    public function viewTimetable($sem, $branch, $division, $day)
+    {
+        $timetable = Timetable::where([
+            ['sem', '=', $sem],
+            ['branch', '=', $branch],
+            ['division', '=', $division],
+            ['day', '=', $day],
+        ])->get();
+
+        return response()->json(['timetable' => $timetable], 200);
+    }
+
+    public function feedback(Request $request)
+    {
+        $feedback = Feedback::find($request->student_id);
+        if($feedback)
+            return response()->json(['data' => 'You already submitted your feedback.'], 200);
+
+        Feedback::Create([
+
+        ]);
+
+        return response()->json(['MESSAGE' => 'Feedback successfully stored.'], 200);
     }
 
 }

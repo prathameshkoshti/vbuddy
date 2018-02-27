@@ -13,12 +13,14 @@ class CreateTableFeedbackAnswers extends Migration
      */
     public function up()
     {
-        Schema::create('feedback_answers', function (Blueprint $table) {
+        Schema::create('feedbacks', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('roll');
             $table->integer('sem');
             $table->string('division');
             $table->string('branch');
+
+            $table->integer('feedback_no');
 
             $table->string('subject1');
             $table->string('lecture1');
@@ -64,9 +66,9 @@ class CreateTableFeedbackAnswers extends Migration
             $table->integer('water_facility');
             $table->integer('restroom');
             $table->integer('canteen');
-            $table->string('Suggestion',500);
+            $table->string('suggestion',500);
 
-            $table->boolean('study_material_teacher');
+            $table->boolean('study_material_by_teacher');
             $table->string('completeness1');
             $table->string('systematic_approach1');
             $table->string('comprehend1');

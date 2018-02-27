@@ -29,6 +29,8 @@ Route::get('/announcements/{year}/{branch}/{div}/{id}', 'APIsController@viewAnno
 
 Route::get('/ia_timetable/{branch}/{sem}', 'APIsController@viewIATimetable');
 
+Route::get('/timetable/{sem}/{branch}/{div}/{day}', 'APIsController@viewTimetable');
+
 Route::get('/events/{year}/{branch}/{commitee}', 'APIsController@event');
 
 Route::get('/events/{year}/{branch}/{commitee}/{id}', 'APIsController@viewEvent');
