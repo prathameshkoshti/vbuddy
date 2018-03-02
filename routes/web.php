@@ -28,6 +28,7 @@ Auth::routes();
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::get('/home', 'HomeController@index')->name('home');
+    
     /*
         Routes for Users i.e. Faculties and other users
     */
@@ -43,6 +44,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
         Route::get('delete/{id}', 'UsersController@destroy');
         
     });
+
     /*
         Routes for Students 
     */
@@ -58,6 +60,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
         Route::get('delete/{id}', 'StudentsController@destroy');
         
     });
+
     /*
         Routes for Placement Announcements 
     */
@@ -72,6 +75,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
 
         Route::get('delete/{id}', 'PlacementsController@destroy');
     });
+
     /*
         Routes for Faculty Announcemnets 
     */
@@ -86,9 +90,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
 
         Route::get('delete/{id}', 'AnnouncementsController@destroy');
     });
+
     /*
         Routes for Feedback 
     */
+    Route::prefix('feedbacks')->group(function(){
+        Route::view('/', 'admin.feedbacks.home');
+        Route::put('index', 'FeedbacksController@index');
+        Route::get('view/{id}', 'FeedbacksController@show');
+    });
 
     /*
        Routes for timetable
@@ -96,13 +106,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::prefix('timetable')->group(function(){
         Route::get('/', 'TimetablesController@index');
         Route::get('view/{branch}/{semester}/{div}','TimetablesController@view');
-
-
     });
-
-
-
-
 
     /*
         Routes for IA Timetable 
@@ -113,6 +117,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
         Route::get('edit/{id}','IATimetablesController@edit');
         Route::put('update/{id}','IATimetablesController@update');
     });
+
     /*
         Routes for Events 
     */
@@ -129,6 +134,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
 
         Route::get('delete/{id}', 'EventsController@destroy');
     });
+
     /*
         Routes for Event's Enrollments 
     */
@@ -137,6 +143,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
 
         Route::get('view/{id}', 'EventRegistrationsController@show');
     });
+
     /*
         Routes for Holidays 
     */
@@ -151,6 +158,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
 
         Route::get('delete/{id}', 'HolidaysController@destroy');
     });
+
     /*
         Route for Profile 
     */

@@ -47,7 +47,6 @@ class AnnouncementsController extends Controller
             'division' => 'required',
             'issued_by' => 'required',
         ]);
-
         $year = implode(',', $request->get('year'));
         $branch = implode(',', $request->get('branch'));
         $division = implode(',', $request->get('division'));

@@ -177,9 +177,13 @@ class APIsController extends Controller
 
     public function feedback(Request $request)
     {
-        $feedback = Feedback::find($request->student_id);
-        if($feedback)
-            return response()->json(['data' => 'You already submitted your feedback.'], 200);
+        $student = Student::find($request->id);
+        $feedback = Feedback::where('student_id', '=', $request->student_id)->latest();
+        if($request->sem > $student->sem || $request->sem < $student->sem)
+            return response()->json(['data' => 'You cannot submit your feedback. Because you do not belong to this sem'], 200);
+
+        if($feedback->feedback_no == 2)
+            return response()->json(['You already submitted your both feedbacks for this sem.'], 200);
 
         Feedback::Create([
 
