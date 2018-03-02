@@ -11,7 +11,8 @@
         text-align: center  ;
         font-size:13px;
     }
-    .edit{
+    .submit{
+        font-weight: bold;
         font-size: 15px;
     }
 </style>
@@ -20,26 +21,27 @@
 @section('content')
 
     <div class="row">
+        <form>
         <div class="col-md-12">
-            <div class="table-responsive">
-                <table class="table">
+
+                <table class="table table-responsive table-bordered">
 
 
-                        @foreach($timetable as $lecture)
-                            @php
-                           $Branch=$lecture->branch;
-                            $Semester=$lecture->sem;
-                            $Division=$lecture->division;
-                            @endphp
-                            @break;
-                        @endforeach
+                    @foreach($timetable as $lecture)
+                        @php
+                            $Branch=$lecture->branch;
+                             $Semester=$lecture->sem;
+                             $Division=$lecture->division;
+                        @endphp
+                        @break;
+                    @endforeach
 
-                        <h1>Branch:{{$Branch}}&nbsp&nbsp Semester:{{$Semester}}&nbsp&nbsp Division:{{$Division}}</h1>
+                    <h1>Branch:{{$Branch}}&nbsp&nbsp Semester:{{$Semester}}&nbsp&nbsp Division:{{$Division}}</h1>
 
-                        <tr>
+                    <tr>
 
                         <th>Monday</th>
-                            @foreach($timetable as $lecture)
+                        @foreach($timetable as $lecture)
                             @if($lecture->day == "MONDAY")
                                 <td style="text-align:center">
                                     {{$lecture->start_time}}<br>
@@ -53,12 +55,7 @@
                                         {{$temp3[$i]}}&nbsp&nbsp
                                         <br>
                                         @php$i++; @endphp
-
                                     @endforeach
-
-                                    <br>
-                                    <a href="/admin/timetable/edit/{{$lecture->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
-
                                 </td>
 
                             @endif
@@ -85,10 +82,7 @@
                                         <br>
                                         @php $i++;@endphp
                                     @endforeach
-
-                                    <br>
-                                    <a href="/admin/timetable/edit/{{$lecture->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
-                                      </td>
+                                </td>
                             @endif
                         @endforeach
                     </tr>
@@ -96,32 +90,28 @@
 
 
 
-                               <tr>
+                    <tr>
 
-                                   <th>Wednesday</th>
-                                   @foreach($timetable as $lecture)
-                                       @if($lecture->day == "WEDNESDAY")
-                                           <td>
-                                               {{$lecture->start_time}}<br>
-                                               @php  $temp1= explode(",",$lecture->subject)@endphp
-                                               @php  $temp2= explode(",",$lecture->teacher)@endphp
-                                               @php  $temp3= explode(",",$lecture->block)@endphp
-                                               @php $i=0;@endphp
-                                               @foreach($temp1 as $sub)
-                                                   {{$sub}}&nbsp&nbsp
-                                                   {{$temp2[$i]}}&nbsp&nbsp
-                                                   {{$temp3[$i]}}&nbsp&nbsp
-                                                   <br>
-                                                   @php $i++;@endphp
-                                               @endforeach
-                                               <br>
-                                               <a href="/admin/timetable/edit/{{$lecture->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                        <th>Wednesday</th>
+                        @foreach($timetable as $lecture)
+                            @if($lecture->day == "WEDNESDAY")
+                                <td>
+                                    {{$lecture->start_time}}<br>
+                                    @php  $temp1= explode(",",$lecture->subject)@endphp
+                                    @php  $temp2= explode(",",$lecture->teacher)@endphp
+                                    @php  $temp3= explode(",",$lecture->block)@endphp
+                                    @php $i=0;@endphp
+                                    @foreach($temp1 as $sub)
+                                        {{$sub}}&nbsp&nbsp
+                                        {{$temp2[$i]}}&nbsp&nbsp
+                                        {{$temp3[$i]}}&nbsp&nbsp
 
-
-                                           </td>
-                                       @endif
-                                   @endforeach
-                                    </tr>
+                                        @php $i++;@endphp
+                                    @endforeach
+                                </td>
+                            @endif
+                        @endforeach
+                    </tr>
 
                     <tr>
 
@@ -138,12 +128,9 @@
                                         {{$sub}}&nbsp&nbsp
                                         {{$temp2[$i]}}&nbsp&nbsp
                                         {{$temp3[$i]}}&nbsp&nbsp
-                                    <br>
+                                        <br>
                                         @php $i++;@endphp
                                     @endforeach
-                                    <br>
-                                    <a href="/admin/timetable/edit/{{$lecture->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
-
                                 </td>
                             @endif
                         @endforeach
@@ -151,68 +138,59 @@
 
                     </tr>
 
-                               <tr>
+                    <tr>
 
-                                   <th>Friday</th>
-                                   @foreach($timetable as $lecture)
-                                       @if($lecture->day == "FRIDAY")
-                                           <td>
-                                               {{$lecture->start_time}}<br>
-                                               @php  $temp1= explode(",",$lecture->subject)@endphp
-                                               @php  $temp2= explode(",",$lecture->teacher)@endphp
-                                               @php  $temp3= explode(",",$lecture->block)@endphp
-                                               @php $i=0;@endphp
-                                               @foreach($temp1 as $sub)
-                                                   {{$sub}}&nbsp&nbsp
-                                                   {{$temp2[$i]}}&nbsp&nbsp
-                                                   {{$temp3[$i]}}&nbsp&nbsp
-                                                   <br>
-                                                   @php $i++;@endphp
-                                               @endforeach
-                                               <br>
-                                               <a href="/admin/timetable/edit/{{$lecture->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
-
-                                           </td>
-
-
-
-                                       @endif
-                                   @endforeach
-                               </tr>
+                        <th>Friday</th>
+                        @foreach($timetable as $lecture)
+                            @if($lecture->day == "FRIDAY")
+                                <td>
+                                    {{$lecture->start_time}}<br>
+                                    @php  $temp1= explode(",",$lecture->subject)@endphp
+                                    @php  $temp2= explode(",",$lecture->teacher)@endphp
+                                    @php  $temp3= explode(",",$lecture->block)@endphp
+                                    @php $i=0;@endphp
+                                    @foreach($temp1 as $sub)
+                                        {{$sub}}&nbsp&nbsp
+                                        {{$temp2[$i]}}&nbsp&nbsp
+                                        {{$temp3[$i]}}&nbsp&nbsp
+                                        <br>
+                                        @php $i++;@endphp
+                                    @endforeach
+                                </td>
+                            @endif
+                        @endforeach
+                    </tr>
 
 
 
-                               <tr>
-                                   <br>
-                                   <th>Saturday</th>
-                                   @foreach($timetable as $lecture)
-                                       @if($lecture->day == "SATURDAY")
-                                           <td>
-                                               {{$lecture->start_time}}<br>
-                                               @php  $temp1= explode(",",$lecture->subject)@endphp
-                                               @php  $temp2= explode(",",$lecture->teacher)@endphp
-                                               @php  $temp3= explode(",",$lecture->block)@endphp
-                                               @php $i=0;@endphp
-                                               @foreach($temp1 as $sub)
-                                                   {{$sub}}&nbsp&nbsp
-                                                   {{$temp2[$i]}}&nbsp&nbsp
-                                                   {{$temp3[$i]}}&nbsp&nbsp
-                                                   <br>
-                                                   @php $i++;@endphp
-                                                   <br>
-                                                   <a href="/admin/timetable/edit/{{$lecture->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
-
-                                               @endforeach
-                                           </td>
-                                       @endif
-                                   @endforeach
-                               </tr>
-
+                    <tr>
+                        <br>
+                        <th>Saturday</th>
+                        @foreach($timetable as $lecture)
+                            @if($lecture->day == "SATURDAY")
+                                <td>
+                                    {{$lecture->start_time}}<br>
+                                    @php  $temp1= explode(",",$lecture->subject)@endphp
+                                    @php  $temp2= explode(",",$lecture->teacher)@endphp
+                                    @php  $temp3= explode(",",$lecture->block)@endphp
+                                    @php $i=0;@endphp
+                                    @foreach($temp1 as $sub)
+                                        {{$sub}}&nbsp&nbsp
+                                        {{$temp2[$i]}}&nbsp&nbsp
+                                        {{$temp3[$i]}}&nbsp&nbsp
+                                        <br>
+                                        @php $i++;@endphp
+                                    @endforeach
+                                </td>
+                            @endif
+                        @endforeach
+                    </tr>
                 </table>
+
+                <div class="submit col-md-offset-4 col-md-3">
+                <button type="submit" formaction="/admin/timetable/view/edit/{{$Branch}}/{{$Semester}}/{{$Division}}" class="form-control btn btn-primary" name="submit">Update</button>
+                </div><br><br>
             </div>
-
-        </div>
+        </form>
     </div>
-
-
 @stop
