@@ -20,8 +20,8 @@
                         <th>Feedback No.</th>
                         <th>Actions</th>
                     </tr>
-                    <tr>
-                        @foreach($feedbacks as $feedback)
+                    @foreach($feedbacks as $feedback)
+                        <tr>
                             <td>
                                 {{$feedback->id}}
                             </td>
@@ -34,8 +34,8 @@
                             <td>
                                     <a href="/admin/feedbacks/view/{{$feedback->id}}"><i class="fa fa-eye fa-lg" aria-hidden="true"></i></a>
                             </td>
-                        @endforeach
-                    </tr>
+                        </tr>                                
+                    @endforeach
                 </table>
             </div>
         </div>

@@ -36,3 +36,5 @@ Route::get('/events/{year}/{branch}/{commitee}', 'APIsController@event');
 Route::get('/events/{year}/{branch}/{commitee}/{id}', 'APIsController@viewEvent');
 
 Route::get('/events_registration/{event_id}/{student_id}', 'APIsController@registerToEvent');
+
+Route::post('/feedback', 'APIsController@feedback');

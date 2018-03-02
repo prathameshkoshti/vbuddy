@@ -26,9 +26,6 @@
                 <tr>
                     <td>Email Id:</td><td>{{$student->email}}</td>
                 </tr>
-                <tr>
-                    <td>Admission Year:</td><td>{{$student->admission_year}}</td>
-                </tr>
                 <br>
             </table>
         </div>

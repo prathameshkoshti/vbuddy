@@ -11,6 +11,7 @@ use App\Announcement;
 use App\Student;
 use App\IATimetable;
 use App\Timetable;
+use App\Feedback;
 use Illuminate\Support\Facades\Hash;
 
 class APIsController extends Controller
@@ -177,16 +178,92 @@ class APIsController extends Controller
 
     public function feedback(Request $request)
     {
-        $student = Student::find($request->id);
-        $feedback = Feedback::where('student_id', '=', $request->student_id)->latest();
-        if($request->sem > $student->sem || $request->sem < $student->sem)
-            return response()->json(['data' => 'You cannot submit your feedback. Because you do not belong to this sem'], 200);
-
-        if($feedback->feedback_no == 2)
-            return response()->json(['You already submitted your both feedbacks for this sem.'], 200);
-
+        $student = Student::find($request->student_id);
+        $feedback = Feedback::where('student_id', '=', $request->student_id)->latest()->first();
+        if($feedback)
+        {
+            if($request->sem != $student->sem)
+                return response()->json(['data' => 'You cannot submit your feedback. Because you do not belong to this sem'], 200);
+            
+            if($feedback->feedback_no == 2)
+                return response()->json(['You already submitted your both feedbacks for this sem.'], 200);
+            elseif($feedback->feedback_no == 1)
+            {
+                $feedback_no = 2;
+            }
+        }
+        else{
+            $feedback_no = 1;
+        }
         Feedback::Create([
+            'student_id' => request('student_id'),
+            'sem' => $student->sem,
+            'division' => $student->division,
+            'branch' => $student->branch,
+            'feedback_no' => $feedback_no,
 
+            'subject1' => request('subject1'),
+            'lecture1' => request('lecture1'),
+            'lgrade1' => request('lgrade1'),
+            'practical1' => request('practical1'),
+            'pgrade1' => request('pgrade1'),
+
+            'subject2' => request('subject2'),
+            'lecture2' => request('lecture2'),
+            'lgrade2' => request('lgrade2'),
+            'practical2' => request('practical2'),
+            'pgrade2' => request('pgrade2'),
+
+            'subject3' => request('subject3'),
+            'lecture3' => request('lecture3'),
+            'lgrade3' => request('lgrade3'),
+            'practical3' => request('practical3'),
+            'pgrade3' => request('pgrade3'),
+
+            'subject4' => request('subject4'),
+            'lecture4' => request('lecture4'),
+            'lgrade4' => request('lgrade4'),
+            'practical4' => request('practical4'),
+            'pgrade4' => request('pgrade4'),
+            
+            'subject5' => request('subject5'),
+            'lecture5' => request('lecture5'),
+            'lgrade5' => request('lgrade5'),
+            'practical5' => request('practical5'),
+            'pgrade5' => request('pgrade5'),
+            
+            'subject6' => request('subject6'),
+            'lecture6' => request('lecture6'),
+            'lgrade6' => request('lgrade6'),
+            'practical6' => request('practical6'),
+            'pgrade6' => request('pgrade6'),
+
+            'administrative_office' => request('administrative_office'),
+            'examination_cell' => request('examination_cell'),
+            'institute_library' => request('institute_library'),
+            'department_laboratory' => request('department_laboratory'),
+            'classrooms' => request('classrooms'),
+            'water_facility' => request('water_facility'),
+            'restroom' => request('restroom'),
+            'canteen' => request('canteen'),
+            'suggestion' => request('suggestion'),
+
+            'completeness1' => request('completeness1'),
+            'systematic_approach1' => request('systematic_approach1'),
+            'comprehend1' => request('comprehend1'),
+            'relevance1' => request('relevance1'),
+            
+            'completeness2' => request('completeness2'),
+            'systematic_approach2' => request('systematic_approach2'),
+            'comprehend2' => request('comprehend2'),
+            'relevance2' => request('relevance2'),
+
+            'ques1' =>request('ques1'),
+            'ques2' =>request('ques2'),
+            'ques3' =>request('ques3'),
+            'ques4' =>request('ques4'),
+            'ques5' =>request('ques5'),
+            'ques6' =>request('ques6'),
         ]);
 
         return response()->json(['MESSAGE' => 'Feedback successfully stored.'], 200);
