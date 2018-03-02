@@ -106,6 +106,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::prefix('timetable')->group(function(){
         Route::get('/', 'TimetablesController@index');
         Route::get('view/{branch}/{semester}/{div}','TimetablesController@view');
+        Route::get('/edit/{id}','TimetablesController@edit');
+        Route::put('update/{id}','TimetablesController@update');
+
     });
 
     /*

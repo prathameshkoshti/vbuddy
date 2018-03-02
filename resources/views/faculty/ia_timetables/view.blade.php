@@ -9,6 +9,9 @@
         border-collapse: collapse;
         border: 1px solid black;
     }
+    td,tr{
+        color:black;
+    }
     p{
         text-align: center;
     }

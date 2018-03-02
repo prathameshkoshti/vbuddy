@@ -17,6 +17,8 @@
     select:hover{
         display:inline-block;
     }
+
+
 </style>
 
 <script>
@@ -24,8 +26,8 @@
         var x = document.getElementById("branch").value;
         var y = document.getElementById("semester").value;
         var z = document.getElementById("div").value;
-        window.location.href="/admin/timetable/view/"+x+"/"+y+"/"+z,
-        document.getElementById("demo").innerHTML = x;
+        window.location.href="/admin/timetable/view/"+x+"/"+y+"/"+z;
+
     }
 </script>
 
@@ -36,7 +38,7 @@
 <br><br><br>
             <form>
                 <h3>Select Branch</h3>
-                <select required id="branch" name="branch">
+                <select  class="custom-select custom-select-mg mb-3" id="branch" name="branch">
                     <option value="INFT">INFT</option>
                     <option value="COMPS">COMPS</option>
                     <option value="ETRX">ETRX</option>
@@ -44,8 +46,9 @@
                     <option value="BIOMED">BIOMED</option>
                 </select><br><br>
 
+
                 <h3>Select Semester</h3>
-                <select  id="semester" name="semester">
+                <select class="custom-select custom-select-mg mb-3" id="semester" name="semester class="custom-select custom-select-mg mb-3"">
                     <option value="1">SEM 1</option>
                     <option value="2">SEM 2</option>
                     <option value="3">SEM 3</option>
@@ -58,7 +61,7 @@
                 </select>
 
                 <h3>Select Division</h3>
-                <select id="div" name="div">
+                <select class="custom-select custom-select-mg mb-3" id="div" name="div" class="custom-select custom-select-mg mb-3">
                     <option value="A">A</option>
                     <option value="B">B</option>
                     <option value="C">C</option>
@@ -66,7 +69,6 @@
 
                 <button type="button" onclick="myFunction()">Submit</button>
 
-                <p id="demo"></p>
 
             </form>
         </div>
