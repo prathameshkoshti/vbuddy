@@ -59,7 +59,7 @@
                         <td></td>
                         <td><br>
                             <div style="width: 50%; margin-left: 25%">
-                                <button type="submit" formaction="/admin/timetable/update/{{$timetable->id}}" class="form-control btn btn-primary" name="submit">Update</button>
+                                <button type="submit" formaction="/admin/timetable/update/{{$timetable->id}}" class="form-control btn btn-success" name="submit">Update</button>
                             </div>
                         </td>
                     </tr>

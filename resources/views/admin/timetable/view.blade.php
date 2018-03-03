@@ -188,7 +188,7 @@
                 </table>
 
                 <div class="submit col-md-offset-4 col-md-3">
-                <button type="submit" formaction="/admin/timetable/view/edit/{{$Branch}}/{{$Semester}}/{{$Division}}" class="form-control btn btn-primary" name="submit">Update</button>
+                <button type="submit" formaction="/admin/timetable/view/edit/{{$Branch}}/{{$Semester}}/{{$Division}}" class="form-control btn btn-success" name="submit">Update</button>
                 </div><br><br>
             </div>
         </form>
