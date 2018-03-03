@@ -7,13 +7,22 @@
 @stop
 
 <style>
-    td{
-        text-align: center  ;
-        font-size:13px;
+    table {
+
+        width: 100%;
     }
-    .submit{
-        font-weight: bold;
-        font-size: 15px;
+
+    th, td {
+        padding: 8px;
+        text-align: center;
+        font-size:13px;
+        border-bottom: 1px solid #ddd;
+    }
+    td:hover {
+        background-color: #e8e8e8;
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
     }
 </style>
 
@@ -21,29 +30,28 @@
 @section('content')
 
     <div class="row">
-        <form>
+
+        @foreach($timetable as $lecture)
+            @php
+                $Branch=$lecture->branch;
+                 $Semester=$lecture->sem;
+                 $Division=$lecture->division;
+            @endphp
+            @break;
+        @endforeach
+            <h1>Branch:{{$Branch}}&nbsp&nbsp Semester:{{$Semester}}&nbsp&nbsp Division:{{$Division}}</h1>
+
         <div class="col-md-12">
-
-                <table class="table table-responsive table-bordered">
-
-
-                    @foreach($timetable as $lecture)
-                        @php
-                            $Branch=$lecture->branch;
-                             $Semester=$lecture->sem;
-                             $Division=$lecture->division;
-                        @endphp
-                        @break;
-                    @endforeach
-
-                    <h1>Branch:{{$Branch}}&nbsp&nbsp Semester:{{$Semester}}&nbsp&nbsp Division:{{$Division}}</h1>
-
+            <form>
+                <table class="table">
                     <tr>
-
                         <th>Monday</th>
                         @foreach($timetable as $lecture)
                             @if($lecture->day == "MONDAY")
                                 <td style="text-align:center">
+                                    <a href="/admin/timetable/edit/{{$lecture->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                                        <br><br>
+
                                     {{$lecture->start_time}}<br>
                                     @php  $temp1= explode(",",$lecture->subject)@endphp
                                     @php  $temp2= explode(",",$lecture->teacher)@endphp
@@ -55,6 +63,7 @@
                                         {{$temp3[$i]}}&nbsp&nbsp
                                         <br>
                                         @php$i++; @endphp
+
                                     @endforeach
                                 </td>
 
@@ -69,6 +78,9 @@
                         @foreach($timetable as $lecture)
                             @if($lecture->day == "TUESDAY")
                                 <td>
+
+                                    <a href="/admin/timetable/edit/{{$lecture->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                                    <br><br>
                                     {{$lecture->start_time}}<br>
                                     @php  $temp1= explode(",",$lecture->subject)@endphp
                                     @php  $temp2= explode(",",$lecture->teacher)@endphp
@@ -82,7 +94,8 @@
                                         <br>
                                         @php $i++;@endphp
                                     @endforeach
-                                </td>
+
+                                     </td>
                             @endif
                         @endforeach
                     </tr>
@@ -96,6 +109,8 @@
                         @foreach($timetable as $lecture)
                             @if($lecture->day == "WEDNESDAY")
                                 <td>
+                                    <a href="/admin/timetable/edit/{{$lecture->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                                    <br><br>
                                     {{$lecture->start_time}}<br>
                                     @php  $temp1= explode(",",$lecture->subject)@endphp
                                     @php  $temp2= explode(",",$lecture->teacher)@endphp
@@ -105,7 +120,7 @@
                                         {{$sub}}&nbsp&nbsp
                                         {{$temp2[$i]}}&nbsp&nbsp
                                         {{$temp3[$i]}}&nbsp&nbsp
-
+                                        <br>
                                         @php $i++;@endphp
                                     @endforeach
                                 </td>
@@ -119,6 +134,9 @@
                         @foreach($timetable as $lecture)
                             @if($lecture->day == "THURSDAY")
                                 <td>
+                                    <a href="/admin/timetable/edit/{{$lecture->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                                    <br><br>
+
                                     {{$lecture->start_time}}<br>
                                     @php  $temp1= explode(",",$lecture->subject)@endphp
                                     @php  $temp2= explode(",",$lecture->teacher)@endphp
@@ -131,6 +149,8 @@
                                         <br>
                                         @php $i++;@endphp
                                     @endforeach
+                                    <br>
+
                                 </td>
                             @endif
                         @endforeach
@@ -144,6 +164,9 @@
                         @foreach($timetable as $lecture)
                             @if($lecture->day == "FRIDAY")
                                 <td>
+
+                                    <a href="/admin/timetable/edit/{{$lecture->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                                    <br><br>
                                     {{$lecture->start_time}}<br>
                                     @php  $temp1= explode(",",$lecture->subject)@endphp
                                     @php  $temp2= explode(",",$lecture->teacher)@endphp
@@ -156,7 +179,12 @@
                                         <br>
                                         @php $i++;@endphp
                                     @endforeach
+                                    <br>
+
                                 </td>
+
+
+
                             @endif
                         @endforeach
                     </tr>
@@ -169,6 +197,8 @@
                         @foreach($timetable as $lecture)
                             @if($lecture->day == "SATURDAY")
                                 <td>
+                                    <a href="/admin/timetable/edit/{{$lecture->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                                    <br><br>
                                     {{$lecture->start_time}}<br>
                                     @php  $temp1= explode(",",$lecture->subject)@endphp
                                     @php  $temp2= explode(",",$lecture->teacher)@endphp
@@ -187,10 +217,13 @@
                     </tr>
                 </table>
 
-                <div class="submit col-md-offset-4 col-md-3">
-                <button type="submit" formaction="/admin/timetable/view/edit/{{$Branch}}/{{$Semester}}/{{$Division}}" class="form-control btn btn-primary" name="submit">Update</button>
+                <div class="submit  col-md-3 col-md-offset-4">
+                    <button type="submit" formaction="/admin/timetable/view/{{$Branch}}/{{$Semester}}/{{$Division}}" class="form-control btn btn-primary" name="submit"> Exit Update</button>
                 </div><br><br>
-            </div>
-        </form>
+            </form>
+
+        </div>
     </div>
+
+
 @stop
