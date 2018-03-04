@@ -1,7 +1,7 @@
-@extends('layouts.faculty_layout')
-@section('title', 'Faculty :: Home')
+@extends('layouts.student_layout')
+@section('title', 'Student :: Home')
 @section('content_header')
-    <h1 style="text-align:center">Faculty Portal</h1>
+    <h1 style="text-align:center">Student Portal</h1>
 @stop
 @section('content')
 @include('layouts.cards_style')
@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-2 col-xs-offset-2 col-xs-6 col-sm-2 card-holder">
                 <div class="form-group animate">
-                    <a href="/faculty/faculty_announcements">
+                    <a href="/student/faculty_announcements">
                         <div class="announcement card">
                             <i class="fa fa-5x fa-bullhorn"></i>
                             <div class="card-title">
@@ -22,7 +22,7 @@
 
             <div class="col-md-2 col-xs-offset-2 col-md-offset-1 col-xs-6 col-sm-2 card-holder">
                 <div class="form-group animate">
-                    <a href="/faculty/placements">
+                    <a href="/student/placements">
                         <div class="placement card">
                             <i class="fa fa-5x fa-briefcase"></i>
                             <div class="card-title">
@@ -35,22 +35,9 @@
 
             <div class="col-md-2 col-xs-offset-2 col-md-offset-1 col-xs-6 col-sm-2 card-holder">
                 <div class="form-group animate">
-                    <a href="/faculty/placement_registrations">
-                        <div class="placementregistration card">
-                            <i class="fa fa-5x fa-briefcase"></i>
-                            <div class="card-title">
-                                <h3>Placement Registrations</h3><br>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-md-2 col-xs-offset-2 col-md-offset-2 col-xs-6 col-sm-2 card-holder">
-                <div class="form-group animate">
-                    <a href="/faculty/events">
+                    <a href="/student/events">
                         <div class="event card">
-                            <i class="fa fa-5x fa-calendar-o"></i>
+                            <i class="fa fa-5x fa-calendar-check-o"></i>
                             <div class="card-title">
                                 <h3>Events</h3><br>
                             </div>
@@ -59,13 +46,13 @@
                 </div>
             </div>
 
-            <div class="col-md-2 col-xs-offset-2 col-md-offset-1 col-xs-6 col-sm-2 card-holder">
+            <div class="col-md-2 col-xs-offset-2 col-md-offset-2 col-xs-6 col-sm-2 card-holder">
                 <div class="form-group animate">
-                    <a href="/faculty/event_registrations">
+                    <a href="/student/timetable">
                         <div class="registration card">
-                            <i class="fa fa-5x fa-calendar-check-o"></i>
+                            <i class="fa fa-5x fa-calendar"></i>
                             <div class="card-title">
-                                <h3>Event Registrations</h3><br>
+                                <h3>Timetable</h3><br>
                             </div>
                         </div>
                     </a>
@@ -74,7 +61,7 @@
 
             <div class="col-md-2 col-xs-offset-2 col-md-offset-1 col-xs-6 col-sm-2 card-holder">
                 <div class="form-group animate">
-                    <a href="/faculty/ia_timetables/">
+                    <a href="/student/ia_timetable/">
                         <div class="exam card">
                             <i class="fa fa-5x fa-pencil-square-o"></i>
                             <div class="card-title">
@@ -84,6 +71,33 @@
                     </a>
                 </div>
             </div>
+
+            <div class="col-md-2 col-xs-offset-2 col-md-offset-1 col-xs-6 col-sm-2 card-holder">
+                <div class="form-group animate">
+                    <a href="/student/holidays/">
+                        <div class="exam card">
+                            <i class="fa fa-5x fa-calendar-plus-o"></i>
+                            <div class="card-title">
+                                <h3>Holiday</h3><br>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-2 col-xs-offset-2 col-md-offset-2 col-xs-6 col-sm-2 card-holder">
+                <div class="form-group animate">
+                    <a href="/student/feedback">
+                        <div class="registration card">
+                            <i class="fa fa-5x fa-comments"></i>
+                            <div class="card-title">
+                                <h3>Feedback</h3><br>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
+@include('layouts.resource')    
 @stop

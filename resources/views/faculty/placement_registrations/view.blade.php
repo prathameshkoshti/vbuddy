@@ -1,17 +1,17 @@
-@extends('adminlte::page')
+@extends('layouts.faculty_layout')
 
-@section('title', 'AdminLTE :: Events')
+@section('title', 'Faculty :: Placements')
 
 @section('content_header')
-    <h1 style="text-align:center">Events Registrations</h1>
+    <h1 style="text-align:center">Placement Registrations: {{$count->head}}</h1>
 @stop
 @section('content')
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-8 col-md-offset-2">
             <div class="table-responsive">
                 <table class="table table-hover table-borderless">
                     <tr>
-                        <td align="right" colspan=5><b>Registrations Count:{{$count->event_registration_count}}</b>  </td>
+                        <td align="right" colspan=5><b>Registrations Count: {{$count->placement_registration_count}}</b>  </td>
                     </tr>
                     <tr>
                         <th>ID</th>

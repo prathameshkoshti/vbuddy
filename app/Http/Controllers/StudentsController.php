@@ -43,6 +43,7 @@ class StudentsController extends Controller
             'email' => 'required|unique:students|email',
             'password' => 'required',
             'year' => 'required',
+            'sem' => 'required',
             'branch' => 'required',
             'division' => 'required',
             'admission_year' => 'required',
@@ -54,6 +55,7 @@ class StudentsController extends Controller
             'email' => request('email'),
             'password' => bcrypt(request('password')),
             'year' => request('year'),
+            'sem' => request('sem'),
             'branch' => request('branch'),
             'division' => request('division'),
             'admission_year' => request('admission_year'),
@@ -90,6 +92,7 @@ class StudentsController extends Controller
         $student->email = request('email');
         $student->password = bcrypt(request('password'));
         $student->year = request('year');
+        $student->sem = request('sem');
         $student->branch = request('branch');
         $student->division = request('division');
         $student->admission_year = request('admission_year');

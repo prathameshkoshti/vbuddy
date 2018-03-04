@@ -21,4 +21,9 @@ class Feedback extends Model
         'printed_notes', 'completeness2', 'systematic_approach2', 'comprehend2', 'relevance2',
         'ques1', 'ques2', 'ques3', 'ques4', 'ques5', 'ques6',
     ];
+
+    public function student()
+    {
+        return $this->belongsTo('App\Student');
+    }
 }

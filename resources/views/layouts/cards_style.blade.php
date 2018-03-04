@@ -47,7 +47,7 @@
         {
             background-color: #00E676;
         }
-        .attendance
+        .placementregistration
         {
             background-color: #EF6C00;
         }

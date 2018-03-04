@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \App\Announcement;
 use \App\Placement;
+use \App\PlacementRegistration;
 use \App\Event;
+use \App\EventRegistration;
 use Auth;
 use App\User;
 
@@ -212,6 +214,40 @@ class FacultiesController extends Controller
         return redirect('faculty/placements/index');
     }
 
+    public function placementRegistrationsIndex()
+    {
+        $placements = Placement::withCount('placement_registration')
+                    ->where([
+                        ['status', '=', 1],
+                        ['issued_by', '=', Auth::user()->id],
+                        ])->paginate(10);
+
+        return view('faculty.placement_registrations.index', compact('placements'));
+    }
+
+    public function placementRegistrationsShow($id)
+    {
+        $count = Placement::withCount('placement_registration')->find($id);
+        if($count)
+        {
+            if($count->issued_by == Auth::user()->id)
+            {
+                $students = PlacementRegistration::with('student')
+                            ->where('placement_id', '=', $id)
+                            ->paginate(10);
+                return view('faculty.placement_registrations.view', compact('students', 'count'));
+            }
+            else
+            {
+                return view('errors.401');
+            }
+        }
+        else
+        {
+            return view('errors.404');
+        }
+    }
+
     public function eventsIndex()
     {
         $events = Event::withCount('event_registration')->where([
@@ -336,5 +372,38 @@ class FacultiesController extends Controller
             return view('errors.404');
 
         return view('faculty.events.view', compact('event'));
+    }
+
+    public function eventRegistrationsIndex()
+    {
+        $events = Event::withCount('event_registration')
+                ->where([
+                    ['status', '=', 1],
+                    ['issued_by', '=', Auth::user()->id]
+                ])->paginate(10);
+        return view('faculty.event_registrations.index', compact('events'));
+    }
+
+    public function eventRegistrationsShow($id)
+    {
+        $count = Event::withCount('event_registration')->find($id); 
+        if($count)
+        {
+            if($count->issued_by == Auth::user()->id)
+            {
+                $students = EventRegistration::with('student')
+                            ->where('event_id', '=', $id)
+                            ->paginate(20);
+                return view('faculty.event_registrations.view', compact('students', 'count'));
+            }
+            else
+            {
+                return view('errors.401');
+            }
+        }
+        else
+        {
+            return view('errors.404');
+        }      
     }
 }

@@ -2,12 +2,17 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Student extends Model
+class Student extends Authenticatable
 {
+    use Notifiable;
+
+    protected $guard = 'admin';
+    
     protected $fillable = [
-        'name', 'roll', 'email', 'password', 'year', 'branch', 'division', 'admission_year' ,
+        'name', 'roll', 'email', 'password', 'year', 'sem', 'branch', 'division', 'admission_year' ,
     ];
 
     protected $hidden = [
@@ -17,5 +22,10 @@ class Student extends Model
     public function event_registration()
     {
         return $this->hasMany('App\EventRegistration', 'student_id');
+    }
+
+    public function feedback()
+    {
+        return $this->hasMany('App\Feedback', 'student_id');
     }
 }

@@ -1,12 +1,18 @@
 <div class="col-md-4">
     @if(Session :: has('update'))
-            <p class="flash label label-warning"><h5>{{Session :: get('update')}}</p></div>
+            <p class="flash label label-warning"><h5>{{Session :: get('update')}}</p>
     @endif
     @if(Session :: has('create'))
-            <p class="flash label label-success"><h5>{{Session :: get('create')}}</p></div>
+            <p class="flash label label-success"><h5>{{Session :: get('create')}}</p>
     @endif
     @if(Session :: has('delete'))
-            <p class="flash label label-danger"><h5>{{Session :: get('delete')}}</p></div>
+            <p class="flash label label-danger"><h5>{{Session :: get('delete')}}</p>
+    @endif
+    @if(Session :: has('register'))
+            <p class="flash alert alert-warning label label-info"><h5>{{Session :: get('register')}}</p>
+    @endif
+    @if(Session :: has('feedback'))
+            <p class="flash alert alert-warning label label-info"><h5>{{Session :: get('feedback')}}</p>
     @endif
 </div>
 <div class="row">
@@ -58,5 +64,18 @@ textarea, input[type="text"], input[type="password"], input[type="email"],  sele
 .table-borderless > thead > tr > td,
 .table-borderless > thead > tr > th {
     border: none !important;
+}
+.banner{
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 3px;
+    margin:10px;
+}
+.button, .btn-default{
+    position: relative;
+    bottom: 10px;
+    right: 10%;
+}
+.centered{
+    text-align: center;
 }
 </style>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Holiday;
 use App\Event;
 use App\EventRegistration;
+use App\PlacementRegistration;
 use App\Placement;
 use App\Announcement;
 use App\Student;
@@ -74,7 +75,7 @@ class APIsController extends Controller
 
         return response()->json(['event' => 'Oops! Data not found.']);
     }
-
+    //anyone can do registration bug
     public function registerToEvent($event_id, $student_id)
     {
         $reg = EventRegistration::where([
@@ -121,6 +122,26 @@ class APIsController extends Controller
 
         return response()->json(['placement' => 'Oops! Data not found'], 200);
 
+    }
+
+    public function registerToPlacement($placement_id, $student_id)
+    {
+        $reg = PlacementRegistration::where([
+            ['student_id', '=', $student_id],
+            ['placement_id', '=', $placement_id],
+        ])->first();
+        if($reg)
+        {
+            return response()->json(['MESSAGE' => 'Already registered.'], 200);
+        }
+        else
+        {
+            PlacementRegistration::create([
+                'placement_id' => $placement_id,
+                'student_id' => $student_id,
+            ]);
+            return response()->json(['MESSAGE' => 'Registered Successfully'], 200);
+        }
     }
 
     public function announcement($year, $branch, $div)
@@ -192,7 +213,8 @@ class APIsController extends Controller
                 $feedback_no = 2;
             }
         }
-        else{
+        else
+        {
             $feedback_no = 1;
         }
         Feedback::Create([

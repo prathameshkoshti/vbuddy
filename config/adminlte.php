@@ -110,7 +110,7 @@ return [
         'Data',
         [
             'text'    => 'Users',
-            'icon'    =>'users',
+            'icon'    => 'users',
             'submenu' => [
                 [
                     'text'       => 'Faculty',
@@ -128,15 +128,28 @@ return [
         ],
         [
             'text' => 'Placement News',
-            'url'  => '/admin/placements',
             'icon' => 'suitcase',
             'icon_color' => 'orange',
+            'submenu' => [
+                [
+                    'text' => 'Placements',
+                    'url' => '/admin/placements',
+                    'icon' => 'circle',
+                    'icon_color' => 'black',
+                ],
+                [
+                    'text' => 'Placement Registrations',
+                    'url' => '/admin/placement_registrations',
+                    'icon' => 'circle',
+                    'icon_color' => 'blue',
+                ],
+            ],
         ],
         [
             'text' => 'Faculty Announcements',
             'url'  => '/admin/faculty_announcements',
             'icon' => 'bullhorn',
-            'icon_color' => 'limegreen',
+            'icon_color' => 'lime',
         ],
         [
             'text' => 'Feedback',
@@ -146,15 +159,22 @@ return [
         ],
         [
             'text'       => 'Events',
-            'url'        => '/admin/events',
             'icon'       => 'calendar-check-o',
             'icon_color' => 'light-blue',
-        ],
-        [
-            'text'       => 'Event Enrollments',
-            'url'        =>'/admin/event_registrations',
-            'icon'       => 'info-circle',
-            'icon_color' => 'green',            
+            'submenu' => [
+                [
+                    'text' => 'Events',
+                    'url' => '/admin/events',
+                    'icon' => 'circle',
+                    'icon_color' => 'yellow',
+                ],
+                [
+                    'text' => 'Event Registrations',
+                    'url' => '/admin/event_registrations',
+                    'icon' => 'circle',
+                    'icon_color' => 'blue',
+                ],
+            ],
         ],
         [
             'text'       => 'IA Timetable',
@@ -180,7 +200,7 @@ return [
             'text' => 'Profile',
             'url'  => 'admin/profile',
             'icon' => 'id-card-o',
-            'icon_color' => 'pink',
+            'icon_color' => '',
         ],
         [
             'text' => 'Change Password',

@@ -23,6 +23,8 @@ Route::get('/placements/{year}/{branch}', 'APIsController@placement');
 
 Route::get('/placements/{year}/{branch}/{id}', 'APIsController@viewPlacement');
 
+Route::get('/placements_registration/{placement_id}/{student_id}', 'APIsController@registerToPlacement');
+
 Route::get('/announcements/{year}/{branch}/{div}', 'APIsController@announcement');
 
 Route::get('/announcements/{year}/{branch}/{div}/{id}', 'APIsController@viewAnnouncement');

@@ -21,7 +21,7 @@ class FeedbacksController extends Controller
             'branch' => 'required',
             'division' => 'required',
         ]);
-        $feedbacks = Feedback::where([
+        $feedbacks = Feedback::with('student')->where([
             ['sem', '=', request('sem')],
             ['branch', '=', request('branch')],
             ['division', '=', request('division')],

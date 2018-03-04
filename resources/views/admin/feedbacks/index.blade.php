@@ -17,6 +17,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Student Id</th>
+                        <th>Student Name</th>
                         <th>Feedback No.</th>
                         <th>Actions</th>
                     </tr>
@@ -26,7 +27,10 @@
                                 {{$feedback->id}}
                             </td>
                             <td>
-                                {{$feedback->student_id}}
+                                {{$feedback->student->roll}}
+                            </td>
+                            <td>
+                                {{$feedback->student->name}}
                             </td>
                             <td>
                                 {{$feedback->feedback_no}}

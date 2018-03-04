@@ -27,7 +27,6 @@
         var y = document.getElementById("semester").value;
         var z = document.getElementById("div").value;
         window.location.href="/admin/timetable/view/"+x+"/"+y+"/"+z;
-
     }
 </script>
 

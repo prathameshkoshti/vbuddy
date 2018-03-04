@@ -41,12 +41,12 @@
                         <td>
                             <select class="form-control" name="year">
                                 <option disabled>Year</option>
-                                @if($student->yaer == "FE")    
+                                @if($student->year == "FE")    
                                     <option value="FE" selected>FE</option>
                                     <option value="SE">SE</option>
                                     <option value="TE">TE</option>
                                     <option value="BE">BE</option>
-                                @elseif($student->yaer == "SE")
+                                @elseif($student->year == "SE")
                                     <option value="FE">FE</option>
                                     <option value="SE" selected>SE</option>
                                     <option value="TE">TE</option>
@@ -61,6 +61,86 @@
                                     <option value="SE">SE</option>
                                     <option value="TE">TE</option>
                                     <option value="BE" selected>BE</option>
+                                @endif
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select class="form-control" name="sem">
+                                <option disabled>Sem</option>
+                                @if($student->sem == "1")    
+                                    <option value="1" selected>Sem 1</option>
+                                    <option value="2">Sem 2</option>
+                                    <option value="3">Sem 3</option>
+                                    <option value="4">Sem 4</option>
+                                    <option value="5">Sem 5</option>
+                                    <option value="6">Sem 6</option>
+                                    <option value="7">Sem 7</option>
+                                    <option value="8">Sem 8</option>
+                                @elseif($student->sem == "2")
+                                    <option value="1">Sem 1</option>
+                                    <option value="2" selected>Sem 2</option>
+                                    <option value="3">Sem 3</option>
+                                    <option value="4">Sem 4</option>
+                                    <option value="5">Sem 5</option>
+                                    <option value="6">Sem 6</option>
+                                    <option value="7">Sem 7</option>
+                                    <option value="8">Sem 8</option>
+                                @elseif($student->sem == "3")
+                                    <option value="1">Sem 1</option>
+                                    <option value="2">Sem 2</option>
+                                    <option value="3" selected>Sem 3</option>
+                                    <option value="4">Sem 4</option>
+                                    <option value="5">Sem 5</option>
+                                    <option value="6">Sem 6</option>
+                                    <option value="7">Sem 7</option>
+                                    <option value="8">Sem 8</option>
+                                @elseif($student->sem == "4")
+                                    <option value="1">Sem 1</option>
+                                    <option value="2">Sem 2</option>
+                                    <option value="3">Sem 3</option>
+                                    <option value="4" selected>Sem 4</option>
+                                    <option value="5">Sem 5</option>
+                                    <option value="6">Sem 6</option>
+                                    <option value="7">Sem 7</option>
+                                    <option value="8">Sem 8</option>
+                                @elseif($student->sem == "5")
+                                    <option value="1">Sem 1</option>
+                                    <option value="2">Sem 2</option>
+                                    <option value="3">Sem 3</option>
+                                    <option value="4">Sem 4</option>
+                                    <option value="5" selected>Sem 5</option>
+                                    <option value="6">Sem 6</option>
+                                    <option value="7">Sem 7</option>
+                                    <option value="8">Sem 8</option>
+                                @elseif($student->sem == "6")
+                                    <option value="1">Sem 1</option>
+                                    <option value="2">Sem 2</option>
+                                    <option value="3">Sem 3</option>
+                                    <option value="4">Sem 4</option>
+                                    <option value="5">Sem 5</option>
+                                    <option value="6" selected>Sem 6</option>
+                                    <option value="7">Sem 7</option>
+                                    <option value="8">Sem 8</option>
+                                @elseif($student->sem == "7")
+                                    <option value="1">Sem 1</option>
+                                    <option value="2">Sem 2</option>
+                                    <option value="3">Sem 3</option>
+                                    <option value="4">Sem 4</option>
+                                    <option value="5">Sem 5</option>
+                                    <option value="6">Sem 6</option>
+                                    <option value="7" selected>Sem 7</option>
+                                    <option value="8">Sem 8</option>
+                                @elseif($student->sem == "8")
+                                    <option value="1">Sem 1</option>
+                                    <option value="2">Sem 2</option>
+                                    <option value="3">Sem 3</option>
+                                    <option value="4">Sem 4</option>
+                                    <option value="5">Sem 5</option>
+                                    <option value="6">Sem 6</option>
+                                    <option value="7">Sem 7</option>
+                                    <option value="8" selected>Sem 8</option>
                                 @endif
                             </select>
                         </td>

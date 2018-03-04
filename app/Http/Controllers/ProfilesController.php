@@ -12,7 +12,7 @@ class ProfilesController extends Controller
     public function profile()
     {
         $profile = Auth::user();
-        return view('profile', compact('profile'));
+        return view('admin.profile', compact('profile'));
     }
 
     public function update(Request $request)
@@ -36,7 +36,7 @@ class ProfilesController extends Controller
     public function changePassword()
     {
         $profile = Auth::user()->id;
-        return view('change_password', compact('profile'));
+        return view('admin.change_password', compact('profile'));
     }
     public function updatePassword(Request $request)
     {
@@ -46,7 +46,7 @@ class ProfilesController extends Controller
         ]);
 
         $id = request('id');
-        $user = User::find($id);
+        $user = Auth::user();
 
         $old_password = request('old_password');
         if(Hash::check($old_password, $user->password))
@@ -99,7 +99,7 @@ class ProfilesController extends Controller
         ]);
 
         $id = request('id');
-        $user = User::find($id);
+        $user = Auth::user();
 
         $old_password = request('old_password');
         if(Hash::check($old_password, $user->password))

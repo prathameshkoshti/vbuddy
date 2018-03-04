@@ -15,4 +15,9 @@ class Placement extends Model
     {
         $this->belongsTo('App\User');
     }
+
+    public function placement_registration()
+    {
+        return $this->hasMany('App\PlacementRegistration', 'placement_id');
+    }
 }

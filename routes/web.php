@@ -25,6 +25,46 @@ Route::get('401', function(){
 
 Auth::routes();
 
+Route::prefix('student')->group(function(){
+    Route::get('login', 'Auth\StudentLoginController@showLoginForm');
+    Route::post('login', 'Auth\StudentLoginController@login');
+    
+    Route::get('home', 'StudentController@index');
+    Route::post('logout', 'Auth\StudentLoginController@studentLogout');
+    
+    Route::get('holidays', 'StudentController@holiday');
+    Route::get('timetable', 'StudentController@timetable');
+    Route::get('ia_timetable', 'StudentController@iaTimetable');
+
+    Route::prefix('faculty_announcements')->group(function(){
+        Route::get('/', 'StudentController@announcement');
+        Route::get('view/{id}', 'StudentController@announcementView');
+    });
+    
+    Route::prefix('placements')->group(function(){
+        Route::get('/', 'StudentController@placement');
+        Route::get('view/{id}', 'StudentController@placementView');
+        Route::get('register/{id}', 'StudentController@registerToPlacement');
+    });
+    
+    Route::prefix('events')->group(function(){
+        Route::get('', 'StudentController@event');
+        Route::get('view/{id}', 'StudentController@eventView');
+        Route::get('enroll/{id}', 'StudentController@enrolToEvent');
+    });
+    
+    Route::prefix('profile')->group(function(){
+        Route::get('', 'StudentController@profile');
+        Route::get('change_password', 'StudentController@changePassword');
+        Route::put('update_password', 'StudentController@updatePassword');
+    });
+
+    Route::prefix('feedback')->group(function(){
+        Route::get('/', 'StudentController@feedback');
+        Route::put('store', 'StudentController@storeFeedback');
+    });
+
+});
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::get('/home', 'HomeController@index')->name('home');
@@ -76,6 +116,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
         Route::get('delete/{id}', 'PlacementsController@destroy');
     });
 
+    Route::prefix('placement_registrations')->group(function(){
+        Route::get('/', 'PlacementRegistrationsController@index');
+        
+        Route::get('view/{id}', 'PlacementRegistrationsController@show');
+    });
     /*
         Routes for Faculty Announcemnets 
     */
@@ -209,6 +254,11 @@ Route::group(['prefix' => 'faculty', 'middleware' => 'faculty'], function(){
         Route::get('delete/{id}', 'FacultiesController@placementsDestroy');
     });
 
+    Route::prefix('placement_registrations')->group(function(){
+        Route::get('', 'FacultiesController@placementRegistrationsIndex');
+        Route::get('view/{id}', 'FacultiesController@placementRegistrationsShow');
+    });
+
     Route::prefix('events')->group(function(){
         Route::view('/', 'faculty.events.home');
 
@@ -226,17 +276,8 @@ Route::group(['prefix' => 'faculty', 'middleware' => 'faculty'], function(){
     });
 
     Route::prefix('event_registrations')->group(function(){
-        Route::view('/', 'faculty.events.home');
-
-        Route::get('index', 'FacultiesController@eventRegistrationsIndex');
-
-        Route::get('create', 'FacultiesController@eventRegistrationsCreate');
-        Route::put('store', 'FacultiesController@eventRegistrationsStore');
-
-        Route::get('edit/{id}', 'FacultiesController@eventRegistrationsEdit');
-        Route::put('update/{id}', 'FacultiesController@eventRegistrationsUpdate');
-
-        Route::get('delete/{id}', 'FacultiesController@eventRegistrationsDestroy');
+        Route::get('', 'FacultiesController@eventRegistrationsIndex');
+        Route::get('view/{id}', 'FacultiesController@eventRegistrationsShow');
     });
 
     Route::prefix('profile')->group(function(){

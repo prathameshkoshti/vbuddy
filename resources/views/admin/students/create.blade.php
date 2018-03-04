@@ -50,6 +50,21 @@
                     </tr>
                     <tr>
                         <td>
+                            <select class="form-control" name="sem">
+                                <option selected disabled>Sem</option>
+                                <option value="1">Sem 1</option>
+                                <option value="2">Sem 2</option>
+                                <option value="3">Sem 3</option>
+                                <option value="4">Sem 4</option>
+                                <option value="5">Sem 5</option>
+                                <option value="6">Sem 6</option>
+                                <option value="7">Sem 7</option>
+                                <option value="8">Sem 8</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <select class="form-control" name="branch">
                                 <option selected disabled>Branch</option>
                                 <option value="INFT">INFT</option>
