@@ -66,6 +66,14 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>
+                            <b>Date:</b>
+                        </td>
+                        <td>
+                            <input type="date" name="date" class="form-control" value="{{$placement->date}}">
+                        </td>
+                    </tr>
+                    <tr>
                         <td colspan=2>
                             <input type="submit" class="form-control btn btn-success" value="Submit" name="submit">
                         </td>                        

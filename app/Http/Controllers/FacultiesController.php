@@ -28,8 +28,7 @@ class FacultiesController extends Controller
 
     public function announcementsIndex()
     {
-        $user = Auth::user();
-        $announcements = $user->announcements()->where('status', '1')->paginate(10);
+        $announcements = Auth::user()->announcements()->paginate(10);
         return view('faculty.announcements.index', compact('announcements'));
     }
 
@@ -69,12 +68,17 @@ class FacultiesController extends Controller
     public function announcementsEdit($id)
     {
         $announcement = Announcement::find($id);
-        if(Auth::user()->id != $announcement->issued_by)
-            return view('errors.404'); 
-        $year = explode(',', $announcement->year);
-        $branch = explode(',', $announcement->branch);
-        $division = explode(',', $announcement->division);
-        return view('faculty.announcements.edit', compact('announcement', 'year', 'branch', 'division'));
+        if($announcement)
+        {
+            if(Auth::user()->id != $announcement->issued_by)
+                return view('errors.401'); 
+            $year = explode(',', $announcement->year);
+            $branch = explode(',', $announcement->branch);
+            $division = explode(',', $announcement->division);
+            return view('faculty.announcements.edit', compact('announcement', 'year', 'branch', 'division'));
+        }
+        else
+            return view('errors.404');
     }
 
     public function announcementsUpdate(Request $request, $id)
@@ -89,33 +93,45 @@ class FacultiesController extends Controller
 
         $announcement = Announcement::find($id);
 
-        $year = implode(',', $request->get('year'));
-        $branch = implode(',', $request->get('branch'));
-        $division = implode(',', $request->get('division'));
+        if($announcement)
+        {
+            if(Auth::user()->id != $announcement->issued_by)
+                return view('errors.401'); 
+            $year = implode(',', $request->get('year'));
+            $branch = implode(',', $request->get('branch'));
+            $division = implode(',', $request->get('division'));
 
-        $announcement->head = request('head');
-        $announcement->body = request('body');
-        $announcement->year = $year;
-        $announcement->branch = $branch;
-        $announcement->division = $division;
+            $announcement->head = request('head');
+            $announcement->body = request('body');
+            $announcement->year = $year;
+            $announcement->branch = $branch;
+            $announcement->division = $division;
 
-        $announcement->save();
+            $announcement->save();
 
-        \Session :: flash('update','Updated Successfully!');
-        return redirect('/faculty/faculty_announcements/index');
+            \Session :: flash('update','Updated Successfully!');
+            return redirect('/faculty/faculty_announcements/index');
+        }
+        else
+            return view('errors.404');
     }
 
     public function announcementsDestroy($id)
     {
         $announcement = Announcement::find($id);
-        if(Auth::user()->id != $announcement->issued_by)
-            return view('errors.404'); 
+        if($announcement)
+        {
+            if(Auth::user()->id != $announcement->issued_by)
+                return view('errors.401'); 
 
-        $announcement->status=0;
-        $announcement->save();
+            $announcement->status=0;
+            $announcement->save();
 
-        \Session::flash('delete', 'Deleted successfully.');
-        return redirect('faculty/faculty_announcements/index');
+            \Session::flash('delete', 'Deleted successfully.');
+            return redirect('faculty/faculty_announcements/index');
+        }
+        else
+            return view('errors.404');
     }
 
     /*
@@ -158,6 +174,7 @@ class FacultiesController extends Controller
             'body' => request('body'),
             'year' => $year,
             'branch' => $branch,
+            'date' => request('date'),
             'issued_by' => request('issued_by'), 
         ]);
 
@@ -169,11 +186,16 @@ class FacultiesController extends Controller
     public function placementsEdit($id)
     {
         $placement = Placement::find($id);
-        if(Auth::user()->id != $placement->issued_by)
-            return view('errors.404'); 
-        $year = explode(',', $placement->year);
-        $branch = explode(',', $placement->branch);
-        return view('faculty.placements.edit', compact('placement', 'year', 'branch'));
+        if($placement)
+        {
+            if(Auth::user()->id != $placement->issued_by)
+                return view('errors.401'); 
+            $year = explode(',', $placement->year);
+            $branch = explode(',', $placement->branch);
+            return view('faculty.placements.edit', compact('placement', 'year', 'branch'));
+        }
+        else
+            return view('errors.404');
     }
 
     public function placementsUpdate(Request $request, $id)
@@ -183,35 +205,49 @@ class FacultiesController extends Controller
             'body' => 'required',
             'year' => 'required',
             'branch' => 'required',
+            'date' => 'required',
         ]);
 
         $placement = Placement::find($id);
 
-        $year = implode(',', $request->get('year'));
-        $branch = implode(',', $request->get('branch'));
+        if($placement)
+        {
+            if(Auth::user()->id != $placement->issued_by)
+                return view('errors.401'); 
+            $year = implode(',', $request->get('year'));
+            $branch = implode(',', $request->get('branch'));
 
-        $placement->head = request('head');
-        $placement->body = request('body');
-        $placement->year = $year;
-        $placement->branch = $branch;
+            $placement->head = request('head');
+            $placement->body = request('body');
+            $placement->year = $year;
+            $placement->branch = $branch;
+            $placement->date = request('date');
 
-        $placement->save();
+            $placement->save();
 
-        \Session :: flash('update','Updated Successfully!');
-        return redirect('/faculty/placements/index');
+            \Session :: flash('update','Updated Successfully!');
+            return redirect('/faculty/placements/index');
+        }
+        else
+            return view('errors.404');
     }
 
     public function placementsDestroy($id)
     {
         $placement = Placement::find($id);
-        if(Auth::user()->id != $placement->issued_by)
-            return view('errors.404'); 
+        if($placement)
+        {
+            if(Auth::user()->id != $placement->issued_by)
+                return view('errors.401'); 
 
-        $placement->status = 0;
-        $placement->save();
+            $placement->status = 0;
+            $placement->save();
 
-        \Session::flash('delete', 'Deleted successfully.');
-        return redirect('faculty/placements/index');
+            \Session::flash('delete', 'Deleted successfully.');
+            return redirect('faculty/placements/index');
+        }
+        else
+            return view('errors.404');
     }
 
     public function placementRegistrationsIndex()
@@ -220,7 +256,7 @@ class FacultiesController extends Controller
                     ->where([
                         ['status', '=', 1],
                         ['issued_by', '=', Auth::user()->id],
-                        ])->paginate(10);
+                    ])->paginate(10);
 
         return view('faculty.placement_registrations.index', compact('placements'));
     }
@@ -304,11 +340,16 @@ class FacultiesController extends Controller
         ])->get();
         $event = Event::find($id);
 
-        if(Auth::user()->id != $event->issued_by)
-            return view('errors.404');  
-        $year = explode(',', $event->year);
-        $branch = explode(',', $event->branch);
-        return view('faculty.events.edit', compact('event', 'year', 'branch', 'event_coordinator'));
+        if($event)
+        {
+            if(Auth::user()->id != $event->issued_by)
+                return view('errors.404');  
+            $year = explode(',', $event->year);
+            $branch = explode(',', $event->branch);
+            return view('faculty.events.edit', compact('event', 'year', 'branch', 'event_coordinator'));
+        }
+        else
+            return view('errors.404');
     }
 
     public function eventsUpdate(Request $request, $id)
@@ -329,49 +370,67 @@ class FacultiesController extends Controller
 
         $event = Event::find($id);          
 
-        $year = implode(',', $request->get('year'));
-        $branch = implode(',', $request->get('branch'));
+        if($event)
+        {
+            if(Auth::user()->id != $event->issued_by)
+                return view('errors.401');
 
-        $event->name = request('name');
-        $event->details = request('details');
-        $event->commitee_name = request('commitee_name');
-        $event->year = $year;
-        $event->branch = $branch;
-        $event->date = request('date');
-        $event->time = request('time');
-        $event->location = request('location');
-        $event->price = request('price');
-        $event->contact_name = request('contact_name');
-        $event->contact_no = request('contact_no');
+            $year = implode(',', $request->get('year'));
+            $branch = implode(',', $request->get('branch'));
 
-        $event->save();
+            $event->name = request('name');
+            $event->details = request('details');
+            $event->commitee_name = request('commitee_name');
+            $event->year = $year;
+            $event->branch = $branch;
+            $event->date = request('date');
+            $event->time = request('time');
+            $event->location = request('location');
+            $event->price = request('price');
+            $event->contact_name = request('contact_name');
+            $event->contact_no = request('contact_no');
 
-        \Session :: flash('update','Updated Successfully!');
-        return redirect('/faculty/events/index');
+            $event->save();
+
+            \Session :: flash('update','Updated Successfully!');
+            return redirect('/faculty/events/index');
+        }
+        else
+            return view('errors.404');
     }
 
     public function eventsDestroy($id)
     {
         $event = Event::find($id);
 
-        if(Auth::user()->id != $event->issued_by)
+        if($event)
+        {
+            if(Auth::user()->id != $event->issued_by)
+                return view('errors.401');
+
+            $event->status = 0;
+            $event->save();
+
+            \Session::flash('delete', 'Deleted successfully.');
+            return redirect('faculty/events/index');
+        }
+        else
             return view('errors.404');
-
-        $event->status = 0;
-        $event->save();
-
-        \Session::flash('delete', 'Deleted successfully.');
-        return redirect('faculty/events/index');
     }
 
     public function eventsShow($id)
     {
         $event = Event::find($id);
         
-        if(Auth::user()->id != $event->issued_by)
-            return view('errors.404');
+        if($event)
+        {
+            if(Auth::user()->id != $event->issued_by)
+                return view('errors.401');
 
-        return view('faculty.events.view', compact('event'));
+            return view('faculty.events.view', compact('event'));
+        }
+        else
+            return view('errors.404');
     }
 
     public function eventRegistrationsIndex()

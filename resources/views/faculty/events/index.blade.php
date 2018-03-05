@@ -64,7 +64,7 @@
                                     <h6>Event Name</h6>
                                     <h4>{{$event->name}}</h4>
                                     <div class="count">
-                                        <a class="a" href="/faculty/event_registrations/{{$event->id}}">{{$event->event_registration_count}}</a>
+                                        <a class="a" href="/faculty/event_registrations/view/{{$event->id}}">{{$event->event_registration_count}}</a>
                                     </div>
                                     <br><hr>
                                     <div class="row tasks">

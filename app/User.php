@@ -29,16 +29,16 @@ class User extends Authenticatable
 
     public function announcements()
     {
-        return $this->hasMany('App\Announcement', 'id');
+        return $this->hasMany('App\Announcement', 'issued_by');
     }
 
     public function placements()
     {
-        return $this->hasMany('App\Announcement', 'id');
+        return $this->hasMany('App\Placement', 'issued_by');
     }
 
     public function events()
     {
-        return $this->hasMany('App\Announcement', 'id');
+        return $this->hasMany('App\Event', 'issued_by');
     }
 }
