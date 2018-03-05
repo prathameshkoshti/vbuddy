@@ -68,9 +68,10 @@ textarea, input[type="text"], input[type="password"], input[type="email"],  sele
 .banner{
     background-color: rgba(0,0,0,0.4);
     border-radius: 3px;
-    margin:10px;
+    margin: 10px;
+    padding: 20px;
 }
-.button, .btn-default{
+.button, .btn-info{
     position: relative;
     bottom: 10px;
     right: 10%;

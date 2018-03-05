@@ -122,7 +122,7 @@ class StudentController extends Controller
                     ['student_id', '=', Auth::user()->id],
                 ])->first();
 
-                $url = 'student/placement/view/' . $id;
+                $url = 'student/placements/view/' . $id;
                 
                 if($isRegistered)
                 {
@@ -224,7 +224,7 @@ class StudentController extends Controller
                     ['event_id', '=', $id],
                     ['student_id', '=', Auth::user()->id],
                 ])->first();
-                $url = 'student/event/view/' . $id;                
+                $url = 'student/events/view/' . $id;                
                 if($isEnrolled){
                     \Session::flash('register', 'Do not worry you are in our list!');
                     return redirect($url);
