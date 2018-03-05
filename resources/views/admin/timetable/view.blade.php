@@ -51,7 +51,7 @@
                                     @php  $temp2= explode(",",$lecture->teacher)@endphp
                                     @php  $temp3= explode(",",$lecture->block)@endphp
                                     @php $i=0;@endphp
-                                    <table class="table">
+                                    <table class="table" style="background-color: rgba(0,0,0,0)">
                                         @foreach($temp1 as $sub)
                                         <tr>
                                             <td>{{$sub}}</td>
@@ -78,7 +78,7 @@
                                     @php  $temp2= explode(",",$lecture->teacher)@endphp
                                     @php  $temp3= explode(",",$lecture->block)@endphp
                                     @php $i=0;@endphp
-                                    <table class="table">
+                                    <table class="table" style="background-color: rgba(0,0,0,0)">
                                         @foreach($temp1 as $sub)
                                         <tr>
                                             <td>{{$sub}}</td>
@@ -104,7 +104,7 @@
                                     @php  $temp2= explode(",",$lecture->teacher)@endphp
                                     @php  $temp3= explode(",",$lecture->block)@endphp
                                     @php $i=0;@endphp
-                                    <table class="table">
+                                    <table class="table" style="background-color: rgba(0,0,0,0)">
                                         @foreach($temp1 as $sub)
                                         <tr>
                                             <td>{{$sub}}</td>
@@ -129,7 +129,7 @@
                                     @php  $temp2= explode(",",$lecture->teacher)@endphp
                                     @php  $temp3= explode(",",$lecture->block)@endphp
                                     @php $i=0;@endphp
-                                    <table class="table">
+                                    <table class="table" style="background-color: rgba(0,0,0,0)">
                                         @foreach($temp1 as $sub)
                                         <tr>
                                             <td>{{$sub}}</td>
@@ -155,7 +155,7 @@
                                     @php  $temp2= explode(",",$lecture->teacher)@endphp
                                     @php  $temp3= explode(",",$lecture->block)@endphp
                                     @php $i=0;@endphp
-                                    <table class="table">
+                                    <table class="table" style="background-color: rgba(0,0,0,0)">
                                         @foreach($temp1 as $sub)
                                         <tr>
                                             <td>{{$sub}}</td>
@@ -181,7 +181,7 @@
                                     @php  $temp2= explode(",",$lecture->teacher)@endphp
                                     @php  $temp3= explode(",",$lecture->block)@endphp
                                     @php $i=0;@endphp
-                                    <table class="table">
+                                    <table class="table" style="background-color: rgba(0,0,0,0)">
                                         @foreach($temp1 as $sub)
                                         <tr>
                                             <td>{{$sub}}</td>

@@ -36,21 +36,21 @@
                     <tr>
                         <th>Subject:</th>
                         <td>
-                            <input type="text" class="form-control" name="subject" value="{{$timetable->subject}}">
+                            <input type="text" class="form-control" style="text-transform: uppercase" name="subject" value="{{$timetable->subject}}">
                         </td>
                     </tr>
 
                     <tr>
                         <th>Faculty:</th>
                         <td>
-                            <input type="text" class="form-control" name="teacher" value="{{$timetable->teacher}}">
+                            <input type="text" class="form-control"  style="text-transform: uppercase" name="teacher" value="{{$timetable->teacher}}">
                         </td>
                     </tr>
 
                     <tr>
                         <th>Block</th>
                         <td>
-                            <input type="text" class="form-control" name="block" value="{{$timetable->block}}">
+                            <input type="text" class="form-control" style="text-transform: uppercase" name="block" value="{{$timetable->block}}">
 
                         </td>
                     </tr>
