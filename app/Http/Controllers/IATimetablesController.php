@@ -24,19 +24,27 @@ class IATimetablesController extends Controller
     }
     public function edit($id){
         $day=IATimetable::find($id);
-        return view('admin.ia_timetable.edit',compact('day'));
+        if($day)
+            return view('admin.ia_timetable.edit',compact('day'));
+        else
+            return view('errors.404');
     }
     public function update($id){
         $exam = IATimetable::find($id);
-        $exam->date = request('date');
-        $exam->start_time = request('start_time');
-        $exam->end_time=request('end_time');
-        $exam->subject=request('subject');
-        $exam -> save();
+        if($exam)
+        {
+            $exam->date = request('date');
+            $exam->start_time = request('start_time');
+            $exam->end_time=request('end_time');
+            $exam->subject=request('subject');
+            $exam -> save();
 
-        \Session :: flash('update','Updated Successfully!');
+            \Session :: flash('update','Updated Successfully!');
 
-        return redirect()->route('view_ia_timetable',[$exam->branch,$exam->sem]);
+            return redirect()->route('view_ia_timetable',[$exam->branch,$exam->sem]);
+        }
+        else
+            return view('errors.404');
     }
 
 
@@ -57,19 +65,27 @@ class IATimetablesController extends Controller
 
     public function fedit($id){
         $day=IATimetable::find($id);
-        return view('faculty.ia_timetables.edit',compact('day'));
+        if($day)
+            return view('faculty.ia_timetables.edit',compact('day'));
+        else
+            return view('errors.404');
     }
     public function fupdate($id){
         $exam = IATimetable::find($id);
-        $exam->date = request('date');
-        $exam->start_time = request('start_time');
-        $exam->end_time=request('end_time');
-        $exam->subject=request('subject');
-        $exam -> save();
+        
+        if($exam)
+        {
+            $exam->date = request('date');
+            $exam->start_time = request('start_time');
+            $exam->end_time=request('end_time');
+            $exam->subject=request('subject');
+            $exam -> save();
 
-        \Session :: flash('update','Updated Successfully!');
-        return redirect()->route('view_faculty_ia_timetable',[$exam->branch,$exam->sem]);
-
+            \Session :: flash('update','Updated Successfully!');
+            return redirect()->route('view_faculty_ia_timetable',[$exam->branch,$exam->sem]);
+        }
+        else
+            return view('errors.404');
     }
 
 }
