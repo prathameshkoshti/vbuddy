@@ -21,12 +21,19 @@
 </style>
 
 @section('content')
+
+    @foreach($exam as $day)
+        @php
+            $semester=$day->sem;
+        @endphp
+        @break;
+    @endforeach
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="table-responsive">
                 <table class="table">
                     <tr>
-                        <th colspan="5"><p>SEM-7</p></th>
+                        <th colspan="5"><p>SEM-{{$semester}}</p></th>
                     </tr>
 
                     <tr>

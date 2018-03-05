@@ -16,7 +16,7 @@
     </style>
 
     @php($inft="INFT")
-    @php($comp="COMP")
+    @php($cmpn="CMPN")
 
     <h2 style="text-align: center">IA Timetable </h2>
 
@@ -30,15 +30,15 @@
                     </tr>
 
                     <tr>
-                        <td style="background-color:#3FEEE6"><a href="/faculty/ia_timetables/view/{{$inft}}/{{$i}}"><span class="glyphicon glyphicon-hand-right"> INFT</span> </a></td>
-                        <td style="background-color: #55BCC9"><a href="/faculty/ia_timetables/view/{{$comp}}/{{$i}}"><span class="glyphicon glyphicon-hand-right"> COMP</span></a></td>
+                        <td style="background-color:#3FEEE6"><a href="/faculty/ia_timetables/view/INFT/{{$i}}"><span class="glyphicon glyphicon-hand-right"> INFT</span> </a></td>
+                        <td style="background-color: #55BCC9"><a href="/faculty/ia_timetables/view/CMPN/{{$i}}"><span class="glyphicon glyphicon-hand-right"> CMPN</span></a></td>
                     </tr>
                     <tr>
-                        <td style="background-color: #97CAEF"><a href=""><span class="glyphicon glyphicon-hand-right"> EXTC</span> </a></td>
-                        <td style="background-color: #CAFAFE"><a href=""><span class="glyphicon glyphicon-hand-right"> ETRX</span> </a></td>
+                        <td style="background-color: #97CAEF"><a href="/faculty/ia_timetables/view/EXTC/{{$i}}"><span class="glyphicon glyphicon-hand-right"> EXTC</span> </a></td>
+                        <td style="background-color: #CAFAFE"><a href="/faculty/ia_timetables/view/ETRX/{{$i}}"><span class="glyphicon glyphicon-hand-right"> ETRX</span> </a></td>
                     </tr>
                     <tr>
-                        <td style="background-color: #BBC4EF"><a href=""><span class="glyphicon glyphicon-hand-right"> BIOM</span> </a></td>
+                        <td style="background-color: #BBC4EF"><a href="/faculty/ia_timetables/view/BIOM/{{$i}}"><span class="glyphicon glyphicon-hand-right"> BIOM</span> </a></td>
                     </tr>
                 </table>
             </div>

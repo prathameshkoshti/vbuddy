@@ -297,7 +297,7 @@ Route::group(['prefix' => 'faculty', 'middleware' => 'faculty'], function(){
 
     Route::prefix('ia_timetables')->group(function(){
         Route::get('/', 'IATimetablesController@findex');
-        Route::get('view/{branch}/{id}', 'IATimetablesController@fview');
+        Route::get('view/{branch}/{id}', 'IATimetablesController@fview')->name('view_faculty_ia_timetable');
         Route::get('edit/{id}','IATimetablesController@fedit');
         Route::put('update/{id}','IATimetablesController@fupdate');
     });
