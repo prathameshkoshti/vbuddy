@@ -12,6 +12,6 @@ class Announcement extends Model
 
     public function user()
     {
-        $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'issued_by', 'id');
     }
 }

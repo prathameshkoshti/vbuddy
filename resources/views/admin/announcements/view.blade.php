@@ -53,7 +53,7 @@
                             Issued By:
                         </td>
                         <td>
-                            {{$announcement->issued_by}}
+                            {{$announcement->user->name}}
                         </td>
                     </tr>
                     <tr>

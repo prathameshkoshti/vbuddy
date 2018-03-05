@@ -56,12 +56,14 @@
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" name="branch[]" type="checkbox" value="INFT">
                                 <label class="form-check-label" for="inft">INFT</label>
-                                <input class="form-check-input" name="branch[]" type="checkbox" value="COMP">
-                                <label class="form-check-label" for="comp">COMP</label>
+                                <input class="form-check-input" name="branch[]" type="checkbox" value="CMPN">
+                                <label class="form-check-label" for="cmpn">CMPN</label>
                                 <input class="form-check-input" name="branch[]" type="checkbox" value="EXTC">
                                 <label class="form-check-label" for="extc">EXTC</label>
                                 <input class="form-check-input" name="branch[]" type="checkbox" value="ETRX">
                                 <label class="form-check-label" for="etrx">ETRX</label>
+                                <input class="form-check-input" name="branch[]" type="checkbox" value="BIOM">
+                                <label class="form-check-label" for="biom">BIOM</label>
                             </div>
                         </td>
                     </tr>

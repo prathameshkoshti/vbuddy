@@ -56,17 +56,30 @@
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" name="branch[]" type="checkbox" value="INFT" {{in_array('INFT', $branch) ? 'checked' : ''}}>
                                 <label class="form-check-label" for="inft">INFT</label>
-                                <input class="form-check-input" name="branch[]" type="checkbox" value="COMP" {{in_array('COMP', $branch) ? 'checked' : ''}}>
-                                <label class="form-check-label" for="comp">COMP</label>
+                                <input class="form-check-input" name="branch[]" type="checkbox" value="CMPN" {{in_array('CMPN', $branch) ? 'checked' : ''}}>
+                                <label class="form-check-label" for="comp">CMPN</label>
                                 <input class="form-check-input" name="branch[]" type="checkbox" value="EXTC" {{in_array('EXTC', $branch) ? 'checked' : ''}}>
                                 <label class="form-check-label" for="extc">EXTC</label>
                                 <input class="form-check-input" name="branch[]" type="checkbox" value="ETRX" {{in_array('ETRX', $branch) ? 'checked' : ''}}>
                                 <label class="form-check-label" for="etrx">ETRX</label>
+                                <input class="form-check-input" name="branch[]" type="checkbox" value="BIOM" {{in_array('BIOM', $branch) ? 'checked' : ''}}>
+                                <label class="form-check-label" for="biom">BIOM</label>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan=2>
+                        <td>
+                            <b>Date</b>
+                        </td>
+                        <td>
+                            <input type="date" class="form-control" name="date" value="{{$placement->date}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Issued By:</b>
+                        </td>
+                        <td>
                             <select class="form-control" name="issued_by">
                                 @foreach($users as $user)
                                     <option value="{{ $user->id }}"

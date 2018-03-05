@@ -15,7 +15,7 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $events = Event::paginate(10);
+        $events = Event::with('user')->paginate(10);
         return view('admin.events.index', compact('events'));
     }
 
@@ -87,7 +87,7 @@ class EventsController extends Controller
      */
     public function show($id)
     {
-        $event = Event::find($id);
+        $event = Event::with('user')->find($id);
         if($event)
             return view('admin.events.view', compact('event'));
         else

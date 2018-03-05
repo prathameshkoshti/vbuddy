@@ -93,6 +93,14 @@
                     </tr>
                     <tr>
                         <td>
+                            Issued By
+                        </td>
+                        <td colspan=2>
+                            {{$event->user->name}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             Contact Name
                         </td>
                         <td colspan=2>

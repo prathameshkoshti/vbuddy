@@ -24,6 +24,7 @@
                         <th>ID</th>
                         <th>Event Name</th>
                         <th>Commitee Name</th>
+                        <th>Issued By</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -32,6 +33,7 @@
                         <td>{{ $value->id }}</td>
                         <td>{{ $value->name }}</td>
                         <td>{{ $value->commitee_name }}</td>
+                        <td>{{ $value->user->name }}</td>
                         @if( $value->status == 1)
                             <td>Active</td>
                         @else

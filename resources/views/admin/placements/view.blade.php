@@ -53,10 +53,17 @@
                             Branch:
                         </td>
                         <td>
-                            {{$placement->issued_by}}
+                            {{$placement->branch}}
                         </td>
                     </tr>
-                    
+                    <tr>
+                        <td>
+                            Issued By:
+                        </td>
+                        <td>
+                            {{$placement->user->name}}
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                         </td>

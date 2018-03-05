@@ -34,7 +34,7 @@
                     <td>{{ $value->head }}</td>
                     <td>{{ $value->year }}</td>
                     <td>{{ $value->branch }}</td>
-                    <td>{{ $value->issued_by }}</td>
+                    <td>{{ $value->user->name }}</td>
                     @if( $value->status == 1)
                         <td>Active</td>
                     @else

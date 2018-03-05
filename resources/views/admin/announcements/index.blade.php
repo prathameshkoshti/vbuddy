@@ -20,8 +20,7 @@
                     </tr>
                     <tr>
                         <th>ID</th>
-                        <th>Head</th>
-                        <th>Body</th>
+                        <th>Title</th>
                         <th>Year</th>
                         <th>Branch</th>
                         <th>Division</th>
@@ -33,11 +32,10 @@
                     <tr>
                         <td>{{ $value->id }}</td>
                         <td>{{ $value->head }}</td>
-                        <td>{{ $value->body }}</td>
                         <td>{{ $value->year }}</td>
                         <td>{{ $value->branch }}</td>
                         <td>{{ $value->division }}</td>
-                        <td>{{ $value->issued_by }}</td>
+                        <td>{{ $value->user->name }}</td>
                         @if( $value->status == 1)
                             <td>Active</td>
                         @else

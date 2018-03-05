@@ -12,7 +12,7 @@ class Event extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'issued_by');
     }
 
     public function event_registration()

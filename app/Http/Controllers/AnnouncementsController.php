@@ -15,8 +15,7 @@ class AnnouncementsController extends Controller
      */
     public function index()
     {
-        $announcements = Announcement::paginate(10);
-        //dd($announcements);
+        $announcements = Announcement::with('user')->paginate(10);
         return view('admin.announcements.index', compact('announcements'));
     }
 
@@ -72,7 +71,7 @@ class AnnouncementsController extends Controller
      */
     public function show($id)
     {
-        $announcement = Announcement::find($id);
+        $announcement = Announcement::with('user')->find($id);
         if($announcement)
             return view('admin.announcements.view', compact('announcement'));
         else

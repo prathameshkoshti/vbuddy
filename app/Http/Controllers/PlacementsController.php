@@ -15,7 +15,7 @@ class PlacementsController extends Controller
      */
     public function index()
     {
-        $placements = Placement::paginate(10);
+        $placements = Placement::with('user')->paginate(10);
         return view('admin.placements.index', compact('placements'));
     }
 
@@ -46,6 +46,7 @@ class PlacementsController extends Controller
             'body' => 'required',
             'year' => 'required',
             'branch' => 'required',
+            'date' => 'required',
             'issued_by' => 'required',
         ]);
 
@@ -57,6 +58,7 @@ class PlacementsController extends Controller
             'body' => request('body'),
             'year' => $year,
             'branch' => $branch,
+            'date' => request('date'),
             'issued_by' => request('issued_by'), 
         ]);
 
@@ -72,7 +74,7 @@ class PlacementsController extends Controller
      */
     public function show($id)
     {
-        $placement = Placement::find($id);
+        $placement = Placement::with('user')->find($id);
         if($placement)
             return view('admin.placements.view', compact('placement'));
         else    
@@ -119,6 +121,7 @@ class PlacementsController extends Controller
             'body' => 'required',
             'year' => 'required',
             'branch' => 'required',
+            'date' => 'required',
             'issued_by' => 'required',
         ]);
 
@@ -130,6 +133,7 @@ class PlacementsController extends Controller
     
             $placement->head = request('head');
             $placement->body = request('body');
+            $placement->date = request('date');
             $placement->year = $year;
             $placement->branch = $branch;
             $placement->issued_by = request('issued_by');
