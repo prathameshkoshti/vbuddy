@@ -72,7 +72,11 @@ class PlacementsController extends Controller
      */
     public function show($id)
     {
-        //
+        $placement = Placement::find($id);
+        if($placement)
+            return view('admin.placements.view', compact('placement'));
+        else    
+            return view('errors.404');
     }
 
     /**
@@ -88,10 +92,17 @@ class PlacementsController extends Controller
             ['role' , '=', 'Event Coordinator']
         ])->get();
         $placement = Placement::find($id);
-        $issued_by = $placement->issued_by;
-        $year = explode(',', $placement->year);
-        $branch = explode(',', $placement->branch);
-        return view('admin.placements.edit', compact('placement', 'year', 'branch', 'users', 'issued_by'));
+        if($placement)
+        {
+            $issued_by = $placement->issued_by;
+            $year = explode(',', $placement->year);
+            $branch = explode(',', $placement->branch);
+            return view('admin.placements.edit', compact('placement', 'year', 'branch', 'users', 'issued_by'));
+        }
+        else
+        {
+            return view('errors.404');
+        }
     }
 
     /**
@@ -112,20 +123,26 @@ class PlacementsController extends Controller
         ]);
 
         $placement = Placement::find($id);
-
-        $year = implode(',', $request->get('year'));
-        $branch = implode(',', $request->get('branch'));
-
-        $placement->head = request('head');
-        $placement->body = request('body');
-        $placement->year = $year;
-        $placement->branch = $branch;
-        $placement->issued_by = request('issued_by');
-
-        $placement->save();
-
-        \Session :: flash('update','Updated Successfully!');
-        return redirect('/admin/placements/');
+        if($placement)
+        {
+            $year = implode(',', $request->get('year'));
+            $branch = implode(',', $request->get('branch'));
+    
+            $placement->head = request('head');
+            $placement->body = request('body');
+            $placement->year = $year;
+            $placement->branch = $branch;
+            $placement->issued_by = request('issued_by');
+    
+            $placement->save();
+    
+            \Session :: flash('update','Updated Successfully!');
+            return redirect('/admin/placements/');
+        }
+        else
+        {
+            return view('errors.404');
+        }
     }
 
     /**
@@ -138,10 +155,17 @@ class PlacementsController extends Controller
     {
         $placement = Placement::find($id);
 
-        $placement->status = 0;
-        $placement->save();
-
-        \Session::flash('delete', 'Deleted successfully.');
-        return redirect('admin/placements/');
+        if($placement)
+        {
+            $placement->status = 0;
+            $placement->save();
+    
+            \Session::flash('delete', 'Deleted successfully.');
+            return redirect('admin/placements/');
+        }
+        else
+        {
+            return view('errors.404');
+        }
     }
 }

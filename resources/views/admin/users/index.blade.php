@@ -23,7 +23,6 @@
                     <th>ID</th>
                     <th>Faculty Name</th>
                     <th>Email</th>
-                    <th>Password</th>
                     <th>Role</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -33,7 +32,6 @@
                     <td>{{ $value->id }}</td>
                     <td>{{ $value->name }}</td>
                     <td>{{ $value->email }}</td>
-                    <td>{{ $value->password }}</td>
                     <td>{{ $value->role }}</td>
                     @if( $value->status == 1)
                         <td>Active</td>
@@ -41,6 +39,8 @@
                         <td>Inactive</td>
                     @endif
                     <td>
+                        <a href="/admin/users/view/{{$value->id}}"><i class="fa fa-eye fa-lg" aria-hidden="true"></i></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;                         
                         <a href="/admin/users/edit/{{$value->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
                         &nbsp;&nbsp;&nbsp;&nbsp; 
                         <a href="/admin/users/delete/{{$value->id}}"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>

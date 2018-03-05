@@ -72,7 +72,11 @@ class AnnouncementsController extends Controller
      */
     public function show($id)
     {
-        //
+        $announcement = Announcement::find($id);
+        if($announcement)
+            return view('admin.announcements.view', compact('announcement'));
+        else
+            return view('errors.404');
     }
 
     /**
@@ -85,11 +89,18 @@ class AnnouncementsController extends Controller
     {
         $users = User::where('status', '1')->get();
         $announcement = Announcement::find($id);
-        $issued_by = $announcement->issued_by;
-        $year = explode(',', $announcement->year);
-        $branch = explode(',', $announcement->branch);
-        $division = explode(',', $announcement->division);
-        return view('admin.announcements.edit', compact('announcement', 'year', 'branch', 'division', 'users', 'issued_by'));
+        if($announcement)
+        {
+            $issued_by = $announcement->issued_by;
+            $year = explode(',', $announcement->year);
+            $branch = explode(',', $announcement->branch);
+            $division = explode(',', $announcement->division);
+            return view('admin.announcements.edit', compact('announcement', 'year', 'branch', 'division', 'users', 'issued_by'));    
+        }
+        else
+        {
+            return view('errors.404');
+        }
     }
 
     /**
@@ -111,22 +122,29 @@ class AnnouncementsController extends Controller
         ]);
 
         $announcement = Announcement::find($id);
+        
+        if($announcement)
+        {
+            $year = implode(',', $request->get('year'));
+            $branch = implode(',', $request->get('branch'));
+            $division = implode(',', $request->get('division'));
 
-        $year = implode(',', $request->get('year'));
-        $branch = implode(',', $request->get('branch'));
-        $division = implode(',', $request->get('division'));
+            $announcement->head = request('head');
+            $announcement->body = request('body');
+            $announcement->year = $year;
+            $announcement->branch = $branch;
+            $announcement->division = $division;
+            $announcement->issued_by = request('issued_by');
 
-        $announcement->head = request('head');
-        $announcement->body = request('body');
-        $announcement->year = $year;
-        $announcement->branch = $branch;
-        $announcement->division = $division;
-        $announcement->issued_by = request('issued_by');
+            $announcement->save();
 
-        $announcement->save();
-
-        \Session :: flash('update','Updated Successfully!');
-        return redirect('/admin/faculty_announcements/');
+            \Session :: flash('update','Updated Successfully!');
+            return redirect('/admin/faculty_announcements/');
+        }
+        else
+        {
+            return view('errors.404');
+        }
     }
 
     /**
@@ -139,10 +157,17 @@ class AnnouncementsController extends Controller
     {
         $announcement = Announcement::find($id);
 
-        $announcement->status=0;
-        $announcement->save();
+        if($announcement)
+        {
+            $announcement->status=0;
+            $announcement->save();
 
-        \Session::flash('delete', 'Deleted successfully.');
-        return redirect('admin/faculty_announcements/');
+            \Session::flash('delete', 'Deleted successfully.');
+            return redirect('admin/faculty_announcements/');
+        }
+        else
+        {
+            return view('errors.view');
+        }
     }
 }

@@ -45,7 +45,6 @@ class ProfilesController extends Controller
             'new_password' => 'required',
         ]);
 
-        $id = request('id');
         $user = Auth::user();
 
         $old_password = request('old_password');
@@ -74,8 +73,7 @@ class ProfilesController extends Controller
             'email' => 'required',
         ]);
 
-        $id = request('id');
-        $user = User::find($id);
+        $user = Auth::user();
 
         $user->name = request('name');
         $user->email = request('email');
@@ -98,7 +96,6 @@ class ProfilesController extends Controller
             'new_password' => 'required',
         ]);
 
-        $id = request('id');
         $user = Auth::user();
 
         $old_password = request('old_password');

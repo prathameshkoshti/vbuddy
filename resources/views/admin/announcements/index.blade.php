@@ -44,6 +44,8 @@
                             <td>Inactive</td>
                         @endif
                         <td>
+                            <a href="/admin/faculty_announcements/view/{{$value->id}}"><i class="fa fa-eye fa-lg" aria-hidden="true"></i></a>
+                            &nbsp;&nbsp;&nbsp;&nbsp; 
                             <a href="/admin/faculty_announcements/edit/{{$value->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
                             &nbsp;&nbsp;&nbsp;&nbsp; 
                             <a href="/admin/faculty_announcements/delete/{{$value->id}}"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>

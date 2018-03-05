@@ -15,23 +15,37 @@ class IATimetablesController extends Controller
     public function view($branch,$id)
     {
         $exam=IATimetable::get()->where('sem','=',$id)->where('branch','=',$branch);
-        return view('admin.ia_timetable.view',compact('exam'));
+        if($exam)
+            return view('admin.ia_timetable.view',compact('exam'));
+        else
+            return view('errors.404');
     }
 
     public function edit($id){
         $day=IATimetable::find($id);
-        return view('admin.ia_timetable.edit',compact('day'));
+        if($day)
+            return view('admin.ia_timetable.edit',compact('day'));
+        else
+            return view('errors.404');
     }
+    
     public function update($id){
         $exam = IATimetable::find($id);
-        $exam->date = request('date');
-        $exam->start_time = request('start_time');
-        $exam->end_time=request('end_time');
-        $exam->subject=request('subject');
-        $exam -> save();
-
-        \Session :: flash('update','Updated Successfully!');
-        return redirect('/admin/ia_timetable/');
+        if($exam)
+        {
+            $exam->date = request('date');
+            $exam->start_time = request('start_time');
+            $exam->end_time=request('end_time');
+            $exam->subject=request('subject');
+            $exam -> save();
+    
+            \Session :: flash('update','Updated Successfully!');
+            return redirect('/admin/ia_timetable/');
+        }
+        else
+        {
+            return view('errors.404');
+        }
     }
 
 
@@ -39,26 +53,41 @@ class IATimetablesController extends Controller
     {
         return view('faculty.ia_timetables.index');
     }
+
     public function fview($branch,$id){
         $exam=IATimetable::get()->where('sem','=',$id)->where('branch','=',$branch);
-        return view('faculty.ia_timetables.view',compact('exam'));
+        if($exam)
+            return view('faculty.ia_timetables.view',compact('exam'));
+        else
+            return view('errors.404');
 
     }
 
     public function fedit($id){
         $day=IATimetable::find($id);
-        return view('faculty.ia_timetables.edit',compact('day'));
+        if($day)
+            return view('faculty.ia_timetables.edit',compact('day'));
+        else
+            return view('errors.404');
     }
+
     public function fupdate($id){
         $exam = IATimetable::find($id);
-        $exam->date = request('date');
-        $exam->start_time = request('start_time');
-        $exam->end_time=request('end_time');
-        $exam->subject=request('subject');
-        $exam -> save();
-
-        \Session :: flash('update','Updated Successfully!');
-        return redirect('/faculty/ia_timetables/');
+        if($exam)
+        {
+            $exam->date = request('date');
+            $exam->start_time = request('start_time');
+            $exam->end_time=request('end_time');
+            $exam->subject=request('subject');
+            $exam -> save();
+    
+            \Session :: flash('update','Updated Successfully!');
+            return redirect('/faculty/ia_timetables/');
+        }
+        else
+        {
+            return view('errors.404');
+        }
     }
 
 }

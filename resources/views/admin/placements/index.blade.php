@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
             <table class="table table-hover">
                 <tr>
                     <td colspan=8>
@@ -21,8 +21,7 @@
                 </tr>
                 <tr>
                     <th>ID</th>
-                    <th>Head</th>
-                    <th>Body</th>
+                    <th>Title</th>
                     <th>Year</th>
                     <th>Branch</th>
                     <th>Issued By</th>
@@ -33,7 +32,6 @@
                 <tr>
                     <td>{{ $value->id }}</td>
                     <td>{{ $value->head }}</td>
-                    <td>{{ $value->body }}</td>
                     <td>{{ $value->year }}</td>
                     <td>{{ $value->branch }}</td>
                     <td>{{ $value->issued_by }}</td>
@@ -43,6 +41,8 @@
                         <td>Inactive</td>
                     @endif
                     <td>
+                        <a href="/admin/placements/view/{{$value->id}}"><i class="fa fa-eye fa-lg" aria-hidden="true"></i></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;                         
                         <a href="/admin/placements/edit/{{$value->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
                         &nbsp;&nbsp;&nbsp;&nbsp; 
                         <a href="/admin/placements/delete/{{$value->id}}"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
