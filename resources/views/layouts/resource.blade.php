@@ -29,54 +29,63 @@
     @endif
 </div>
 <style>
-.fa-trash{
-    color: red;
-}
-.alert{
-    margin: 1 !important;
-}
-.alert ul li{
-    position: relative;
-    --top:-10px;
-}
-.fa-pencil{
-    color:orange;
-}
-.table-btn{
-    margin-left:90%;
-    background-color: #00C853 !important;
-    border: 0;
-}
-.btn-danger{
-    background-color: #E53935 !important;
-}
-.btn-warning{
-    background-color: #EF6C00 !important;
-}
-textarea, input[type="text"], input[type="password"], input[type="email"],  select, input[type="date"]{
-    border : 0px !important;
-    border-radius: 3px !important;
-}
-.table-borderless > tbody > tr > td,
-.table-borderless > tbody > tr > th,
-.table-borderless > tfoot > tr > td,
-.table-borderless > tfoot > tr > th,
-.table-borderless > thead > tr > td,
-.table-borderless > thead > tr > th {
-    border: none !important;
-}
-.banner{
-    background-color: rgba(0,0,0,0.4);
-    border-radius: 3px;
-    margin: 10px;
-    padding: 20px;
-}
-.button, .btn-info{
-    position: relative;
-    bottom: 10px;
-    right: 10%;
-}
-.centered{
-    text-align: center;
-}
+    .change-password{
+        color: red;
+        background-color: white;
+        padding: 5px;
+        border-radius: 3px;
+    }
+    .change-password: hover{
+        color: white;
+    }
+    .fa-trash{
+        color: red;
+    }
+    .alert{
+        margin: 1 !important;
+    }
+    .alert ul li{
+        position: relative;
+        --top:-10px;
+    }
+    .fa-pencil{
+        color:orange;
+    }
+    .table-btn{
+        margin-left:90%;
+        background-color: #00C853 !important;
+        border: 0;
+    }
+    .btn-danger{
+        background-color: #E53935 !important;
+    }
+    .btn-warning{
+        background-color: #EF6C00 !important;
+    }
+    textarea, input[type="text"], input[type="password"], input[type="email"],  select, input[type="date"]{
+        border : 0px !important;
+        border-radius: 3px !important;
+    }
+    .table-borderless > tbody > tr > td,
+    .table-borderless > tbody > tr > th,
+    .table-borderless > tfoot > tr > td,
+    .table-borderless > tfoot > tr > th,
+    .table-borderless > thead > tr > td,
+    .table-borderless > thead > tr > th {
+        border: none !important;
+    }
+    .banner{
+        background-color: rgba(0,0,0,0.4);
+        border-radius: 3px;
+        margin: 10px;
+        padding: 20px;
+    }
+    .button, .btn-info{
+        position: relative;
+        bottom: 10px;
+        right: 10%;
+    }
+    .centered{
+        text-align: center;
+    }
 </style>

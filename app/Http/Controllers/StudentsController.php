@@ -20,6 +20,19 @@ class StudentsController extends Controller
     }
 
     /**
+     * Show the form for viewing a resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $student = Student::find($id);
+        if($student)
+            return view('admin.students.view', compact('student'));
+        else
+            return view('errors.404');
+    }
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -74,7 +87,10 @@ class StudentsController extends Controller
     public function edit($id)
     {
         $student = Student::find($id);
-        return view('admin.students.edit', compact('student'));
+        if($student)
+            return view('admin.students.edit', compact('student'));
+        else
+            return view('errors.404');
     }
 
     /**
@@ -87,20 +103,27 @@ class StudentsController extends Controller
     public function update(Request $request, $id)
     {
         $student = Student::find($id);
-        $student->name = request('name');
-        $student->roll = request('roll');
-        $student->email = request('email');
-        $student->password = bcrypt(request('password'));
-        $student->year = request('year');
-        $student->sem = request('sem');
-        $student->branch = request('branch');
-        $student->division = request('division');
-        $student->admission_year = request('admission_year');
-
-        $student->save();
-
-        \Session :: flash('update','Updated Successfully!');
-        return redirect('/admin/students/');
+        if($student)
+        {
+            $student->name = request('name');
+            $student->roll = request('roll');
+            $student->email = request('email');
+            $student->password = bcrypt(request('password'));
+            $student->year = request('year');
+            $student->sem = request('sem');
+            $student->branch = request('branch');
+            $student->division = request('division');
+            $student->admission_year = request('admission_year');
+    
+            $student->save();
+    
+            \Session :: flash('update','Updated Successfully!');
+            return redirect('/admin/students/');
+        }
+        else
+        {
+            return view('errors.404');
+        }
     }
 
     /**
@@ -112,10 +135,17 @@ class StudentsController extends Controller
     public function destroy($id)
     {
         $student = Student::find($id);
-        $student->status = 0;
-        $student->save();
-
-        \Session :: flash('delete','Deleted Successfully! If you want to undo changes, please go to phpmyadmin');
-        return redirect('/admin/students/');
+        if($student)
+        {
+            $student->status = 0;
+            $student->save();
+    
+            \Session :: flash('delete','Deleted Successfully!');
+            return redirect('/admin/students/');            
+        }
+        else
+        {
+            return view('errors.404');
+        }   
     }
 }

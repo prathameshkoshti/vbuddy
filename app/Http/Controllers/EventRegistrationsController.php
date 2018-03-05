@@ -32,8 +32,11 @@ class EventRegistrationsController extends Controller
         $students = EventRegistration::with('student')
                     ->where('event_id', '=', $id)
                     ->paginate(20);
-        $count = Event::withCount('event_registration')->find($id);        
-        return view('admin.event_registrations.view', compact('students', 'count'));
+        $count = Event::withCount('event_registration')->find($id);
+        if($count)       
+            return view('admin.event_registrations.view', compact('students', 'count'));
+        else
+            return view('errors.404');
     }
 
 }

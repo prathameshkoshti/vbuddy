@@ -70,8 +70,10 @@ class HolidaysController extends Controller
     public function edit($id)
     {
         $holiday = Holiday::find($id);
-        //return view(dd($id));
-        return view('admin.holidays.edit', compact('holiday'));
+        if($holiday)
+            return view('admin.holidays.edit', compact('holiday'));
+        else
+            return view('errors.404');
     }
 
     /**
@@ -84,12 +86,19 @@ class HolidaysController extends Controller
     public function update(Request $request, $id)
     {
         $holiday = Holiday::find($id);
-        $holiday->name = request('name');
-        $holiday->date = request('date');
-        $holiday -> save();
-        
-        \Session :: flash('update','Updated Successfully!');
-        return redirect('/admin/holidays/');
+        if($holiday)
+        {
+            $holiday->name = request('name');
+            $holiday->date = request('date');
+            $holiday -> save();
+            
+            \Session :: flash('update','Updated Successfully!');
+            return redirect('/admin/holidays/');
+        }
+        else
+        {
+            return view('errors.404');
+        }
     }
 
     /**
@@ -101,10 +110,17 @@ class HolidaysController extends Controller
     public function destroy($id)
     {
         $holiday = Holiday::find($id);
-        $holiday->status = 0;
-        $holiday -> save();
-        
-        \Session :: flash('delete','Deleted Successfully! If you want to undo changes, please go to phpmyadmin');
-        return redirect('/admin/holidays/');
+        if($holiday)
+        {
+            $holiday->status = 0;
+            $holiday -> save();
+            
+            \Session :: flash('delete','Deleted Successfully!');
+            return redirect('/admin/holidays/');
+        }
+        else
+        {
+            return view('errors.404');
+        }
     }
 }

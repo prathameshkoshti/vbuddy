@@ -74,7 +74,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     */
     Route::prefix('users')->group(function(){
         Route::get('/', 'UsersController@index');
-        
+        Route::get('view/{id}', 'UsersController@show');
+
         Route::get('create', 'UsersController@create');
         Route::put('store', 'UsersController@store');
 
@@ -90,6 +91,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     */
     Route::prefix('students')->group(function(){
         Route::get('/', 'StudentsController@index');
+        Route::get('view/{id}', 'StudentsController@show');
         
         Route::get('create', 'StudentsController@create');
         Route::put('store', 'StudentsController@store');
@@ -106,6 +108,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     */
     Route::prefix('placements')->group(function(){
         Route::get('/', 'PlacementsController@index');
+        Route::get('view/{id}', 'PlacementsController@show');
 
         Route::get('create', 'PlacementsController@create');
         Route::put('store', 'PlacementsController@store');
@@ -126,6 +129,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     */
     Route::prefix('faculty_announcements')->group(function(){
         Route::get('/', 'AnnouncementsController@index');
+        Route::get('view/{id}', 'AnnouncementsController@show');
 
         Route::get('create', 'AnnouncementsController@create');
         Route::put('store', 'AnnouncementsController@store');
@@ -173,8 +177,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     */
     Route::prefix('events')->group(function(){
         Route::get('/', 'EventsController@index');
-
-        Route::get('view/{id}   ', 'EventsController@show');
+        Route::get('view/{id}', 'EventsController@show');
 
         Route::get('create', 'EventsController@create');
         Route::put('store', 'EventsController@store');

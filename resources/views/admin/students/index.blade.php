@@ -23,8 +23,6 @@
                     <th>ID</th>
                     <th>Student Name</th>
                     <th>Roll No.</th>
-                    <th>Email</th>
-                    <th>Password</th>
                     <th>Year</th>
                     <th>Branch</th>
                     <th>Division</th>
@@ -36,8 +34,6 @@
                     <td>{{ $value->id }}</td>
                     <td>{{ $value->name }}</td>
                     <td>{{ $value->roll }}</td>
-                    <td>{{ $value->email }}</td>
-                    <td>{{ $value->password }}</td>
                     <td>{{ $value->year }}</td>
                     <td>{{ $value->branch }}</td>
                     <td>{{ $value->division }}</td>  
@@ -47,6 +43,8 @@
                         <td>Inactive</td>
                     @endif
                     <td>
+                        <a href="/admin/students/view/{{$value->id}}"><i class="fa fa-eye fa-lg" aria-hidden="true"></i></a>
+                        &nbsp;
                         <a href="/admin/students/edit/{{$value->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
                         &nbsp;
                         <a href="/admin/students/delete/{{$value->id}}"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>

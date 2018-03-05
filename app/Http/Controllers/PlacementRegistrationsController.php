@@ -34,9 +34,16 @@ class PlacementRegistrationsController extends Controller
         $students = PlacementRegistration::with('student')
                     ->where('placement_id', '=', $id)
                     ->paginate(10);
-        
         $count = Placement::withCount('placement_registration')->find($id);
-        return view('admin.placement_registrations.view', compact('students', 'count'));
+        
+        if($count)
+        {
+            return view('admin.placement_registrations.view', compact('students', 'count'));
+        }
+        else
+        {
+            return view('errors.404');
+        }
     }
 
 }

@@ -88,7 +88,10 @@ class EventsController extends Controller
     public function show($id)
     {
         $event = Event::find($id);
-        return view('admin.events.view', compact('event'));
+        if($event)
+            return view('admin.events.view', compact('event'));
+        else
+            return view('errors.404');
     }
 
     /**
@@ -104,9 +107,15 @@ class EventsController extends Controller
             ['status', '=', 1],
         ])->get();
         $event = Event::find($id);
-        $year = explode(',', $event->year);
-        $branch = explode(',', $event->branch);
-        return view('admin.events.edit', compact('event', 'year', 'branch', 'event_coordinator'));
+        if($event)
+        {
+            $year = explode(',', $event->year);
+            $branch = explode(',', $event->branch);
+            return view('admin.events.edit', compact('event', 'year', 'branch', 'event_coordinator'));
+        }
+        else{
+            return view('errors.404');
+        }
     }
 
     /**
@@ -134,27 +143,33 @@ class EventsController extends Controller
         ]);
 
         $event = Event::find($id);
+        if($event)
+        {
+            $year = implode(',', $request->get('year'));
+            $branch = implode(',', $request->get('branch'));
 
-        $year = implode(',', $request->get('year'));
-        $branch = implode(',', $request->get('branch'));
+            $event->name = request('name');
+            $event->details = request('details');
+            $event->commitee_name = request('commitee_name');
+            $event->year = $year;
+            $event->branch = $branch;
+            $event->date = request('date');
+            $event->time = request('time');
+            $event->location = request('location');
+            $event->issued_by = request('issued_by');
+            $event->price = request('price');
+            $event->contact_name = request('contact_name');
+            $event->contact_no = request('contact_no');
 
-        $event->name = request('name');
-        $event->details = request('details');
-        $event->commitee_name = request('commitee_name');
-        $event->year = $year;
-        $event->branch = $branch;
-        $event->date = request('date');
-        $event->time = request('time');
-        $event->location = request('location');
-        $event->issued_by = request('issued_by');
-        $event->price = request('price');
-        $event->contact_name = request('contact_name');
-        $event->contact_no = request('contact_no');
+            $event->save();
 
-        $event->save();
-
-        \Session :: flash('update','Updated Successfully!');
-        return redirect('/admin/events/');
+            \Session :: flash('update','Updated Successfully!');
+            return redirect('/admin/events/');
+        }
+        else
+        {
+            return view('errors.404');
+        }
     }
 
     /**
@@ -166,11 +181,17 @@ class EventsController extends Controller
     public function destroy($id)
     {
         $event = Event::find($id);
+        if($event)
+        {
+            $event->status = 0;
+            $event->save();
 
-        $event->status = 0;
-        $event->save();
-
-        \Session::flash('delete', 'Deleted successfully.');
-        return redirect('admin/events/');
+            \Session::flash('delete', 'Deleted successfully.');
+            return redirect('admin/events/');
+        }
+        else
+        {
+            return view('errors.404');
+        }
     }
 }
