@@ -43,6 +43,9 @@
 
         <div class="col-md-12">
             <form>
+                <div class="" style="position:absolute; right: 20px">
+                    <button type="submit" formaction="/admin/timetable/view/{{$Branch}}/{{$Semester}}/{{$Division}}" class="btn btn-success" name="submit"> Exit Update</button>
+                </div><br><br>
                 <table class="table">
                     <tr>
                         <th>Monday</th>
@@ -52,7 +55,7 @@
                                     <a href="/admin/timetable/edit/{{$lecture->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
                                         <br><br>
 
-                                    {{$lecture->start_time}}<br>
+                                    {{$lecture->start_time}}-{{$lecture->end_time}}<br>
                                     @php  $temp1= explode(",",$lecture->subject)@endphp
                                     @php  $temp2= explode(",",$lecture->teacher)@endphp
                                     @php  $temp3= explode(",",$lecture->block)@endphp
@@ -81,7 +84,7 @@
 
                                     <a href="/admin/timetable/edit/{{$lecture->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
                                     <br><br>
-                                    {{$lecture->start_time}}<br>
+                                    {{$lecture->start_time}}-{{$lecture->end_time}}<br>
                                     @php  $temp1= explode(",",$lecture->subject)@endphp
                                     @php  $temp2= explode(",",$lecture->teacher)@endphp
                                     @php  $temp3= explode(",",$lecture->block)@endphp
@@ -111,7 +114,7 @@
                                 <td>
                                     <a href="/admin/timetable/edit/{{$lecture->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
                                     <br><br>
-                                    {{$lecture->start_time}}<br>
+                                    {{$lecture->start_time}}-{{$lecture->end_time}}<br>
                                     @php  $temp1= explode(",",$lecture->subject)@endphp
                                     @php  $temp2= explode(",",$lecture->teacher)@endphp
                                     @php  $temp3= explode(",",$lecture->block)@endphp
@@ -137,7 +140,7 @@
                                     <a href="/admin/timetable/edit/{{$lecture->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
                                     <br><br>
 
-                                    {{$lecture->start_time}}<br>
+                                    {{$lecture->start_time}}-{{$lecture->end_time}}<br>
                                     @php  $temp1= explode(",",$lecture->subject)@endphp
                                     @php  $temp2= explode(",",$lecture->teacher)@endphp
                                     @php  $temp3= explode(",",$lecture->block)@endphp
@@ -167,7 +170,7 @@
 
                                     <a href="/admin/timetable/edit/{{$lecture->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
                                     <br><br>
-                                    {{$lecture->start_time}}<br>
+                                    {{$lecture->start_time}}-{{$lecture->end_time}}<br>
                                     @php  $temp1= explode(",",$lecture->subject)@endphp
                                     @php  $temp2= explode(",",$lecture->teacher)@endphp
                                     @php  $temp3= explode(",",$lecture->block)@endphp
@@ -189,37 +192,8 @@
                         @endforeach
                     </tr>
 
-
-
-                    <tr>
-                        <br>
-                        <th>Saturday</th>
-                        @foreach($timetable as $lecture)
-                            @if($lecture->day == "SATURDAY")
-                                <td>
-                                    <a href="/admin/timetable/edit/{{$lecture->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
-                                    <br><br>
-                                    {{$lecture->start_time}}<br>
-                                    @php  $temp1= explode(",",$lecture->subject)@endphp
-                                    @php  $temp2= explode(",",$lecture->teacher)@endphp
-                                    @php  $temp3= explode(",",$lecture->block)@endphp
-                                    @php $i=0;@endphp
-                                    @foreach($temp1 as $sub)
-                                        {{$sub}}&nbsp&nbsp
-                                        {{$temp2[$i]}}&nbsp&nbsp
-                                        {{$temp3[$i]}}&nbsp&nbsp
-                                        <br>
-                                        @php $i++;@endphp
-                                    @endforeach
-                                </td>
-                            @endif
-                        @endforeach
-                    </tr>
                 </table>
 
-                <div class="submit  col-md-3 col-md-offset-4">
-                    <button type="submit" formaction="/admin/timetable/view/{{$Branch}}/{{$Semester}}/{{$Division}}" class="form-control btn btn-success" name="submit"> Exit Update</button>
-                </div><br><br>
             </form>
 
         </div>

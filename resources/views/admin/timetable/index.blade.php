@@ -33,7 +33,7 @@
 @section('content')
 
     <div class="row">
-        <div class="col-md-3 col-md-offset-4">
+        <div class="col-md-4 col-md-offset-4">
 
             <form>
                 <h3>Select Branch</h3>
@@ -65,9 +65,10 @@
                     <option value="B">B</option>
                     <option value="C">C</option>
                 </select>
-                <br><br>
-                <button type="button" class="form-control btn btn-success"  onclick="myFunction()">Get Timetable</button>
 
+                <div style="margin-top: 30px">
+                <button type="button" class="form-control btn btn-success"  onclick="myFunction()">Get Timetable</button>
+                </div>
 
             </form>
         </div>

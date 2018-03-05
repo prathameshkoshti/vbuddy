@@ -39,8 +39,10 @@
                         @break;
                     @endforeach
 
-                    <h1>Branch:{{$Branch}}&nbsp&nbsp Semester:{{$Semester}}&nbsp&nbsp Division:{{$Division}}</h1>
-
+                    <h1 align="center">Branch:{{$Branch}}&nbsp&nbsp Semester:{{$Semester}}&nbsp&nbsp Division:{{$Division}}</h1>
+                        <div class="" style="position:absolute; right: 20px">
+                            <button type="submit" formaction="/admin/timetable/view/edit/{{$Branch}}/{{$Semester}}/{{$Division}}" class="btn btn-success" name="submit">Update</button>
+                        </div><br><br>
                     <tr>
                         <th>Monday</th>
                         @foreach($timetable as $lecture)
@@ -170,35 +172,9 @@
                         @endforeach
                     </tr>
 
-                    <tr>
-                        <br>
-                        <th>Saturday</th>
-                        @foreach($timetable as $lecture)
-                            @if($lecture->day == "SATURDAY")
-                                <td>
-                                    {{$lecture->start_time}}<br>
-                                    @php  $temp1= explode(",",$lecture->subject)@endphp
-                                    @php  $temp2= explode(",",$lecture->teacher)@endphp
-                                    @php  $temp3= explode(",",$lecture->block)@endphp
-                                    @php $i=0;@endphp
-                                    <table class="table" style="background-color: rgba(0,0,0,0)">
-                                        @foreach($temp1 as $sub)
-                                        <tr>
-                                            <td>{{$sub}}</td>
-                                            <td>{{$temp2[$i]}}</td>
-                                            <td>{{$temp3[$i]}}</td>
-                                        </tr>                                    
-                                        @php $i++;@endphp
-                                    @endforeach
-                                    </table>
-                                </td>
-                            @endif
-                        @endforeach
-                    </tr>
+
                 </table>
-                <div class="submit col-md-offset-4 col-md-3">
-                <button type="submit" formaction="/admin/timetable/view/edit/{{$Branch}}/{{$Semester}}/{{$Division}}" class="form-control btn btn-success" name="submit">Update</button>
-                </div><br><br>
+              <br><br>
             </div>
         </form>
     </div>
