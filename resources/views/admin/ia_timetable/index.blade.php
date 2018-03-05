@@ -36,11 +36,11 @@
                         <td style="background-color: #55BCC9"><a href="/admin/ia_timetable/view/CMPN/{{$i}}"><span class="glyphicon glyphicon-hand-right"> CMPN</span></a></td>
                     </tr>
                     <tr>
-                        <td style="background-color: #97CAEF"><a href=""><span class="glyphicon glyphicon-hand-right"> EXTC</span> </a></td>
-                        <td style="background-color: #CAFAFE"><a href=""><span class="glyphicon glyphicon-hand-right"> ETRX</span> </a></td>
+                        <td style="background-color: #97CAEF"><a href="/admin/ia_timetable/view/EXTC/{{$i}}"><span class="glyphicon glyphicon-hand-right"> EXTC</span> </a></td>
+                        <td style="background-color: #CAFAFE"><a href="/admin/ia_timetable/view/ETRX/{{$i}}"><span class="glyphicon glyphicon-hand-right"> ETRX</span> </a></td>
                     </tr>
                     <tr>
-                        <td style="background-color: #BBC4EF"><a href=""><span class="glyphicon glyphicon-hand-right"> BIOM</span> </a></td>
+                        <td style="background-color: #BBC4EF"><a href="/admin/ia_timetable/view/BIOM/{{$i}}"><span class="glyphicon glyphicon-hand-right"> BIOM</span> </a></td>
                     </tr>
                 </table>
             </div>

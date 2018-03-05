@@ -163,7 +163,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     */
     Route::prefix('ia_timetable')->group(function(){
         Route::get('/', 'IATimetablesController@index');
-        Route::get('view/{branch}/{id}', 'IATimetablesController@view');
+        Route::get('view/{branch}/{id}', 'IATimetablesController@view')->name('view_ia_timetable');
         Route::get('edit/{id}','IATimetablesController@edit');
         Route::put('update/{id}','IATimetablesController@update');
     });

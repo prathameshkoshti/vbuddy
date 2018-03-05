@@ -8,7 +8,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-9 col-md-offset-2">
             <div class="table-responsive">
                 <table class="table table-hover">
                     <tr>
@@ -23,7 +23,6 @@
                     <tr>
                         <th>ID</th>
                         <th>Event Name</th>
-                        <th>Details</th>
                         <th>Commitee Name</th>
                         <th>Status</th>
                         <th>Actions</th>
@@ -32,7 +31,6 @@
                     <tr>
                         <td>{{ $value->id }}</td>
                         <td>{{ $value->name }}</td>
-                        <td>{{ $value->details }}</td>
                         <td>{{ $value->commitee_name }}</td>
                         @if( $value->status == 1)
                             <td>Active</td>

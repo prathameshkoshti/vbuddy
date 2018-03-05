@@ -15,9 +15,13 @@ class IATimetablesController extends Controller
     public function view($branch,$id)
     {
         $exam=IATimetable::get()->where('sem','=',$id)->where('branch','=',$branch);
-        return view('admin.ia_timetable.view',compact('exam'));
+        if(count($exam)>0){
+            return view('admin.ia_timetable.view',compact('exam'));
+        }
+        else{
+            return redirect('404');
+        }
     }
-
     public function edit($id){
         $day=IATimetable::find($id);
         return view('admin.ia_timetable.edit',compact('day'));
@@ -31,7 +35,8 @@ class IATimetablesController extends Controller
         $exam -> save();
 
         \Session :: flash('update','Updated Successfully!');
-        return redirect('/admin/ia_timetable/');
+
+        return redirect()->route('view_ia_timetable',[$exam->branch,$exam->sem]);
     }
 
 

@@ -68,9 +68,10 @@
                             <select class="form-control" name="branch">
                                 <option selected disabled>Branch</option>
                                 <option value="INFT">INFT</option>
-                                <option value="COMP">COMP</option>
+                                <option value="CMPN">CMPN</option>
                                 <option value="EXTC">EXTC</option>
                                 <option value="ETRX">ETRX</option>
+                                <option value="BIOM">BIOM</option>
                             </select>
                         </td>
                     </tr>

@@ -151,24 +151,34 @@
                                 <option disabled>Branch</option>
                                 @if($student->branch == "INFT")
                                     <option value="INFT" selected>INFT</option>
-                                    <option value="COMP">COMP</option>
+                                    <option value="COMP">CMPN</option>
                                     <option value="EXTC">EXTC</option>
                                     <option value="ETRX">ETRX</option>
-                                @elseif($student->branch == "COMP")
+                                    <option value="BIOM">BIOM</option>
+                                @elseif($student->branch == "CMPN")
                                     <option value="INFT">INFT</option>
-                                    <option value="COMP" selected>COMP</option>
+                                    <option value="COMP" selected>CMPN</option>
                                     <option value="EXTC">EXTC</option>
                                     <option value="ETRX">ETRX</option>
+                                    <option value="BIOM">BIOM</option>
                                 @elseif($student->branch == "EXTC")
                                     <option value="INFT">INFT</option>
-                                    <option value="COMP">COMP</option>
+                                    <option value="COMP">CMPN</option>
                                     <option value="EXTC" selected>EXTC</option>
                                     <option value="ETRX">ETRX</option>
+                                    <option value="BIOM">BIOM</option>
+                                @elseif($student->branch == "BIOM")
+                                    <option value="INFT">INFT</option>
+                                    <option value="COMP">CMPN</option>
+                                    <option value="EXTC">EXTC</option>
+                                    <option value="ETRX">ETRX</option>
+                                    <option value="BIOM" selected>BIOM</option>
                                 @else
                                     <option value="INFT">INFT</option>
-                                    <option value="COMP">COMP</option>
+                                    <option value="COMP">CMPN</option>
                                     <option value="EXTC">EXTC</option>
                                     <option value="ETRX" selected>ETRX</option>
+                                    <option value="BIOM">BIOM</option>
                                 @endif
                             </select>
                         </td>
