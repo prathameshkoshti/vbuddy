@@ -6,20 +6,81 @@
     <h1 style="text-align:center">Students</h1>
 @stop
 
+
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    #myInput {
+        width: 80%;
+        font-size: 18px;
+        padding: 10px 10px 10px 10px;
+        margin-bottom: 10px;
+        border: 2px solid #5BB91D;
+    }
+
+
+    #myTable {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+        font-size: 18px;
+    }
+
+    #myTable th, #myTable td {
+        text-align: left;
+        padding: 12px;
+    }
+
+    #myTable tr {
+        border-bottom: 1px solid #ddd;
+    }
+
+    #myTable tr.header, #myTable tr:hover {
+        background-color: #f1f1f1;
+    }
+</style>
+
 @section('content')
     <div class="row">
         <div class="col-md-10 col-md-offset-1 table-responsive">
-            <table class="table table-hover">
-                <tr>
-                    <td colspan=10>
-                        <div class="col-md-offset-10">
+            <table id="myTable" class="table table-hover" >
+                <tr class="header">
+                    <th colspan=5>
+                    </th>
+
+                    <th colspan="2">
+                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Name...." title="Type in a name" size="10" style="font-weight: normal">
+                    </th>
+                    <th >
                                 <button onClick="parent.location='/admin/students/create'" type="button" class="btn btn-success table-btn">
-                                <span class="fa fa-plus" aria-hidden="true"></span> Create
-                            </button>
-                        </div>
-                    </td>
+                                    <span class="fa fa-plus" aria-hidden="true"></span> Create
+                                </button>
+                    </th>
                 </tr>
-                <tr>
+                <tr class="header">
                     <th>ID</th>
                     <th>Student Name</th>
                     <th>Roll No.</th>
@@ -58,7 +119,9 @@
     @include('layouts.resource')
     <style>
         .table-btn{
-            margin-left:60%;
+            margin-left:10%;
+            padding: 10px 10px;
+            font-size:18px;
         }
     </style>
 @stop
