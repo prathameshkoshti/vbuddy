@@ -20,9 +20,7 @@
                     </tr>
                     <tr>
                         <th>Head</th>
-                        <th>Body</th>
                         <th>Year</th>
-                        <th>Branch</th>
                         <th>Division</th>
                         <th>Status</th>
                         <th>Actions</th>
@@ -30,9 +28,7 @@
                     @foreach ($announcements as $value)
                     <tr>
                         <td>{{ $value->head }}</td>
-                        <td>{{ $value->body }}</td>
                         <td>{{ $value->year }}</td>
-                        <td>{{ $value->branch }}</td>
                         <td>{{ $value->division }}</td> 
                         @if( $value->status == 1)
                             <td>Active</td>
@@ -40,16 +36,18 @@
                             <td>Inactive</td>
                         @endif
                         <td>
+                            <a href="/faculty/faculty_announcements/view/{{$value->id}}"><i class="fa fa-eye fa-lg" aria-hidden="true"></i></a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="/faculty/faculty_announcements/edit/{{$value->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
-                            &nbsp;&nbsp;&nbsp;&nbsp; 
+                            &nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="/faculty/faculty_announcements/delete/{{$value->id}}"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                     @endforeach
                 </table>
             </div>
+            @include('layouts.resource')
         </div>
     </div>
     {{$announcements->render()}}
-    @include('layouts.resource')
 @stop

@@ -56,12 +56,14 @@
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" name="branch[]" type="checkbox" value="INFT" {{in_array('INFT', $branch) ? 'checked' : ''}}>
                                 <label class="form-check-label" for="inft">INFT</label>
-                                <input class="form-check-input" name="branch[]" type="checkbox" value="COMP" {{in_array('COMP', $branch) ? 'checked' : ''}}>
-                                <label class="form-check-label" for="comp">COMP</label>
+                                <input class="form-check-input" name="branch[]" type="checkbox" value="CMPN" {{in_array('CMPN', $branch) ? 'checked' : ''}}>
+                                <label class="form-check-label" for="cmpn">CMPN</label>
                                 <input class="form-check-input" name="branch[]" type="checkbox" value="EXTC" {{in_array('EXTC', $branch) ? 'checked' : ''}}>
                                 <label class="form-check-label" for="extc">EXTC</label>
                                 <input class="form-check-input" name="branch[]" type="checkbox" value="ETRX" {{in_array('ETRX', $branch) ? 'checked' : ''}}>
                                 <label class="form-check-label" for="etrx">ETRX</label>
+                                <input class="form-check-input" name="branch[]" type="checkbox" value="BIOM" {{in_array('BIOM', $branch) ? 'checked' : ''}}>
+                                <label class="form-check-label" for="biom">BIOM</label>
                             </div>
                         </td>
                     </tr>

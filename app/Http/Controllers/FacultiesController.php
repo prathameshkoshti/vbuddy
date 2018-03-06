@@ -43,26 +43,36 @@ class FacultiesController extends Controller
             'head' => 'required',
             'body' => 'required',
             'year' => 'required',
-            'branch' => 'required',
             'division' => 'required',
             'issued_by' => 'required',
         ]);
 
         $year = implode(',', $request->get('year'));
-        $branch = implode(',', $request->get('branch'));
         $division = implode(',', $request->get('division'));
 
         Announcement::create([
             'head' => request('head'),
             'body' => request('body'),
             'year' => $year,
-            'branch' => $branch,
+            'branch' => Auth::user()->branch,
             'division' => $division,
             'issued_by' => request('issued_by'), 
         ]);
 
         \Session::flash('create', 'Data stored successfully.');
         return redirect('/faculty/faculty_announcements/index');
+    }
+
+    public function announcementsShow($id)
+    {
+        $announcement = Announcement::find($id);
+
+        if($announcement)
+        {
+            return view('faculty.announcements.view', compact('announcement'));
+        }
+        else
+            return view('errors.404');
     }
 
     public function announcementsEdit($id)
@@ -73,7 +83,6 @@ class FacultiesController extends Controller
             if(Auth::user()->id != $announcement->issued_by)
                 return view('errors.401'); 
             $year = explode(',', $announcement->year);
-            $branch = explode(',', $announcement->branch);
             $division = explode(',', $announcement->division);
             return view('faculty.announcements.edit', compact('announcement', 'year', 'branch', 'division'));
         }
@@ -87,7 +96,6 @@ class FacultiesController extends Controller
             'head' => 'required',
             'body' => 'required',
             'year' => 'required',
-            'branch' => 'required',
             'division' => 'required',
         ]);
 
@@ -98,13 +106,11 @@ class FacultiesController extends Controller
             if(Auth::user()->id != $announcement->issued_by)
                 return view('errors.401'); 
             $year = implode(',', $request->get('year'));
-            $branch = implode(',', $request->get('branch'));
             $division = implode(',', $request->get('division'));
 
             $announcement->head = request('head');
             $announcement->body = request('body');
             $announcement->year = $year;
-            $announcement->branch = $branch;
             $announcement->division = $division;
 
             $announcement->save();
@@ -149,6 +155,15 @@ class FacultiesController extends Controller
         $placements = $user->placements()->where('status', '1')->paginate(10);
 
         return view('faculty.placements.index', compact('placements'));
+    }
+
+    public function placementsShow($id)
+    {
+        $placement = Placement::find($id);
+        if($placement)
+            return view('faculty.placements.view', compact('placement'));
+        else
+            return view('errors.404');
     }
 
     public function placementsCreate()

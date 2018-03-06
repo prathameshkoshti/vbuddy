@@ -1,19 +1,28 @@
-<div class="col-md-4">
-    @if(Session :: has('update'))
-            <p class="flash label label-warning"><h5>{{Session :: get('update')}}</p>
-    @endif
-    @if(Session :: has('create'))
-            <p class="flash label label-success"><h5>{{Session :: get('create')}}</p>
-    @endif
-    @if(Session :: has('delete'))
-            <p class="flash label label-danger"><h5>{{Session :: get('delete')}}</p>
-    @endif
-    @if(Session :: has('register'))
-            <p class="flash alert alert-warning label label-info"><h5>{{Session :: get('register')}}</p>
-    @endif
-    @if(Session :: has('feedback'))
-            <p class="flash alert alert-warning label label-info"><h5>{{Session :: get('feedback')}}</p>
-    @endif
+@if(Session :: has('update'))
+<div class="col-md-4 alert alert-warning col-md-offset-4">
+    <p class="flash label label-warning"><h5>{{Session :: get('update')}}</h5></p>
+</div>
+@endif
+@if(Session :: has('create'))
+<div class="col-md-4 alert alert-success col-md-offset-4">
+    <p class="flash label label-success"><h5>{{Session :: get('create')}}</h5></p>
+</div>
+@endif
+@if(Session :: has('delete'))
+<div class="col-md-4 alert alert-danger col-md-offset-4">
+    <p class="flash label label-danger"><h5>{{Session :: get('delete')}}</h5></p>
+</div>
+@endif
+@if(Session :: has('register'))
+<div class="col-md-4 alert alert-info col-md-offset-4">
+    <p class="flash label label-info"><h5>{{Session :: get('register')}}</h5></p>
+</div>
+@endif
+@if(Session :: has('feedback'))
+<div class="col-md-4 alert alert-info col-md-offset-4">
+    <p class="flash label label-info"><h5>{{Session :: get('feedback')}}</h5></p>
+</div>  
+@endif
 </div>
 <div class="row">
     @if( $errors->any() )
@@ -87,5 +96,8 @@
     }
     .centered{
         text-align: center;
+    }
+    .btn{
+        border-radius: 100px;
     }
 </style>

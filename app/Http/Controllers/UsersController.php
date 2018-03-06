@@ -38,17 +38,28 @@ class UsersController extends Controller
     {
         $this -> validate($request, [
             'name' => 'required',
+            'branch' => 'required',
+            'abbrevation' => 'required',
             'email' => 'required|unique:users|email',
             'password' => 'required',
             'role' => 'required',
         ]);
 
-        User::create([
-            'name' => request('name'),
-            'email' => request('email'),
-            'password' => bcrypt(request('password')),
-            'role' => request('role'),
-        ]);
+        try{
+            User::create([
+                'name' => request('name'),
+                'branch' => request('branch'),
+                'abbrevation' => request('abbrevation'),
+                'email' => request('email'),
+                'password' => bcrypt(request('password')),
+                'role' => request('role'),
+            ]);
+        }
+        catch(\Illuminate\Database\QueryException $e)
+        {
+            \Session::flash('create', $e->errorInfo[2]);
+            return redirect('admin/users/create/');
+        }
 
         \Session::flash('create', 'Data stored successfully.');
         return redirect('admin/users/');
@@ -96,12 +107,42 @@ class UsersController extends Controller
         $user = User::find($id);
         if($user)
         {
-            $user->name = request('name');
-            $user->email = request('email');
-            $user->password = bcrypt(request('password'));
-            $user->role = request('role');
+            if(request('password'))
+            {
+                try
+                {
+                    $user->name = request('name');
+                    $user->branch = request('branch');
+                    $user->abbrevation = request('abbrevation');
+                    $user->email = request('email');
+                    $user->password = bcrypt(request('password'));
+                    $user->role = request('role');
 
-            $user->save();
+                    $user->save();
+                }
+                catch(\Illuminate\Database\QueryException $e)
+                {
+                    \Session::flash('update', $e->errorInfo[1].':'. $e->errorInfo[2]);
+                    return redirect('admin/users/edit/'.$id);
+                }
+            }
+            else{
+                try
+                {
+                    $user->name = request('name');
+                    $user->branch = request('branch');
+                    $user->abbrevation = request('abbrevation');
+                    $user->email = request('email');
+                    $user->role = request('role');
+
+                    $user->save();
+                }
+                catch(\Illuminate\Database\QueryException $e)
+                {
+                    \Session::flash('update', $e->errorInfo[1].' '. $e->errorInfo[2]);
+                    return redirect('admin/users/edit/'.$id);
+                }
+            }
 
             \Session :: flash('update','Updated Successfully!');
             return redirect('/admin/users/');

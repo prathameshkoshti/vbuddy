@@ -24,6 +24,23 @@
                     </tr>
                     <tr>
                         <td>
+                            <select name="branch" class="form-control">
+                                <option value="null" selected disabled>Branch</option>
+                                <option value="INFT">INFT</option>
+                                <option value="CMPN">CMPN</option>
+                                <option value="EXTC">EXTC</option>
+                                <option value="ETRX">ETRX</option>
+                                <option value="BIOM">BIOM</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" class="form-control" placeholder="Abbrevation" name="abbrevation">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <input type="email" class="form-control" placeholder="Email ID" name="email">
                         </td>
                     </tr>

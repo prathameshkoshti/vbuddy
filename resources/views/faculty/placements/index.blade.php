@@ -20,7 +20,6 @@
                     </tr>
                     <tr>
                         <th>Head</th>
-                        <th>Body</th>
                         <th>Year</th>
                         <th>Branch</th>
                         <th>Status</th>
@@ -29,7 +28,6 @@
                     @foreach ($placements as $value)
                     <tr>
                         <td>{{ $value->head }}</td>
-                        <td>{{ $value->body }}</td>
                         <td>{{ $value->year }}</td>
                         <td>{{ $value->branch }}</td>
                         @if( $value->status == 1)
@@ -38,8 +36,10 @@
                             <td>Inactive</td>
                         @endif
                         <td>
+                            <a href="/faculty/placements/view/{{$value->id}}"><i class="fa fa-eye fa-lg" aria-hidden="true"></i></a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="/faculty/placements/edit/{{$value->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
-                            &nbsp;&nbsp;&nbsp;&nbsp; 
+                            &nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="/faculty/placements/delete/{{$value->id}}"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
                         </td>
                     </tr>

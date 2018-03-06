@@ -233,6 +233,7 @@ Route::group(['prefix' => 'faculty', 'middleware' => 'faculty'], function(){
         Route::get('/', 'FacultiesController@announcementsHome');
 
         Route::get('index', 'FacultiesController@announcementsIndex');
+        Route::get('view/{id}', 'FacultiesController@announcementsShow');
 
         Route::get('create', 'FacultiesController@announcementsCreate');
         Route::put('store', 'FacultiesController@announcementsStore');
@@ -247,6 +248,7 @@ Route::group(['prefix' => 'faculty', 'middleware' => 'faculty'], function(){
         Route::get('/', 'FacultiesController@placementsHome');
 
         Route::get('index', 'FacultiesController@placementsIndex');
+        Route::get('view/{id}', 'FacultiesController@placementsShow');
 
         Route::get('create', 'FacultiesController@placementsCreate');
         Route::put('store', 'FacultiesController@placementsStore');

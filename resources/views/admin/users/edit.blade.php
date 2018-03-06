@@ -24,12 +24,55 @@
                     </tr>
                     <tr>
                         <td>
+                            <select class="form-control" name="branch">
+                                <option disabled>Branch</option>
+                                @if($user->branch == "INFT")
+                                    <option value="INFT" selected>INFT</option>
+                                    <option value="CMPN">CMPN</option>
+                                    <option value="EXTC">EXTC</option>
+                                    <option value="ETRX">ETRX</option>
+                                    <option value="BIOM">BIOM</option>
+                                @elseif($user->branch == "CMPN")
+                                    <option value="INFT">INFT</option>
+                                    <option value="CMPN" selected>CMPN</option>
+                                    <option value="EXTC">EXTC</option>
+                                    <option value="ETRX">ETRX</option>
+                                    <option value="BIOM">BIOM</option>
+                                @elseif($user->branch == "EXTC")
+                                    <option value="INFT">INFT</option>
+                                    <option value="CMPN">CMPN</option>
+                                    <option value="EXTC" selected>EXTC</option>
+                                    <option value="ETRX">ETRX</option>
+                                    <option value="BIOM">BIOM</option>
+                                @elseif($user->branch == "ETRX")
+                                    <option value="INFT">INFT</option>
+                                    <option value="CMPN">CMPN</option>
+                                    <option value="EXTC">EXTC</option>
+                                    <option value="ETRX" selected>ETRX</option>
+                                    <option value="BIOM">BIOM</option>
+                                @elseif($user->branch == "BIOM")
+                                    <option value="INFT">INFT</option>
+                                    <option value="CMPN">CMPN</option>
+                                    <option value="EXTC">EXTC</option>
+                                    <option value="ETRX">ETRX</option>
+                                    <option value="BIOM" selected>BIOM</option>
+                                @endif
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" name="abbrevation" value="{{$user->abbrevation}}" class="form-control">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <input type="email" class="form-control" placeholder="Email ID" value="{{$user->email}}" name="email">
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="password" class="form-control" placeholder="Password" value="{{$user->password}}" name="password">
+                            <input type="password" class="form-control" placeholder="Password (Change only if it is necessary)" value="" name="password">
                         </td>
                     </tr>
                     <tr>
