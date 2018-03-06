@@ -15,7 +15,7 @@
     <br><br>
     <form method="post" action="/faculty/events/update/{{$event->id}}" class="form form-group box-body">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-4 col-md-offset-4">
                 <table class="table table-borderless">
                     <tr>
                         <td colspan=2>
@@ -66,12 +66,15 @@
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" name="branch[]" type="checkbox" value="INFT" {{in_array('INFT', $branch) ? 'checked' : ''}}>
                                     <label class="form-check-label" for="inft">INFT</label>
-                                    <input class="form-check-input" name="branch[]" type="checkbox" value="COMP" {{in_array('COMP', $branch) ? 'checked' : ''}}>
-                                    <label class="form-check-label" for="comp">COMP</label>
+                                    <input class="form-check-input" name="branch[]" type="checkbox" value="CMPN" {{in_array('CMPN', $branch) ? 'checked' : ''}}>
+                                    <label class="form-check-label" for="cmpn">CMPN</label>
                                     <input class="form-check-input" name="branch[]" type="checkbox" value="EXTC" {{in_array('EXTC', $branch) ? 'checked' : ''}}>
                                     <label class="form-check-label" for="extc">EXTC</label>
                                     <input class="form-check-input" name="branch[]" type="checkbox" value="ETRX" {{in_array('ETRX', $branch) ? 'checked' : ''}}>
                                     <label class="form-check-label" for="etrx">ETRX</label>
+                                    <input class="form-check-input" name="branch[]" type="checkbox" value="BIOM" {{in_array('BIOM', $branch) ? 'checked' : ''}}>
+                                    <label class="form-check-label" for="biom">BIOM</label>
+
                                 </div>
                             </td>
                         </tr>
@@ -82,7 +85,7 @@
                     </tr>
                     <tr>
                         <td colspan=2>
-                            <input type="text" class="form-control" placeholder="Time" name="time" value="{{$event->time}}"> 
+                            <input type="time" class="form-control" placeholder="Time" name="time" value="{{$event->time}}">
                         </td>
                     </tr>
                     <tr>
@@ -116,11 +119,12 @@
                     </tr>
                     <tr>
                         <td colspan=2>
-                            <input type="text" class="form-control" placeholder="Contact No." name="contact_no" value="{{$event->contact_no}}"> 
+                            <input type="text" class="form-control" placeholder="Contact No." name="contact_no" maxlength="10" value="{{$event->contact_no}}">
                         </td>
                     </tr>
                     <tr>
                         <td colspan=2>
+                            <br><br>
                             <input type="submit" class="form-control btn btn-success" value="Submit" name="submit">
                         </td>
                     </tr>

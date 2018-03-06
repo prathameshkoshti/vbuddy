@@ -10,7 +10,7 @@
         border: 1px solid black;
     }
     td,tr{
-        color:black;
+        color:#FFFFFF;
     }
     p{
         text-align: center;

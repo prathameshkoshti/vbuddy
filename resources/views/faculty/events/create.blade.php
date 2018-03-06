@@ -12,7 +12,7 @@
             <h4 style="text-align:center">Create New Event</h4>
         </div>
     </div>
-    <br><br>
+    <br>
     <form method="post" action="/faculty/events/store" class="form form-group box-body">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
@@ -64,12 +64,15 @@
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" name="branch[]" type="checkbox" value="INFT">
                                 <label class="form-check-label" for="inft">INFT</label>
-                                <input class="form-check-input" name="branch[]" type="checkbox" value="COMP">
-                                <label class="form-check-label" for="comp">COMP</label>
+                                <input class="form-check-input" name="branch[]" type="checkbox" value="CMPN">
+                                <label class="form-check-label" for="cmpn">CMPN</label>
                                 <input class="form-check-input" name="branch[]" type="checkbox" value="EXTC">
                                 <label class="form-check-label" for="extc">EXTC</label>
                                 <input class="form-check-input" name="branch[]" type="checkbox" value="ETRX">
                                 <label class="form-check-label" for="etrx">ETRX</label>
+                                <input class="form-check-input" name="branch[]" type="checkbox" value="BIOM">
+                                <label class="form-check-label" for="biom">BIOM</label>
+
                             </div>
                         </td>
                     </tr>
@@ -80,7 +83,7 @@
                     </tr>
                     <tr>
                         <td colspan=2>
-                            <input type="text" class="form-control" placeholder="Time" name="time"> 
+                            <input type="time" class="form-control" placeholder="Time" name="time">
                         </td>
                     </tr>
                     </tr>
@@ -103,11 +106,12 @@
                     </tr>
                     <tr>
                         <td colspan=2>
-                            <input type="text" class="form-control" placeholder="Contact No." name="contact_no"> 
+                            <input type="text" class="form-control" placeholder="Contact No." name="contact_no" maxlength="10">
                         </td>
                     </tr>
                     <tr>
                         <td colspan=2>
+                            <br><br>
                             <input type="hidden" value="{{Auth::user()->id}}" name="issued_by">
                             <input type="submit" class="form-control btn btn-success" value="Submit" name="submit">
                         </td>

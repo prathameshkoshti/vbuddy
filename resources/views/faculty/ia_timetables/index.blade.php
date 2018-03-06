@@ -8,7 +8,7 @@
             font-size:15px;
         }
         a{
-            color: black;
+            color:#FFFFFF;
         }
         a:hover{
             color:#E62739;
