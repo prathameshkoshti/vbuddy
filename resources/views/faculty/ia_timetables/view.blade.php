@@ -31,7 +31,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="table-responsive">
-                <table class="table">
+                <table class="table table-bordered">
                     <tr>
                         <th colspan="5"><p>SEM-{{$semester}}</p></th>
                     </tr>

@@ -20,8 +20,8 @@
         color: #0277BD;
     }
     .card{
-        border: solid 1px rgba(225,225,225,0.5);
         background-color:rgba(0,0,0,0.4);
+
     }
     .count{
         width:30px;

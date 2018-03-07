@@ -58,12 +58,18 @@
     a li{
         color:#fff;
     }
+    th{
+        text-align: center !important;
+    }
     body{
         color:#fff !important;
-        background-image: url('/images/background.jpg');
+        --background-image: url('/images/background.jpg');
+        background-image: radial-gradient(circle at bottom right, #43cea2, #185a9d);        
     }
     .dropdown-menu{
-        background: rgba(0,0,0,0.3) !important;
+        background: rgba(0,0,0,0.4) !important;
+        width: 50% !important;
+        border: 0px !important;
     }
     .dropdown-menu li a{
         color: #fff !important;
@@ -118,7 +124,6 @@
                         <!-- Authentication Links -->
                         @guest
                             <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">

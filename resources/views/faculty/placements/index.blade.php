@@ -9,6 +9,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+            <br>
             <div class="table-responsive">
                 <table class="table table-hover table-borderless">
                     <tr>
@@ -23,7 +24,7 @@
                         <th>Year</th>
                         <th>Branch</th>
                         <th>Status</th>
-                        <th>Actions</th>
+                        <th width="120px">Actions</th>
                     </tr>
                     @foreach ($placements as $value)
                     <tr>

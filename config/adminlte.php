@@ -71,7 +71,7 @@ return [
     |
     */
 
-    'collapse_sidebar' => true,
+    'collapse_sidebar' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -135,13 +135,13 @@ return [
                     'text' => 'Placements',
                     'url' => '/admin/placements',
                     'icon' => 'circle',
-                    'icon_color' => 'black',
+                    'icon_color' => 'orange',
                 ],
                 [
                     'text' => 'Placement Registrations',
                     'url' => '/admin/placement_registrations',
                     'icon' => 'circle',
-                    'icon_color' => 'blue',
+                    'icon_color' => 'orange',
                 ],
             ],
         ],
@@ -152,10 +152,23 @@ return [
             'icon_color' => 'lime',
         ],
         [
-            'text' => 'Feedback',
-            'url'  => '/admin/feedbacks',
-            'icon' => 'comments',
-            'icon_color' => 'purple',            
+            'text' => 'Feedbacks',
+            'icon' => 'comment',
+            'icon_color' => 'purple',
+            'submenu' => [
+                [
+                    'text' => 'Feedbacks',
+                    'url' => '/admin/feedbacks',
+                    'icon' => 'comments',
+                    'icon_color' => 'purple',
+                ],
+                [
+                    'text' => 'Feedback Statistics',
+                    'url' => '/admin/feedbacks/statistics',
+                    'icon' => 'pie-chart',
+                    'icon_color' => 'purple',
+                ],
+            ],        
         ],
         [
             'text'       => 'Events',
@@ -166,13 +179,13 @@ return [
                     'text' => 'Events',
                     'url' => '/admin/events',
                     'icon' => 'circle',
-                    'icon_color' => 'yellow',
+                    'icon_color' => 'light-blue',
                 ],
                 [
                     'text' => 'Event Registrations',
                     'url' => '/admin/event_registrations',
                     'icon' => 'circle',
-                    'icon_color' => 'blue',
+                    'icon_color' => 'light-blue',
                 ],
             ],
         ],
@@ -180,7 +193,7 @@ return [
             'text'       => 'IA Timetable',
             'url'        =>'/admin/ia_timetable',
             'icon'       => 'edit',
-            'icon_color' => '',            
+            'icon_color' => 'yellow',            
         ],
         [
             'text'       => 'Timetable',
@@ -200,7 +213,7 @@ return [
             'text' => 'Profile',
             'url'  => 'admin/profile',
             'icon' => 'id-card-o',
-            'icon_color' => '',
+            'icon_color' => 'light-purple',
         ],
         [
             'text' => 'Change Password',

@@ -48,7 +48,7 @@ class APIsController extends Controller
         $events = Event::where([
             ['status', '=', '1'],
             ['commitee_name', '=', $commitee ],
-            ])->get();
+            ])->latest()->get();
         $result = [];
         foreach($events as $event)
         {
@@ -95,7 +95,7 @@ class APIsController extends Controller
 
     public function placement($year, $branch)
     {
-        $placements = Placement::where('status', '=', '1')->get();
+        $placements = Placement::where('status', '=', '1')->latest()->get();
         $result = [];
         foreach($placements as $placement)
         {
@@ -146,7 +146,7 @@ class APIsController extends Controller
 
     public function announcement($year, $branch, $div)
     {
-        $announcements = Announcement::where('status', '=', '1')->get();
+        $announcements = Announcement::where('status', '=', '1')->latest()->get();
         $result = [];
         foreach($announcements as $announcement)
         {

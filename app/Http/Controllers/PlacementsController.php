@@ -15,7 +15,7 @@ class PlacementsController extends Controller
      */
     public function index()
     {
-        $placements = Placement::with('user')->paginate(10);
+        $placements = Placement::with('user')->latest()->paginate(10);
         return view('admin.placements.index', compact('placements'));
     }
 

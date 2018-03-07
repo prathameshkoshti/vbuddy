@@ -38,6 +38,9 @@
     @endif
 </div>
 <style>
+    .charts{
+        background-color: rgba(0,0,0,0.4) !important;
+    }
     .change-password{
         color: red;
         background-color: white;

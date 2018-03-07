@@ -53,15 +53,15 @@
         }
         .placement
         {
-            background-color: #0097A7;
+            background-color: #F9A825;
         }
         .event
         {
-            background-color:#9C27B0;
+            background-color: #4DD0E1;
         }
         .registration
         {
-            background-color: #AB47BC;
+            background-color: #0288D1;
         }
         .exam
         {

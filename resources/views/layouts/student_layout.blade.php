@@ -60,7 +60,7 @@
     }
     body{
         color:#fff !important;
-        background-image:radial-gradient(circle at top left, #9cecfb, #65c7f7, #0052d4);
+        background-image:radial-gradient(circle at top left, #d53369, #cbad6d);
     }
     .dropdown-menu{
         background: rgba(0,0,0,0.3) !important;
