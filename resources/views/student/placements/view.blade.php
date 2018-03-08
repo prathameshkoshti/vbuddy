@@ -23,14 +23,16 @@
                         <p style="text-align:right">Issued By: {{$issued_by->name}}</p>
                         <hr>
                         @if($isRegistered)
-                        <button onClick="parent.location='/student/placements/register/{{$placement->id}}'" type="button" class="btn btn-info button table-btn">
+                        <button onClick="parent.location='/student/placements/register/{{$placement->id}}'" type="button" class="student-btn btn btn-success">
                             <span class="fa fa-check" aria-hidden="true"></span>  Registered
                         </button>
                         @else
-                        <button onClick="parent.location='/student/placements/register/{{$placement->id}}'" type="button" class="btn btn-info button table-btn">
+                        <button onClick="parent.location='/student/placements/register/{{$placement->id}}'" type="button" class="student-btn btn btn-success">
                             <span class="fa fa-plus" aria-hidden="true"></span>  Register
                         </button>
                         @endif
+                        <br>
+                        <br>
                     </div>
                 </div>        
         </div>

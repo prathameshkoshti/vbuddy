@@ -108,7 +108,9 @@
         font-size: 14px;
         padding: 10px 10px 10px;
     }
-
+    .student-btn{
+        float: right;
+    }
     input[type=text] {
         font-weight: normal;
     }

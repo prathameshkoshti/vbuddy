@@ -19,7 +19,7 @@
                     <p style="text-align:right">Year: {{$event->year}}</p>
                     <p style="text-align:right">Branch: {{$event->branch}}</p>
                     <hr>
-                    <button onClick="parent.location='/student/events/view/{{$event->id}}'" type="button" class="btn button btn-success table-btn">
+                    <button onClick="parent.location='/student/events/view/{{$event->id}}'" type="button" class="student-btn btn btn-success table-btn">
                         <span class="fa fa-eye" aria-hidden="true"></span>  View
                     </button>
                 </div>

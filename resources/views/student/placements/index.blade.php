@@ -17,7 +17,7 @@
                     <p style="text-align:right">Year: {{$placement->year}}</p>
                     <p style="text-align:right">Branch: {{$placement->branch}}</p>
                     <hr>
-                    <button onClick="parent.location='/student/placements/view/{{$placement->id}}'" type="button" class="btn button btn-success table-btn">
+                    <button onClick="parent.location='/student/placements/view/{{$placement->id}}'" type="button" class="student-btn btn btn-success table-btn">
                         <span class="fa fa-eye" aria-hidden="true"></span>  View
                     </button>
                 </div>

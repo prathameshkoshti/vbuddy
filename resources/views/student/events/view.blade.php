@@ -25,12 +25,12 @@
                         <p style="text-align:right">Issued By: {{$issued_by->name}}</p>
                         <hr>
                         @if($isEnrolled)
-                        <button type="button" onClick="parent.location='/student/events/enroll/{{$event->id}}'" class="btn btn-success button table-btn">
-                            <span class="fa fa-check" aria-hidden="true"></span>  Enrolled
+                        <button onClick="parent.location='/student/events/enroll/{{$event->id}}'" type="button" class="student-btn btn btn-success">
+                            <span class="fa fa-check" aria-hidden="true"></span>  Registered
                         </button>
                         @else
-                        <button onClick="parent.location='/student/events/enroll/{{$event->id}}'" type="button" class="btn btn-success button table-btn">
-                            <span class="fa fa-plus" aria-hidden="true"></span>  Enroll
+                        <button onClick="parent.location='/student/events/enroll/{{$event->id}}'" type="button" class="student-btn btn btn-success">
+                            <span class="fa fa-plus" aria-hidden="true"></span>  Register
                         </button>
                         @endif   
                         <br>    
