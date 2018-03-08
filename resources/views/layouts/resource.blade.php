@@ -103,4 +103,40 @@
     .btn{
         border-radius: 100px;
     }
+    #myInput {
+        width: 80%;
+        height:100%;
+        font-size: 14px;
+        padding: 10px 10px 10px;
+    }
+
+
+    #myTable {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    #myTable th, #myTable td {
+        text-align: left;
+        padding: 12px;
+    }
+
+    #myTable tr {
+        border-bottom: 1px solid #ddd;
+    }
+
+    #myTable tr.header, #myTable tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    input[type=text] {
+        font-weight: normal;
+    }
+    .search:focus {
+        box-shadow:0 0 5px rgba(0, 183,0, 1);
+    }
+    .search{
+        border-radius: 100px !important;
+    }
 </style>
