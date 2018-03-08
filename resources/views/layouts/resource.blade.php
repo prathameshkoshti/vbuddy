@@ -116,20 +116,9 @@
         width: 100%;
         border: 1px solid #ddd;
     }
-
-    #myTable th, #myTable td {
-        text-align: left;
-        padding: 12px;
-    }
-
     #myTable tr {
         border-bottom: 1px solid #ddd;
     }
-
-    #myTable tr.header, #myTable tr:hover {
-        background-color: #f1f1f1;
-    }
-
     input[type=text] {
         font-weight: normal;
     }
