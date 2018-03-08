@@ -33,16 +33,13 @@
         <h4 style="text-align:center">You are viewing feedbacks for {{$branch}} > Sem  {{$sem}} > Divison {{$division}}</h4><br>
     </div>
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-10 col-md-offset-1">
             <div class="table-responsive">
                 <table id="myTable" class="table table-hover">
 
                     <tr class="header">
-                        <th colspan=3>
-                        </th>
-
-                        <th colspan="2">
-                            <div class="input-group">
+                        <th colspan="5" class="search-wrapper">
+                            <div class="search-box">
                                 <input type="text" id="myInput" class="search" onkeyup="myFunction()" placeholder="Search for Name or Roll No...." title="Type in a name" size="100" style=" border-radius: 100px !important;">
                             </div>
                         </th>

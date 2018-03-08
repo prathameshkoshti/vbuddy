@@ -6,20 +6,48 @@
     <h1 style="text-align:center">Faculty Users</h1>
 @stop
 
+
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td1,td3,i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td1 = tr[i].getElementsByTagName("td")[1];
+            td3 = tr[i].getElementsByTagName("td")[3];
+            if (td1 || td3) {
+                if (td1.innerHTML.toUpperCase().indexOf(filter) > -1 || td3.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
 @section('content')
     <div class="row">
         <div class="col-md-10 col-md-offset-1 table-responsive">
-            <table class="table table-hover">
-                <tr>
-                    <td colspan=7>
-                        <div class="col-md-offset-10">
+            <table id="myTable" class="table table-hover">
+                <tr class="header">
+                    <th colspan="5">
+                        <div class="search-wrapper input-group">
+                            <input type="text" id="myInput" class="search" onkeyup="myFunction()" placeholder="Search for Faculty Name or Role...." title="Type in a name" size="100" style=" border-radius: 100px !important;">
+                        </div>
+                    </th>
+
+                    <th>
+                        <div>
                                 <button onClick="parent.location='/admin/users/create'" type="button" class="btn btn-success table-btn">
                                 <span class="fa fa-plus" aria-hidden="true"></span> Create
                             </button>
                         </div>
-                    </td>
+                    </th>
                 </tr>
-                <tr>
+                <tr class="header">
                     <th>ID</th>
                     <th>Faculty Name</th>
                     <th>Email</th>
@@ -56,9 +84,4 @@
         </div>
     </div>
     @include('layouts.resource')
-    <style>
-        .table-btn{
-            margin-left:60%;
-        }
-    </style>
 @stop
