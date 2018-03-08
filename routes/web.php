@@ -28,10 +28,10 @@ Auth::routes();
 Route::prefix('student')->group(function(){
     Route::get('login', 'Auth\StudentLoginController@showLoginForm');
     Route::post('login', 'Auth\StudentLoginController@login');
-    
+
     Route::get('home', 'StudentController@index');
     Route::post('logout', 'Auth\StudentLoginController@studentLogout');
-    
+
     Route::get('holidays', 'StudentController@holiday');
     Route::get('timetable', 'StudentController@timetable');
     Route::get('ia_timetable', 'StudentController@iaTimetable');
@@ -40,19 +40,19 @@ Route::prefix('student')->group(function(){
         Route::get('/', 'StudentController@announcement');
         Route::get('view/{id}', 'StudentController@announcementView');
     });
-    
+
     Route::prefix('placements')->group(function(){
         Route::get('/', 'StudentController@placement');
         Route::get('view/{id}', 'StudentController@placementView');
         Route::get('register/{id}', 'StudentController@registerToPlacement');
     });
-    
+
     Route::prefix('events')->group(function(){
         Route::get('', 'StudentController@event');
         Route::get('view/{id}', 'StudentController@eventView');
         Route::get('enroll/{id}', 'StudentController@enrolToEvent');
     });
-    
+
     Route::prefix('profile')->group(function(){
         Route::get('', 'StudentController@profile');
         Route::get('change_password', 'StudentController@changePassword');
@@ -68,7 +68,7 @@ Route::prefix('student')->group(function(){
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::get('/home', 'HomeController@index')->name('home');
-    
+
     /*
         Routes for Users i.e. Faculties and other users
     */
@@ -83,16 +83,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
         Route::put('update/{id}', 'UsersController@update');
 
         Route::get('delete/{id}', 'UsersController@destroy');
-        
+
     });
 
     /*
-        Routes for Students 
+        Routes for Students
     */
     Route::prefix('students')->group(function(){
         Route::get('/', 'StudentsController@index');
         Route::get('view/{id}', 'StudentsController@show');
-        
+
         Route::get('create', 'StudentsController@create');
         Route::put('store', 'StudentsController@store');
 
@@ -100,11 +100,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
         Route::put('update/{id}', 'StudentsController@update');
 
         Route::get('delete/{id}', 'StudentsController@destroy');
-        
+
     });
 
     /*
-        Routes for Placement Announcements 
+        Routes for Placement Announcements
     */
     Route::prefix('placements')->group(function(){
         Route::get('/', 'PlacementsController@index');
@@ -121,11 +121,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
 
     Route::prefix('placement_registrations')->group(function(){
         Route::get('/', 'PlacementRegistrationsController@index');
-        
+
         Route::get('view/{id}', 'PlacementRegistrationsController@show');
     });
     /*
-        Routes for Faculty Announcemnets 
+        Routes for Faculty Announcemnets
     */
     Route::prefix('faculty_announcements')->group(function(){
         Route::get('/', 'AnnouncementsController@index');
@@ -141,7 +141,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     });
 
     /*
-        Routes for Feedback 
+        Routes for Feedback
     */
     Route::prefix('feedbacks')->group(function(){
         Route::view('/', 'admin.feedbacks.home');
@@ -163,7 +163,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     });
 
     /*
-        Routes for IA Timetable 
+        Routes for IA Timetable
     */
     Route::prefix('ia_timetable')->group(function(){
         Route::get('/', 'IATimetablesController@index');
@@ -173,7 +173,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     });
 
     /*
-        Routes for Events 
+        Routes for Events
     */
     Route::prefix('events')->group(function(){
         Route::get('/', 'EventsController@index');
@@ -189,7 +189,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     });
 
     /*
-        Routes for Event's Enrollments 
+        Routes for Event's Enrollments
     */
     Route::prefix('event_registrations')->group(function(){
         Route::get('/', 'EventRegistrationsController@index');
@@ -198,7 +198,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     });
 
     /*
-        Routes for Holidays 
+        Routes for Holidays
     */
     Route::prefix('holidays')->group(function(){
         Route::get('/', 'HolidaysController@index');
@@ -213,7 +213,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     });
 
     /*
-        Route for Profile 
+        Route for Profile
     */
     Route::prefix('profile')->group(function(){
         Route::get('/', 'ProfilesController@profile');
@@ -222,11 +222,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
         Route::get('/change_password', 'ProfilesController@changePassword');
         Route::put('/update_password', 'ProfilesController@updatePassword');
     });
-    
+
 });
 
 Route::group(['prefix' => 'faculty', 'middleware' => 'faculty'], function(){
-    
+
     Route::get('/home','FacultiesController@home');
 
     Route::prefix('faculty_announcements')->group(function(){

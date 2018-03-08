@@ -33,7 +33,7 @@ class PlacementRegistrationsController extends Controller
     {
         $students = PlacementRegistration::with('student')
                     ->where('placement_id', '=', $id)
-                    ->paginate(10);
+                    ->get();
         $count = Placement::withCount('placement_registration')->find($id);
         
         if($count && $students)

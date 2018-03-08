@@ -16,7 +16,7 @@ class EventsController extends Controller
     public function index()
     {
         $events = Event::with('user')->latest()->paginate(10);
-        if(count($event)>0)
+        if(count($events)>0)
             return view('admin.events.index', compact('events'));
         else
             return view('errors.404');
