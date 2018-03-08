@@ -48,7 +48,11 @@
             </div>
         </div>
     </div>
-    {{$holiday->render()}}
+    <div class="pagination-wrapper">
+        <div class="paginate">
+            {{$holiday->render()}}
+        </div>
+    </div>
     @include('layouts.resource')
     <style>
         .table-btn{

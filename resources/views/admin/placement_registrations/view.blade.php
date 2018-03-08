@@ -32,7 +32,11 @@
                 </table>
             </div>
         </div>
-        {{$students->render()}}
+        <div class="pagination-wrapper">
+            <div class="paginate">
+                {{$students->render()}}
+            </div>
+        </div>
     </div>
     @include('layouts.resource')
 @stop

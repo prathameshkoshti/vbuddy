@@ -35,10 +35,8 @@
      <div class="col-md-10 col-md-offset-1 table-responsive">
          <table id="myTable" class="table table-hover" >
              <tr class="header">
-                 <th colspan=5>
-                 </th>
 
-                 <th colspan="2">
+                 <th style="text-align:center" colspan="6">
                      <div class="input-group">
                      <input type="text" id="myInput" class="search" onkeyup="myFunction()" placeholder="Search for Name or Roll No...." title="Type in a name" size="100" style=" border-radius: 100px !important;">
                      </div>
@@ -57,7 +55,7 @@
                  <th>Branch</th>
                  <th>Division</th>
                  <th>Status</th>
-                 <th>Action</th>
+                 <th size="130px">Action</th>
              </tr>
              @foreach ($students as $value)
              <tr>
@@ -84,13 +82,15 @@
          </table>
      </div>
  </div>
- {{$students->render()}}
+ <div class="pagination-wrapper">
+    <div class="paginate">
+        {{$students->render()}}
+    </div>
+</div>
  @include('layouts.resource')
  <style>
-     .table-btn{
-         margin-left:10%;
-         padding: 10px 10px;
-         font-size:18px;
-     }
+    .tablee-btn{
+        margin-left: 10%; 
+    }
  </style>
 @stop

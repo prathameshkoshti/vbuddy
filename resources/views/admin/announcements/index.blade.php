@@ -54,6 +54,10 @@
             </div>
         </div>
     </div>
-    {{$announcements->render()}}
+    <div class="pagination-wrapper">
+        <div class="paginate">
+            {{$announcements->render()}}
+        </div>
+    </div>
     @include('layouts.resource')
 @stop

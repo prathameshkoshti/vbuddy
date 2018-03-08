@@ -50,7 +50,11 @@
             </table>
         </div>
     </div>
-    {{$users->render()}}
+    <div class="pagination-wrapper">
+        <div class="paginate">
+            {{$users->render()}}
+        </div>
+    </div>
     @include('layouts.resource')
     <style>
         .table-btn{

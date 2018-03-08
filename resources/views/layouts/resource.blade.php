@@ -110,15 +110,6 @@
         padding: 10px 10px 10px;
     }
 
-
-    #myTable {
-        border-collapse: collapse;
-        width: 100%;
-        border: 1px solid #ddd;
-    }
-    #myTable tr {
-        border-bottom: 1px solid #ddd;
-    }
     input[type=text] {
         font-weight: normal;
     }
@@ -127,5 +118,11 @@
     }
     .search{
         border-radius: 100px !important;
+    }
+    .pagination-wrapper{
+        text-align: center;
+    }
+    .paginate{
+        display: inline-block;
     }
 </style>
