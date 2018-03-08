@@ -115,6 +115,12 @@
     .search:focus {
         box-shadow:0 0 5px rgba(0, 183,0, 1);
     }
+    .search-wrapper{
+        text-align: center;
+    }
+    .search-box{
+        display: inline-block;
+    }
     .search{
         border-radius: 100px !important;
     }

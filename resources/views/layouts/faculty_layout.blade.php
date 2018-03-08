@@ -59,9 +59,9 @@
         color:#fff;
     }
     body{
+        background-image:radial-gradient(circle at top left, #d53369, #cbad6d);
         color:#fff !important;
         --background-image: url('/images/background.jpg');
-        background-image: radial-gradient(circle at bottom right, #43cea2, #185a9d);        
     }
     .dropdown-menu{
         background: rgba(0,0,0,0.4) !important;
