@@ -32,7 +32,6 @@
                 </table>
             </div>
         </div>
-        {{$students->render()}}
     </div>
     @include('layouts.resource')
 @stop

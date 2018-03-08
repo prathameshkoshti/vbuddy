@@ -46,8 +46,12 @@
                     @endforeach
                 </table>
             </div>
-            @include('layouts.resource')
+        </div>
+        <div class="pagination-wrapper">
+            <div class="paginate">
+                {{$announcements->render()}}
+            </div>
         </div>
     </div>
-    {{$announcements->render()}}
+    @include('layouts.resource')
 @stop

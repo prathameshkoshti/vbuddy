@@ -294,7 +294,7 @@ class FacultiesController extends Controller
             {
                 $students = PlacementRegistration::with('student')
                             ->where('placement_id', '=', $id)
-                            ->paginate(10);
+                            ->get();
                 if(count($students)>0)
                     return view('faculty.placement_registrations.view', compact('students', 'count'));
                 else
@@ -486,7 +486,7 @@ class FacultiesController extends Controller
             {
                 $students = EventRegistration::with('student')
                             ->where('event_id', '=', $id)
-                            ->paginate(20);
+                            ->get();
 
                 if(count($students)>0)
                     return view('faculty.event_registrations.view', compact('students', 'count'));

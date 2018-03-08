@@ -49,6 +49,10 @@
             </div>
         </div>
     </div>
-    {{$placements->render()}}
+    <div class="pagination-wrapper">
+        <div class="paginate">
+            {{$placements->render()}}
+        </div>
+    </div>
     @include('layouts.resource')
 @stop
