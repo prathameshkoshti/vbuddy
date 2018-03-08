@@ -55,7 +55,7 @@
                  <th>Branch</th>
                  <th>Division</th>
                  <th>Status</th>
-                 <th size="130px">Action</th>
+                 <th>Action</th>
              </tr>
              @foreach ($students as $value)
              <tr>
