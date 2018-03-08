@@ -64,7 +64,6 @@
         color:orange;
     }
     .table-btn{
-        margin-left:90%;
         background-color: #00C853 !important;
         border: 0;
     }
@@ -124,5 +123,8 @@
     }
     .paginate{
         display: inline-block;
+    }
+    table{
+        font-size: 14px;
     }
 </style>

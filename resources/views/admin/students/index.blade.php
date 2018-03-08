@@ -26,7 +26,7 @@
                 }
             }
         }
- }
+    }
 </script>
 
 
@@ -36,15 +36,15 @@
          <table id="myTable" class="table table-hover" >
              <tr class="header">
 
-                 <th style="text-align:center" colspan="6">
-                     <div class="input-group">
+                 <th style="text-align:center" colspan="7">
+                     <div class="input-group" style="display:inline-block">
                      <input type="text" id="myInput" class="search" onkeyup="myFunction()" placeholder="Search for Name or Roll No...." title="Type in a name" size="100" style=" border-radius: 100px !important;">
                      </div>
                  </th>
                  <th>
-                             <button onClick="parent.location='/admin/students/create'" type="button" class="btn btn-success table-btn">
-                                 <span class="fa fa-plus" aria-hidden="true"></span> Create
-                             </button>
+                    <button onClick="parent.location='/admin/students/create'" type="button" class="btn btn-success table-btn">
+                        <span class="fa fa-plus" aria-hidden="true"></span> Create
+                    </button>
                  </th>
              </tr>
              <tr class="header">
@@ -59,24 +59,24 @@
              </tr>
              @foreach ($students as $value)
              <tr>
-                 <td>{{ $value->id }}</td>
-                 <td>{{ $value->name }}</td>
-                 <td>{{ $value->roll }}</td>
-                 <td>{{ $value->year }}</td>
-                 <td>{{ $value->branch }}</td>
-                 <td>{{ $value->division }}</td>
-                 @if( $value->status == 1)
-                     <td>Active</td>
-                 @else
-                     <td>Inactive</td>
-                 @endif
-                 <td>
-                     <a href="/admin/students/view/{{$value->id}}"><i class="fa fa-eye fa-lg" aria-hidden="true"></i></a>
-                     &nbsp;
-                     <a href="/admin/students/edit/{{$value->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
-                     &nbsp;
-                     <a href="/admin/students/delete/{{$value->id}}"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
-                 </td>
+                <td>{{ $value->id }}</td>
+                <td>{{ $value->name }}</td>
+                <td>{{ $value->roll }}</td>
+                <td>{{ $value->year }}</td>
+                <td>{{ $value->branch }}</td>
+                <td>{{ $value->division }}</td>
+                @if( $value->status == 1)
+                    <td>Active</td>
+                @else
+                    <td>Inactive</td>
+                @endif
+                <td>
+                    <a href="/admin/students/view/{{$value->id}}"><i class="fa fa-eye fa-lg" aria-hidden="true"></i></a>
+                    &nbsp;
+                    <a href="/admin/students/edit/{{$value->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+                    &nbsp;
+                    <a href="/admin/students/delete/{{$value->id}}"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+                </td>
              </tr>
              @endforeach
          </table>
@@ -88,9 +88,4 @@
     </div>
 </div>
  @include('layouts.resource')
- <style>
-    .tablee-btn{
-        margin-left: 10%; 
-    }
- </style>
 @stop
