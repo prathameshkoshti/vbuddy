@@ -44,7 +44,10 @@ class StudentController extends Controller
     public function holiday()
     {
         $holidays = Holiday::where('status', '=', 1)->paginate(10);
-        return view ('student.holiday', compact('holidays'));
+        if(count($holidays))
+            return view ('student.holiday', compact('holidays'));
+        else
+            return view('errors.404');
     }
 
     public function placement(Request $request)
@@ -70,7 +73,10 @@ class StudentController extends Controller
         $paginatedItems= new LengthAwarePaginator($currentPageItems , count($placements), $perPage);
         $paginatedItems->setPath($request->url());
 
-        return view('student.placements.index', ['placements' => $paginatedItems]);
+        if($paginatedItems)
+            return view('student.placements.index', ['placements' => $paginatedItems]);
+        else
+            return view('errors.404');
     }
 
     public function placementView($id)
@@ -172,8 +178,10 @@ class StudentController extends Controller
         $currentPageItems = $events->slice(($currentPage * $perPage) - $perPage, $perPage)->all();
         $paginatedItems= new LengthAwarePaginator($currentPageItems , count($events), $perPage);
         $paginatedItems->setPath($request->url());
-
-        return view('student.events.index', ['events' => $paginatedItems]);        
+        if($paginatedItems)
+            return view('student.events.index', ['events' => $paginatedItems]);        
+        else
+            return view('errors.404');
     }
 
     public function eventView($id)
@@ -194,7 +202,10 @@ class StudentController extends Controller
                     ['event_id', '=', $id],
                     ['student_id', '=', Auth::user()->id],
                 ])->first();
-                return view('student.events.view', compact('event','issued_by', 'isEnrolled'));
+                if($isEnrolled && $issued_by)
+                    return view('student.events.view', compact('event','issued_by', 'isEnrolled'));
+                else
+                    return view('errors.404');
             }
             else{
                 return view('errors.401');
@@ -271,7 +282,10 @@ class StudentController extends Controller
         $paginatedItems= new LengthAwarePaginator($currentPageItems , count($announcements), $perPage);
         $paginatedItems->setPath($request->url());
 
-        return view('student.announcements.index', ['announcements' => $paginatedItems]);
+        if($paginatedItems)
+            return view('student.announcements.index', ['announcements' => $paginatedItems]);
+        else
+            return view('errors.404');
     }
 
     public function announcementView($id)
@@ -306,7 +320,10 @@ class StudentController extends Controller
             ['sem', '=', Auth::user()->sem],
             ['division', '=', Auth::user()->division],
         ])->get();
-        return view('student.timetable', compact('timetable'));
+        if(count($timetable)>0)
+            return view('student.timetable', compact('timetable'));
+        else
+            return view('errors.404');
     }
 
     public function iaTimetable()
@@ -318,9 +335,10 @@ class StudentController extends Controller
             ['branch', '=', $branch],
             ['sem', '=', $sem],
         ])->oldest()->get();
-        //dd($ia_timetable);
-
-        return view('student.ia_timetable', compact('ia_timetable'));
+        if(count($ia_timetable)>0)
+            return view('student.ia_timetable', compact('ia_timetable'));
+        else
+            return view('errors.404');
     }
 
     public function feedback()

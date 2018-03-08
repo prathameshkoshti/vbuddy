@@ -58,9 +58,6 @@
     a li{
         color:#fff;
     }
-    th{
-        text-align: center !important;
-    }
     body{
         color:#fff !important;
         --background-image: url('/images/background.jpg');

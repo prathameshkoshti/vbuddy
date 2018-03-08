@@ -18,7 +18,10 @@ class EventRegistrationsController extends Controller
         $events = Event::withCount('event_registration')
                 ->where('status', '=', 1)
                 ->paginate(10);
-        return view('admin.event_registrations.index', compact('events'));
+        if(count($events)>0)
+            return view('admin.event_registrations.index', compact('events'));
+        else
+            return view('errors.404');
     }
 
     /**
@@ -30,10 +33,9 @@ class EventRegistrationsController extends Controller
     public function show($id)
     {
         $students = EventRegistration::with('student')
-                    ->where('event_id', '=', $id)
-                    ->paginate(20);
+                    ->where('event_id', '=', $id)->paginate(10);
         $count = Event::withCount('event_registration')->find($id);
-        if($count)       
+        if($count && $students)       
             return view('admin.event_registrations.view', compact('students', 'count'));
         else
             return view('errors.404');

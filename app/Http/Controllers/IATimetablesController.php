@@ -14,7 +14,7 @@ class IATimetablesController extends Controller
 
     public function view($branch,$id)
     {
-        $exam=IATimetable::get()->where('sem','=',$id)->where('branch','=',$branch);
+        $exam = IATimetable::get()->where('sem', '=', $id)->where('branch', '=', $branch);
         if(count($exam)>0){
             return view('admin.ia_timetable.view',compact('exam'));
         }
@@ -23,7 +23,7 @@ class IATimetablesController extends Controller
         }
     }
     public function edit($id){
-        $day=IATimetable::find($id);
+        $day = IATimetable::find($id);
         if($day)
             return view('admin.ia_timetable.edit',compact('day'));
         else
@@ -53,7 +53,7 @@ class IATimetablesController extends Controller
         return view('faculty.ia_timetables.index');
     }
     public function fview($branch,$id){
-        $exam=IATimetable::get()->where('sem','=',$id)->where('branch','=',$branch);
+        $exam = IATimetable::get()->where('sem', '=', $id)->where('branch', '=', $branch);
         if(count($exam)>0){
             return view('faculty.ia_timetables.view',compact('exam'));
         }
@@ -64,7 +64,7 @@ class IATimetablesController extends Controller
     }
 
     public function fedit($id){
-        $day=IATimetable::find($id);
+        $day = IATimetable::find($id);
         if($day)
             return view('faculty.ia_timetables.edit',compact('day'));
         else

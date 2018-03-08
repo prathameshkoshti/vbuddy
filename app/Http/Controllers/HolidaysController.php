@@ -15,7 +15,10 @@ class HolidaysController extends Controller
     public function index()
     {
         $holiday = Holiday::paginate(10);
-        return view('admin.holidays.index', compact('holiday'));
+        if(count($holiday)>0)
+            return view('admin.holidays.index', compact('holiday'));
+        else
+            return view('errors.404');
     }
 
     /**

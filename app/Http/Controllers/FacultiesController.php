@@ -29,7 +29,10 @@ class FacultiesController extends Controller
     public function announcementsIndex()
     {
         $announcements = Auth::user()->announcements()->latest()->paginate(10);
-        return view('faculty.announcements.index', compact('announcements'));
+        if(count($announcements)>0)
+            return view('faculty.announcements.index', compact('announcements'));
+        else
+            return view('errors.404');
     }
 
     public function announcementsCreate()
@@ -154,7 +157,10 @@ class FacultiesController extends Controller
         $user = Auth::user();
         $placements = $user->placements()->where('status', '1')->latest()->paginate(10);
 
-        return view('faculty.placements.index', compact('placements'));
+        if(count($placements)>0)
+            return view('faculty.placements.index', compact('placements'));
+        else
+            return view('errors.404');
     }
 
     public function placementsShow($id)
@@ -273,7 +279,10 @@ class FacultiesController extends Controller
                         ['issued_by', '=', Auth::user()->id],
                     ])->paginate(10);
 
-        return view('faculty.placement_registrations.index', compact('placements'));
+        if(count($placements)>0)
+            return view('faculty.placement_registrations.index', compact('placements'));
+        else
+            return view('errors.404');
     }
 
     public function placementRegistrationsShow($id)
@@ -286,7 +295,10 @@ class FacultiesController extends Controller
                 $students = PlacementRegistration::with('student')
                             ->where('placement_id', '=', $id)
                             ->paginate(10);
-                return view('faculty.placement_registrations.view', compact('students', 'count'));
+                if(count($students)>0)
+                    return view('faculty.placement_registrations.view', compact('students', 'count'));
+                else
+                    return view('errors.404');
             }
             else
             {
@@ -305,7 +317,10 @@ class FacultiesController extends Controller
             ['status', '=', 1],
             ['issued_by', '=', Auth::user()->id ],
         ])->latest()->paginate(10);
-        return view('faculty.events.index', compact('events'));
+        if(count($events)>0)
+            return view('faculty.events.index', compact('events'));
+        else
+            return view('errors.404');
     }
 
     public function eventsStore(Request $request)
@@ -455,7 +470,11 @@ class FacultiesController extends Controller
                     ['status', '=', 1],
                     ['issued_by', '=', Auth::user()->id]
                 ])->paginate(10);
-        return view('faculty.event_registrations.index', compact('events'));
+
+        if(count($events)>0)
+            return view('faculty.event_registrations.index', compact('events'));
+        else
+            return view('errors.404');
     }
 
     public function eventRegistrationsShow($id)
@@ -468,7 +487,11 @@ class FacultiesController extends Controller
                 $students = EventRegistration::with('student')
                             ->where('event_id', '=', $id)
                             ->paginate(20);
-                return view('faculty.event_registrations.view', compact('students', 'count'));
+
+                if(count($students)>0)
+                    return view('faculty.event_registrations.view', compact('students', 'count'));
+                else
+                    return view('errors.404');
             }
             else
             {

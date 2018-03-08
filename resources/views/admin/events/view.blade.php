@@ -12,8 +12,7 @@
         <div class="">
             <h4 style="text-align:center">View Event Details</h4>
         </div>
-    </div>
-    <br><br>
+    </div>  
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <table class="table table-hover">

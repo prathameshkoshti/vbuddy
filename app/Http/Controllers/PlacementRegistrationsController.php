@@ -36,7 +36,7 @@ class PlacementRegistrationsController extends Controller
                     ->paginate(10);
         $count = Placement::withCount('placement_registration')->find($id);
         
-        if($count)
+        if($count && $students)
         {
             return view('admin.placement_registrations.view', compact('students', 'count'));
         }

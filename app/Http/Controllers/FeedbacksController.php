@@ -27,11 +27,16 @@ class FeedbacksController extends Controller
             ['division', '=', request('division')],
         ])->paginate(10);
 
-        $sem = request('sem');
-        $branch = request('branch');
-        $division = request('division');
+        if(count($feedbacks)>0)
+        {
+            $sem = request('sem');
+            $branch = request('branch');
+            $division = request('division');
 
-        return view('admin.feedbacks.index', compact('feedbacks', 'division', 'branch', 'sem'));
+            return view('admin.feedbacks.index', compact('feedbacks', 'division', 'branch', 'sem'));
+        }
+        else
+            return view('errors.404');
     }
 
     /**

@@ -15,8 +15,10 @@ class StudentsController extends Controller
     public function index()
     {
         $students = Student::paginate(10);
-        return view('admin.students.index', compact('students'));
-        
+        if(count($students)>0)
+            return view('admin.students.index', compact('students'));
+        else
+            return view('errors.404');
     }
 
     /**
