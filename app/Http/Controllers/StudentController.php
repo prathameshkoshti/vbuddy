@@ -202,7 +202,7 @@ class StudentController extends Controller
                     ['event_id', '=', $id],
                     ['student_id', '=', Auth::user()->id],
                 ])->first();
-                if($isEnrolled && $issued_by)
+                if($issued_by)
                     return view('student.events.view', compact('event','issued_by', 'isEnrolled'));
                 else
                     return view('errors.404');
