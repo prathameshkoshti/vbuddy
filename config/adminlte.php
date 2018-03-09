@@ -191,7 +191,7 @@ return [
         ],
         [
             'text'       => 'IA Timetable',
-            'url'        =>'/admin/ia_timetable',
+            'url'        =>'/admin/ia_timetables',
             'icon'       => 'edit',
             'icon_color' => 'yellow',            
         ],

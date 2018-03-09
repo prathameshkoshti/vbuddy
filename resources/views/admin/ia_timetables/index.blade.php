@@ -48,4 +48,5 @@
         @endfor
     </div>
 <br><br>
+@include('layouts.resource')
 @stop

@@ -3,32 +3,32 @@
 @section('title', 'AdminLTE :: Placements News')
 
 @section('content_header')
-
+    
 @stop
-<style>
-    table{
-        text-align: center;
-        align-content: center;
-    }
-    p{
-        text-align: center;
-    }
-</style>
 
 @section('content')
+    <style>
+        table{
+            text-align: center;
+            align-content: center;
+        }
+        p{
+            text-align: center;
+        }
+    </style>
 
-    @foreach($exam as $day)
-        @php
-        $semester=$day->sem;
-        @endphp
-        @break;
+    <div class="row">
+        @foreach($exam as $day)
+            @php
+                $semester=$day->sem;
+            @endphp
+            @break;
         @endforeach
-
-
+    </div>
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="table-responsive">
-                <table class="table">
+                <table class="table table-bordered">
                     <tr>
                         <th colspan="5"><p>SEM-{{$semester}}</p></th>
                     </tr>
@@ -41,36 +41,18 @@
                         <th><p>Actions</p></th>
                     </tr>
 
-
-
-                        @foreach($exam as $day)
+                    @foreach($exam as $day)
                         <tr>
                             <td>{{$day->date}}</td>
                             <td>{{$day->start_time}}</td>
                             <td>{{$day->end_time}}</td>
                             <td>{{$day->subject}}</td>
-                            <td><a href="/admin/ia_timetable/edit/{{$day->id}}" style="color: orange"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>
+                            <td><a href="/admin/ia_timetables/edit/{{$day->id}}" style="color: orange"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>
                         </tr>
-                            @endforeach
+                    @endforeach
                 </table>
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@include('layouts.resource')
 @stop

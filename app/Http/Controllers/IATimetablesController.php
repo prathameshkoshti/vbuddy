@@ -9,23 +9,26 @@ class IATimetablesController extends Controller
 {
     public function index()
     {
-        return view('admin.ia_timetable.index');
+        return view('admin.ia_timetables.index');
     }
 
-    public function view($branch,$id)
+    public function view($branch, $sem)
     {
-        $exam = IATimetable::get()->where('sem', '=', $id)->where('branch', '=', $branch);
+        $exam = IATimetable::where([
+            ['sem', '=', $sem],
+            ['branch', '=', $branch],
+            ])->get();
         if(count($exam)>0){
-            return view('admin.ia_timetable.view',compact('exam'));
+            return view('admin.ia_timetables.view',compact('exam'));
         }
         else{
-            return redirect('404');
+            return view('errors.404');
         }
     }
     public function edit($id){
         $day = IATimetable::find($id);
         if($day)
-            return view('admin.ia_timetable.edit',compact('day'));
+            return view('admin.ia_timetables.edit',compact('day'));
         else
             return view('errors.404');
     }
@@ -41,7 +44,7 @@ class IATimetablesController extends Controller
 
             \Session :: flash('update','Updated Successfully!');
 
-            return redirect()->route('view_ia_timetable',[$exam->branch,$exam->sem]);
+            return redirect('admin/ia_timetables/view/'.$exam->branch.'/'.$exam->sem);
         }
         else
             return view('errors.404');

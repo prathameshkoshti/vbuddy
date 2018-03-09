@@ -14,7 +14,7 @@
 <div class="row">
     <div class="col-md-offset-2 col-md-7">
 
-        <form method="post" action="/admin/ia_timetable/update/{{$day->id}}" class="form form-group box-body">
+        <form method="post" action="/admin/ia_timetables/update/{{$day->id}}" class="form form-group box-body">
             <div class="row">
                 <div class="col-md-6 col-md-offset-4">
                     <table class="table">
@@ -67,8 +67,6 @@
             {{method_field('PUT')}}
         </form>
         @include('layouts.resource')
-
     </div>
-
 </div>
 @stop
