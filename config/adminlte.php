@@ -216,6 +216,12 @@ return [
             'icon_color' => 'light-purple',
         ],
         [
+            'text' => 'Other Settings',
+            'url'  => 'admin/settings',
+            'icon' => 'gears',
+            'icon_color' => 'orange',
+        ],
+        [
             'text' => 'Change Password',
             'url'  => 'admin/profile/change_password',
             'icon' => 'lock',

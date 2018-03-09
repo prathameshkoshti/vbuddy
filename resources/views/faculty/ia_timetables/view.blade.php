@@ -61,6 +61,5 @@
             </div>
         </div>
     </div>
-
-
+    @include('layouts.resource')
 @stop
