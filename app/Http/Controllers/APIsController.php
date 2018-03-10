@@ -12,6 +12,7 @@ use App\Announcement;
 use App\Student;
 use App\IATimetable;
 use App\Timetable;
+use App\ReplacementTimetable;
 use App\Feedback;
 use Illuminate\Support\Facades\Hash;
 
@@ -62,7 +63,7 @@ class APIsController extends Controller
 
     public function viewEvent($year, $branch, $commitee, $id)
     {
-        $event = Event::where([
+        $event = Event::with('user')->where([
             ['status', '=', '1'],
             ['commitee_name', '=', $commitee ],
             ['id', '=', $id]
@@ -109,7 +110,7 @@ class APIsController extends Controller
 
     public function viewPlacement($year, $branch, $id)
     {
-        $placement = Placement::where([
+        $placement = Placement::with('user')->where([
             ['status', '=', 1],
             ['id', '=', $id],
         ])->first();
@@ -160,7 +161,7 @@ class APIsController extends Controller
 
     public function viewAnnouncement($year, $branch, $div, $id)
     {
-        $announcement = Announcement::where([
+        $announcement = Announcement::with('user')->where([
             ['status', '=', 1],
             ['id', '=', $id],
         ])->first();
@@ -187,14 +188,39 @@ class APIsController extends Controller
 
     public function viewTimetable($sem, $branch, $division, $day)
     {
-        $timetable = Timetable::where([
+        $timetables = Timetable::where([
             ['sem', '=', $sem],
             ['branch', '=', $branch],
             ['division', '=', $division],
             ['day', '=', $day],
         ])->get();
 
-        return response()->json(['timetable' => $timetable], 200);
+        $day = date('l', strtotime(date('Y-m-d')));
+        if($day == 'SATURDAY' || $day == 'SUNDAY')
+            return response()->json(['timetable' => 'No college today!'], 200);
+        $replacements = array();
+        foreach($timetables as $timetable)
+        {
+            $temp = ReplacementTimetable::where([
+                ['replacement_id', '=', $timetable->id],
+                ['date', '=', date('Y-m-d')],//change this date for to 2018-01-19 show replacement
+                ['status', '=', 1],
+            ])->first();
+            if($temp)
+                array_push($replacements, $temp);
+        }
+        foreach($timetables as $timetable)
+        {
+            foreach($replacements as $replacement)
+            {
+                if($replacement->replacement_id == $timetable->id)
+                {
+                    $timetable->subject = $replacement->replacement_subject;
+                    $timetable->teacher = $replacement->replacement_faculty;
+                }
+            }
+        }
+        return response()->json(['timetable' => $timetables], 200);
     }
 
     public function feedback(Request $request)

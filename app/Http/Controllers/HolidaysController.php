@@ -88,6 +88,11 @@ class HolidaysController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this -> validate($request, [
+            'name' => 'required',
+            'date' => 'required',
+        ]);
+        
         $holiday = Holiday::find($id);
         if($holiday)
         {

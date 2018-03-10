@@ -163,6 +163,22 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     });
 
     /*
+        Routes for Replacement Timetable
+    */
+    Route::prefix('replacement_timetables')->group(function(){
+        Route::get('/', 'ReplacementTimetablesController@index');
+        
+        Route::put('make_replacement', 'ReplacementTimetablesController@makeReplacement');
+        Route::get('create/{day}/{date}/{sem}/{branch}/{div}/{subject}', 'ReplacementTimetablesController@create');
+        Route::put('store', 'ReplacementTimetablesController@store');
+        
+        Route::get('edit/{id}', 'ReplacementTimetablesController@edit');
+        Route::put('update/{id}', 'ReplacementTimetablesController@update');
+
+        Route::get('delete/{id}', 'ReplacementTimetablesController@destroy');        
+    });
+
+    /*
         Routes for IA Timetable
     */
     Route::prefix('ia_timetables')->group(function(){

@@ -47,7 +47,7 @@
 
 
                 <h3>Select Semester</h3>
-                <select class="form-control custom-select custom-select-mg mb-3" id="semester" name="semester class="custom-select custom-select-mg mb-3"">
+                <select class="form-control custom-select custom-select-mg mb-3" id="semester" name="semester" class="custom-select custom-select-mg mb-3">
                     <option value="1">SEM 1</option>
                     <option value="2">SEM 2</option>
                     <option value="3">SEM 3</option>

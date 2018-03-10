@@ -11,6 +11,7 @@ use Auth;
 use App\User;
 use App\IATimetable;
 use App\Timetable;
+use App\ReplacementTimetable;
 use App\Event;
 use App\EventRegistration;
 use App\PlacementRegistration;
@@ -315,13 +316,45 @@ class StudentController extends Controller
 
     public function timetable()
     {
-        $timetable = Timetable::where([
+        $day = date('l', strtotime(date('Y-m-d')));
+        //$day = 'Friday';
+        if($day == 'Saturday' || $day == 'Sunday')
+        {
+            \Session::flash('create', 'No college today!');
+            return redirect('/student/home');
+        }
+        $replacements = array();
+        $timetables = Timetable::where([
             ['branch', '=', Auth::user()->branch],
             ['sem', '=', Auth::user()->sem],
             ['division', '=', Auth::user()->division],
+            ['day', '=', $day],
         ])->get();
-        if(count($timetable)>0)
-            return view('student.timetable', compact('timetable'));
+        if(count($timetables)>0)
+        {
+            foreach($timetables as $timetable)
+            {
+                $temp = ReplacementTimetable::where([
+                    ['replacement_id', '=', $timetable->id],
+                    ['date', '=', date('Y-m-d')],//change this date for to 2018-01-19 show replacement
+                    ['status', '=', 1],
+                ])->first();
+                if($temp)
+                    array_push($replacements, $temp);
+            }
+            foreach($timetables as $timetable)
+            {
+                foreach($replacements as $replacement)
+                {
+                    if($replacement->replacement_id == $timetable->id)
+                    {
+                        $timetable->subject = $replacement->replacement_subject;
+                        $timetable->teacher = $replacement->replacement_faculty;
+                    }
+                }
+            }
+            return view('student.timetable', compact('timetables', 'day'));
+        }
         else
             return view('errors.404');
     }

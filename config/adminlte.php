@@ -202,6 +202,12 @@ return [
             'icon_color' => 'green',            
         ],
         [
+            'text'       => 'Replacement Timetable',
+            'url'        =>'/admin/replacement_timetables',
+            'icon'       => 'refresh',
+            'icon_color' => 'green',            
+        ],
+        [
             'text' => 'Holidays',
             'url'  => '/admin/holidays',
             'icon' => 'calendar',
