@@ -239,6 +239,21 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
         Route::put('/update_password', 'ProfilesController@updatePassword');
     });
 
+    /*
+    Route for settings
+*/
+    Route::prefix('settings')->group(function(){
+        Route::get('/','SettingsController@index');
+        Route::put('/promote_sem','SettingsController@promote_sem');
+        Route::put('/promote_year','SettingsController@promote_year');
+        Route::put('/demote_sem','SettingsController@demote_sem');
+        Route::put('/demote_year','SettingsController@demote_year');
+        Route::put('/reset','SettingsController@reset');
+
+
+    });
+
+
 });
 
 Route::group(['prefix' => 'faculty', 'middleware' => 'faculty'], function(){
