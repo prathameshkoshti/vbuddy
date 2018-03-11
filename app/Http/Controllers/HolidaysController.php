@@ -45,7 +45,7 @@ class HolidaysController extends Controller
         ]);
 
         Holiday::Create([
-            'name' => request('name'),
+            'name' =>strtoupper(request('name')),
             'date' => request('date'),
         ]);
         
@@ -96,7 +96,7 @@ class HolidaysController extends Controller
         $holiday = Holiday::find($id);
         if($holiday)
         {
-            $holiday->name = request('name');
+            $holiday->name = strtoupper(request('name'));
             $holiday->date = request('date');
             $holiday -> save();
             

@@ -20,7 +20,7 @@
                 <table class="table">
                     <tr>
                         <td>
-                            <input type="text" class="form-control" value="{{ $holiday->name }}" placeholder="Holiday Name" name="name">
+                            <input type="text" class="form-control" value="{{ $holiday->name }}" placeholder="Holiday Name" name="name" style="text-transform: uppercase">
                         </td>
                     </tr>
                     <tr>
