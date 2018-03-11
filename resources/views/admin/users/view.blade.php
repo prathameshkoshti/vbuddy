@@ -34,6 +34,14 @@
                     </tr>
                     <tr>
                         <td>
+                            Abbreviation:
+                        </td>
+                        <td>
+                            {{$user->abbreviation}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             Role:
                         </td>
                         <td>

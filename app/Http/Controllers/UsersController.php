@@ -42,7 +42,7 @@ class UsersController extends Controller
         $this -> validate($request, [
             'name' => 'required',
             'branch' => 'required',
-            'abbrevation' => 'required',
+            'abbreviation' => 'required',
             'email' => 'required|unique:users|email',
             'password' => 'required',
             'role' => 'required',
@@ -52,7 +52,7 @@ class UsersController extends Controller
             User::create([
                 'name' => request('name'),
                 'branch' => request('branch'),
-                'abbrevation' => request('abbrevation'),
+                'abbreviation' => request('abbreviation'),
                 'email' => request('email'),
                 'password' => bcrypt(request('password')),
                 'role' => request('role'),
@@ -116,7 +116,7 @@ class UsersController extends Controller
                 {
                     $user->name = request('name');
                     $user->branch = request('branch');
-                    $user->abbrevation = request('abbrevation');
+                    $user->abbreviation = request('abbreviation');
                     $user->email = request('email');
                     $user->password = bcrypt(request('password'));
                     $user->role = request('role');
@@ -134,7 +134,7 @@ class UsersController extends Controller
                 {
                     $user->name = request('name');
                     $user->branch = request('branch');
-                    $user->abbrevation = request('abbrevation');
+                    $user->abbreviation = request('abbreviation');
                     $user->email = request('email');
                     $user->role = request('role');
 

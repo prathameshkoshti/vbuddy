@@ -41,8 +41,8 @@
                         <td>
                             <select class="form-control" name="replacement_faculty">
                                 @foreach($users as $user)
-                                    <option value="{{ $user->abbrevation }}"
-                                        @if($replacement->replacement_faculty == $user->abbrevation)
+                                    <option value="{{ $user->abbreviation }}"
+                                        @if($replacement->replacement_faculty == $user->abbreviation)
                                             selected="selected"
                                         @endif
                                     >{{ $user->name }}</option>

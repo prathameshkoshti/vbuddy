@@ -62,7 +62,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <input type="text" name="abbrevation" value="{{$user->abbrevation}}" class="form-control">
+                            <input type="text" name="abbreviation" value="{{$user->abbreviation}}" class="form-control">
                         </td>
                     </tr>
                     <tr>

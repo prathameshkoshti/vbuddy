@@ -25,17 +25,17 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Enter Password</h5>
                 </div>
-                <form method="post">
-                <div class="modal-body col-sm-10">
-                            <input type="password" class="form-control search" id="password" name="password" placeholder="Enter Password" style=" border-radius: 100px !important;">
-                </div>
-                <div class="modal-footer"><br>
-                    <div style="float: right">&nbsp &nbsp&nbsp &nbsp<button type="submit" class="btn btn-primary" formaction="/admin/settings/promote_sem">Submit</button></div>
-                    <div style="float:right "> <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div>
-                </div>
-                    {{csrf_field()}}
-                    {{method_field('PUT')}}
-                </form>
+                    <form method="post">
+                    <div class="modal-body col-sm-12">
+                                <input type="password" class="form-control search" id="password" name="password" placeholder="Enter Password" style=" border-radius: 100px !important;">
+                    </div>
+                    <div class="modal-footer"><br>
+                        <div style="float: right">&nbsp &nbsp&nbsp &nbsp<button type="submit" class="btn btn-primary" formaction="/admin/settings/promote_sem">Submit</button></div>
+                        <div style="float:right "> <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div>
+                    </div>
+                        {{csrf_field()}}
+                        {{method_field('PUT')}}
+                    </form>
             </div>
         </div>
     </div>
@@ -47,7 +47,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Enter Password</h5>
                 </div>
                 <form method="post">
-                    <div class="modal-body col-sm-10">
+                    <div class="modal-body col-sm-12">
                         <input type="password" class="form-control search" id="password" name="password" placeholder="Enter Password" style=" border-radius: 100px !important;">
                     </div>
                     <div class="modal-footer"><br>
@@ -68,7 +68,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Enter Password</h5>
                 </div>
                 <form method="post">
-                    <div class="modal-body col-sm-10">
+                    <div class="modal-body col-sm-12">
                         <input type="password" class="form-control search" id="password" name="password" placeholder="Enter Password" style=" border-radius: 100px !important;">
                     </div>
                     <div class="modal-footer"><br>
@@ -89,7 +89,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Enter Password</h5>
                 </div>
                 <form method="post">
-                    <div class="modal-body col-sm-10">
+                    <div class="modal-body col-sm-12">
                         <input type="password" class="form-control search" id="password" name="password" placeholder="Enter Password" style=" border-radius: 100px !important;">
                     </div>
                     <div class="modal-footer"><br>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use App\Feedback;
 use Illuminate\Support\Facades\Hash;
 
 class ProfilesController extends Controller
@@ -63,7 +64,32 @@ class ProfilesController extends Controller
     public function facultyProfile()
     {
         $profile = Auth::user();
-        return view('faculty.profile', compact('profile'));
+        $abbreviation = $profile->abbreviation;
+        $temp = array();
+        for($i=1;$i<=6;$i++)
+        {
+            $feedbacks_lecture = Feedback::where([
+                ['lecture'.$i, '=', $abbreviation],
+            ])->pluck('lgrade'.$i);
+            if(count($feedbacks_lecture)>0)
+            {
+                foreach($feedbacks_lecture as $lecture)
+                    array_push($temp,$lecture);
+            }
+            $feedbacks_practical = Feedback::where([
+                ['practical'.$i, '=', $abbreviation],
+            ])->pluck('pgrade'.$i);
+            if(count($feedbacks_practical)>0)
+            {
+                foreach($feedbacks_practical as $practical)
+                    array_push($temp,$practical);
+            }           
+        }
+        if(count($temp)>0)
+            $avg = array_sum($temp) / count($temp);
+        else
+            $avg = 0;
+        return view('faculty.profile', compact('profile', 'avg'));
     }
 
     public function facultyProfileUpdate(Request $request)

@@ -249,11 +249,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
         Route::put('/demote_sem','SettingsController@demote_sem');
         Route::put('/demote_year','SettingsController@demote_year');
         Route::put('/reset','SettingsController@reset');
-
-
     });
-
-
+    
 });
 
 Route::group(['prefix' => 'faculty', 'middleware' => 'faculty'], function(){

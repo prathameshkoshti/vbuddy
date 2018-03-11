@@ -70,7 +70,7 @@
                                             <select name="faculty{{$i}}" class="form-control">
                                                 <option value="null" disabled selected>Select Faculty</option>
                                                 @foreach($users as $user)
-                                                    <option value="{{$user->abbrevation}}">{{$user->name}}</option>
+                                                    <option value="{{$user->abbreviation}}">{{$user->name}}</option>
                                                 @endforeach
                                             </select>
                                         </td>

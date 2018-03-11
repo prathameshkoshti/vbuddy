@@ -36,7 +36,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <input type="text" class="form-control" placeholder="Abbrevation" name="abbrevation">
+                            <input type="text" class="form-control" placeholder="Abbreviation" name="abbreviation">
                         </td>
                     </tr>
                     <tr>

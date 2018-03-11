@@ -35,6 +35,22 @@
                     </tr>
                     <tr>
                         <td>
+                            Abbreviation:
+                        </td>
+                        <td>
+                            {{$profile->abbreviation}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Role:
+                        </td>
+                        <td>
+                            {{$profile->role}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                         </td>
                         <td>
                             <input class="btn btn-success" type="submit" value="Update"><br><br>

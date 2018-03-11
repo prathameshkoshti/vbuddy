@@ -307,7 +307,7 @@
                 <h4 style="text-align:center">{{(float)$avg}}</h4>
                 <p style="text-align:center">
                     @for($i=1; $i<=$average; $i++)
-                    <i class="fa fa-star fa-2x" style="color:yellow" aria-hidden="true"></i>
+                        <i class="fa fa-star fa-2x" style="color:yellow" aria-hidden="true"></i>
                     @endfor
                     @if(
                         ($average > 0.01 && $average < 0.99) ||
@@ -315,7 +315,7 @@
                         ($average > 2.01 && $average < 2.99) ||
                         ($average >= 3.01 && $average <= 3.99)
                     )
-                    <i class="fa fa-star-half fa-2x" style="color:yellow" aria-hidden="true"></i>
+                        <i class="fa fa-star-half fa-2x" style="color:yellow" aria-hidden="true"></i>
                     @endif
                 </p>
             </div>

@@ -35,6 +35,43 @@
                     </tr>
                     <tr>
                         <td>
+                            Abbreviation:
+                        </td>
+                        <td>
+                            {{$profile->abbreviation}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Role:
+                        </td>
+                        <td>
+                            {{$profile->role}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Avg. rating given <br>by students:
+                        </td>
+                        <td>
+                            @if($avg == 0)
+                                No Rating/s found.
+                            @endif
+                            @for($i=1; $i<=$avg; $i++)
+                                <i class="fa fa-star fa-2x" style="color:yellow" aria-hidden="true"></i>                                
+                            @endfor
+                            @if(
+                                ($avg > 0.01 && $avg < 0.99) ||
+                                ($avg > 1.01 && $avg < 1.99) ||
+                                ($avg > 2.01 && $avg < 2.99) ||
+                                ($avg >= 3.01 && $avg <= 3.99)
+                            )
+                                <i class="fa fa-star-half fa-2x" style="color:yellow" aria-hidden="true"></i>
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                         </td>
                         <td>
                             <input class="btn btn-success" type="submit" value="Update"><br><br>
