@@ -28,6 +28,11 @@
     }
 </script>
 
+<style>
+    td{
+        text-transform: uppercase;
+    }
+</style>
 
 @section('content')
     <div class="row">

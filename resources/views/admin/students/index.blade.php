@@ -82,10 +82,5 @@
          </table>
      </div>
  </div>
- <div class="pagination-wrapper">
-    <div class="paginate">
-        {{$students->render()}}
-    </div>
-</div>
  @include('layouts.resource')
 @stop

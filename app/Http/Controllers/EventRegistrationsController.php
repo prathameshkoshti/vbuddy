@@ -33,7 +33,7 @@ class EventRegistrationsController extends Controller
     public function show($id)
     {
         $students = EventRegistration::with('student')
-                    ->where('event_id', '=', $id)->paginate(10);
+                    ->where('event_id', '=', $id)->get();
         $count = Event::withCount('event_registration')->find($id);
         if($count && $students)       
             return view('admin.event_registrations.view', compact('students', 'count'));
