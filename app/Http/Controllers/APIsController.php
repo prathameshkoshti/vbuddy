@@ -230,10 +230,10 @@ class APIsController extends Controller
         if($feedback)
         {
             if($request->sem != $student->sem)
-                return response()->json(['data' => 'You cannot submit your feedback. Because you do not belong to this sem'], 200);
+                return response()->json(['MESSAGE' => 'You cannot submit your feedback. Because you do not belong to this sem'], 200);
             
             if($feedback->feedback_no == 2)
-                return response()->json(['You already submitted your both feedbacks for this sem.'], 200);
+                return response()->json(['MESSAGE' => 'You already submitted your both feedbacks for this sem.'], 200);
             elseif($feedback->feedback_no == 1)
             {
                 $feedback_no = 2;

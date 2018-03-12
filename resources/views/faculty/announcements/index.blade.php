@@ -50,6 +50,7 @@
                         <th>Head</th>
                         <th>Year</th>
                         <th>Division</th>
+                        <th>Issued By</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -57,7 +58,8 @@
                     <tr>
                         <td>{{ $value->head }}</td>
                         <td>{{ $value->year }}</td>
-                        <td>{{ $value->division }}</td> 
+                        <td>{{ $value->division }}</td>
+                        <td>{{ $value->user->name }}</td>
                         @if( $value->status == 1)
                             <td>Active</td>
                         @else
@@ -66,9 +68,11 @@
                         <td>
                             <a href="/faculty/faculty_announcements/view/{{$value->id}}"><i class="fa fa-eye fa-lg" aria-hidden="true"></i></a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
+                            @if(Auth::user()->id == $value->issued_by)
                             <a href="/faculty/faculty_announcements/edit/{{$value->id}}"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="/faculty/faculty_announcements/delete/{{$value->id}}"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+                            @endif
                         </td>
                     </tr>
                     @endforeach

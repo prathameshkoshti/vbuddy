@@ -110,11 +110,13 @@
                 </table>
             </div>
         </div>
+        @if(Auth::user()->id == $event->issued_by)        
         <div class="col-md-6 col-md-offset-3">
             <div class="col-md-4"><button class="btn btn-block btn-warning" onclick="parent.location='/faculty/events/edit/{{$event->id}}'"><i style="color:white" class="fa fa-pencil fa-lg" aria-hidden="true"></i> Edit</button></div>
             <div class="col-md-4"><button class="btn btn-block btn-danger" onclick="parent.location='/faculty/events/delete/{{$event->id}}'"><i style="color:white" class="fa fa-trash fa-lg" aria-hidden="true"></i> Delete</button></div>
             <div class="col-md-4"><button class="btn btn-block btn-primary" onclick="parent.location='/faculty/event_registrations/view/{{$event->id}}'"><i style="color:white" class="fa fa-eye fa-lg" aria-hidden="true"></i> Registrations</button></div>
         </div>
+        @endif
         {{csrf_field()}}
 		{{method_field('PUT')}}
     </form>

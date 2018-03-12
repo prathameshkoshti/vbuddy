@@ -28,7 +28,7 @@ class FacultiesController extends Controller
 
     public function announcementsIndex()
     {
-        $announcements = Auth::user()->announcements()->latest()->paginate(10);
+        $announcements = Announcement::latest()->paginate(10);
         if(count($announcements)>0)
             return view('faculty.announcements.index', compact('announcements'));
         else
@@ -155,7 +155,7 @@ class FacultiesController extends Controller
     public function placementsIndex()
     {
         $user = Auth::user();
-        $placements = $user->placements()->where('status', '1')->latest()->paginate(10);
+        $placements = Placement::latest()->paginate(10);
 
         if(count($placements)>0)
             return view('faculty.placements.index', compact('placements'));
@@ -315,7 +315,6 @@ class FacultiesController extends Controller
     {
         $events = Event::withCount('event_registration')->where([
             ['status', '=', 1],
-            ['issued_by', '=', Auth::user()->id ],
         ])->latest()->paginate(10);
         if(count($events)>0)
             return view('faculty.events.index', compact('events'));
@@ -373,7 +372,7 @@ class FacultiesController extends Controller
         if($event)
         {
             if(Auth::user()->id != $event->issued_by)
-                return view('errors.404');  
+                return view('errors.401');  
             $year = explode(',', $event->year);
             $branch = explode(',', $event->branch);
             return view('faculty.events.edit', compact('event', 'year', 'branch', 'event_coordinator'));
@@ -454,9 +453,6 @@ class FacultiesController extends Controller
         
         if($event)
         {
-            if(Auth::user()->id != $event->issued_by)
-                return view('errors.401');
-
             return view('faculty.events.view', compact('event'));
         }
         else

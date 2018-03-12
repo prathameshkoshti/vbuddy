@@ -71,8 +71,10 @@
                                         <div class="col-md-offset-2 col-xs-offset-2">
                                             <table class="table table-borderless">
                                                 <tr>
+                                                    @if(Auth::user()->id == $event->issued_by)                                                
                                                     <td><a href="/faculty/events/edit/{{$event->id}}"><i class="fa fa-pencil fa-2x"></i></a></td>
                                                     <td><a href="/faculty/events/delete/{{$event->id}}"><i class="fa fa-trash fa-2x"></i></a></td>
+                                                    @endif
                                                     <td><a href="/faculty/events/view/{{$event->id}}"><i class="fa fa-eye fa-2x"></i></a></td>
                                                 </tr>
                                             </table>

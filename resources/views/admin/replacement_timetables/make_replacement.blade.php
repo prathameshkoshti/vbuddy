@@ -5,6 +5,11 @@
 @section('content_header')
     <h1 style="text-align:center">Replacement Timetable</h1>
 @stop
+<style>
+    td{
+        text-align: center;
+    }
+</style>
 <script>
     function myFunction() {
         var day = document.getElementById("day").value;
@@ -50,7 +55,7 @@
                                         <td>
                                             <table class="table table-borderless" style="background-color: rgba(0,0,0,0);">
                                                 <tr>
-                                                    <td>
+                                                    <td style="text-align:center" colspan="4">
                                                     {{$timetable->start_time}} - {{$timetable->end_time}}                                    
                                                     </td>
                                                 </tr>

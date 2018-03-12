@@ -47,6 +47,14 @@
                         </td>
                     </tr>
                     <tr>
+                        <td width="100px">
+                            <b>Issued By :</b>
+                        </td>
+                        <td>
+                            {{$announcement->user->name}}
+                        </td>
+                    </tr>
+                    <tr>
                         <td width="100px"></td>
                         <td>
                             <button onclick="window.history.back();" class="btn form-control btn-danger">Back</button>
