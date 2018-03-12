@@ -31,7 +31,7 @@ class PlacementsController extends Controller
     {
         $users = User::where([
             ['status', '=', '1'],
-            ['role', '=', 'Event Coordinator'],
+            ['role', '=', 'Placement Coordinator'],
             ])->get();
         return view('admin.placements.create', compact('users'));
     }
@@ -94,7 +94,7 @@ class PlacementsController extends Controller
     {
         $users = User::where([
             ['status', '=', '1'],
-            ['role' , '=', 'Event Coordinator']
+            ['role' , '=', 'Placement Coordinator']
         ])->get();
         $placement = Placement::find($id);
         if($placement)

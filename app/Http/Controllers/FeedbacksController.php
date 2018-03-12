@@ -121,6 +121,17 @@ class FeedbacksController extends Controller
     }
 
     /**
+     * Show the statistics for feedbacks.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function stats()
+    {
+        return view('admin.feedbacks.stats');
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id

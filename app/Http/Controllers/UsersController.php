@@ -52,7 +52,7 @@ class UsersController extends Controller
             User::create([
                 'name' => request('name'),
                 'branch' => request('branch'),
-                'abbreviation' => request('abbreviation'),
+                'abbreviation' => strtoupper(request('abbreviation')),
                 'email' => request('email'),
                 'password' => bcrypt(request('password')),
                 'role' => request('role'),
@@ -134,7 +134,7 @@ class UsersController extends Controller
                 {
                     $user->name = request('name');
                     $user->branch = request('branch');
-                    $user->abbreviation = request('abbreviation');
+                    $user->abbreviation = strtoupper(request('abbreviation'));
                     $user->email = request('email');
                     $user->role = request('role');
 
