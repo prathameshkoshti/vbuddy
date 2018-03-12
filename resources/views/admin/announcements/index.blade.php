@@ -6,17 +6,52 @@
     <h1 style="text-align:center">Faculty Announcements</h1>
 @stop
 
+
+
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td1,td2,td3,td4, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td1 = tr[i].getElementsByTagName("td")[1];
+            td2 = tr[i].getElementsByTagName("td")[2];
+            td3 = tr[i].getElementsByTagName("td")[3];
+
+            if (td1 || td2 || td3) {
+                if (td1.innerHTML.toUpperCase().indexOf(filter) > -1 || td2.innerHTML.toUpperCase().indexOf(filter) > -1 || td3.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+
+
 @section('content')
+
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="table-responsive">
-                <table class="table table-hover">
-                    <tr>
-                        <td colspan="9">
+                <table id="myTable" class="table table-hover">
+                    <tr class="header">
+
+                        <th colspan="7" class="search-wrapper">
+                            <div class="search-box">
+                                <input type="text" id="myInput" class="search" onkeyup="myFunction()" placeholder="Search for Title, Year or Branch...." title="Type in a name" size="100" style=" border-radius: 100px !important;">
+                            </div>
+                        </th>
+
+                        <th>
                             <button onClick="parent.location='/admin/faculty_announcements/create'" type="button" class="btn btn-success table-btn">
                                 <span class="fa fa-plus" aria-hidden="true"></span> Create
                             </button>
-                        </td>
+                        </th>
                     </tr>
                     <tr>
                         <th>ID</th>

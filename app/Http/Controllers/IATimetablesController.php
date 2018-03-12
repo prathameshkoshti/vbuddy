@@ -39,7 +39,7 @@ class IATimetablesController extends Controller
             $exam->date = request('date');
             $exam->start_time = request('start_time');
             $exam->end_time=request('end_time');
-            $exam->subject=request('subject');
+            $exam->subject=strtoupper(request('subject'))   ;
             $exam -> save();
 
             \Session :: flash('update','Updated Successfully!');
@@ -81,7 +81,7 @@ class IATimetablesController extends Controller
             $exam->date = request('date');
             $exam->start_time = request('start_time');
             $exam->end_time=request('end_time');
-            $exam->subject=request('subject');
+            $exam->subject=strtoupper(request('subject'));
             $exam -> save();
 
             \Session :: flash('update','Updated Successfully!');
