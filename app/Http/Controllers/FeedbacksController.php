@@ -20,12 +20,15 @@ class FeedbacksController extends Controller
             'sem' => 'required',
             'branch' => 'required',
             'division' => 'required',
+            'feedback_no' => 'required',
         ]);
-        $feedbacks = Feedback::with('student')->where([
+        $feedback_no = request('feedback_no');
+        $feedbacks = Feedback::where([
             ['sem', '=', request('sem')],
             ['branch', '=', request('branch')],
             ['division', '=', request('division')],
-        ])->paginate(10);
+            ['feedback_no', '=', request('feedback_no')],
+        ])->paginate(30);
 
         if(count($feedbacks)>0)
         {
@@ -33,7 +36,7 @@ class FeedbacksController extends Controller
             $branch = request('branch');
             $division = request('division');
 
-            return view('admin.feedbacks.index', compact('feedbacks', 'division', 'branch', 'sem'));
+            return view('admin.feedbacks.index', compact('feedbacks', 'division', 'branch', 'sem', 'feedback_no'));
         }
         else
             return view('errors.404');
@@ -111,8 +114,7 @@ class FeedbacksController extends Controller
 
             $feedback_answers = Feedback::select('ques1', 'ques2', 'ques3', 'ques4', 'ques5', 'ques6')->find($id);
             $answers = array_values($feedback_answers->toArray());
-            $student = Student::find($feedback->student_id);
-            return view('admin.feedbacks.view', compact('feedback', 'student', 'questions', 'answers', 'avg_faculty', 'avg_faculty_notes', 'avg_faculty_printed_notes', 'avg_amenities'));
+            return view('admin.feedbacks.view', compact('feedback', 'questions', 'answers', 'avg_faculty', 'avg_faculty_notes', 'avg_faculty_printed_notes', 'avg_amenities'));
         }
         else
         {

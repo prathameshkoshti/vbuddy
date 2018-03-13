@@ -434,28 +434,40 @@ class StudentController extends Controller
             'ques6' => 'required',
         ]);
 
-        $feedback = Feedback::where('student_id', '=', Auth::user()->id)->latest()->first();
-        if($feedback)
+        $student = Auth::user();
+        $feedbacks = Feedback::where([
+            ['branch', '=', $student->branch],
+            ['sem', '=', $student->sem],
+            ['division', '=', $student->division],
+            ])->get();
+        $count = 0;
+        foreach($feedbacks as $feedback)
         {
-            if($feedback->feedback_no == 2)
+            if(Hash::check($student->id, $feedback->student_id))
+            {
+                $count++;
+            }
+        }
+        $feedback_no = 0;
+        if($count > 0)
+        {
+            if($count == 2 || $count > 2)
             {
                 \Session::flash('feedback', 'You have already submitted both feedbacks for this sem.');
                 return redirect('/student/home');
             }
-            elseif($feedback->feedback_no == 1)
+            elseif($count == 1)
             {
                 $feedback_no = 2;
-                $student = Auth::user();
             }
         }
         else
         {
-            $feedback_no = 1;
-            $student = Auth::user();            
+            $feedback_no = 1;           
         }
 
         Feedback::create([
-            'student_id' => $student->id,
+            'student_id' => bcrypt($student->id),
             'sem' => $student->sem,
             'division' => $student->division,
             'branch' => $student->branch,
@@ -524,7 +536,7 @@ class StudentController extends Controller
             'ques5' => request('ques5'),
             'ques6' => request('ques6'),
         ]);
-
+        \Session::flash('feedback', 'Feedback Submitted successfully.');        
         return redirect('/student/home');
     }
     public function profile()

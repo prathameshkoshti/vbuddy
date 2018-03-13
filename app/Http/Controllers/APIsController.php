@@ -226,15 +226,29 @@ class APIsController extends Controller
     public function feedback(Request $request)
     {
         $student = Student::find($request->student_id);
-        $feedback = Feedback::where('student_id', '=', $request->student_id)->latest()->first();
-        if($feedback)
+        $feedbacks = Feedback::where([
+                ['branch', '=', $student->branch],
+                ['sem', '=', $student->sem],
+                ['division', '=', $student->division],
+            ])->get();
+        $count = 0;
+        foreach($feedbacks as $feedback)
+        {
+            if(Hash::check($student->id, $feedback->student_id))
+            {
+                $count++;
+            }
+        }
+        $feedback_no = 0;
+        if($count > 0)
         {
             if($request->sem != $student->sem)
                 return response()->json(['MESSAGE' => 'You cannot submit your feedback. Because you do not belong to this sem'], 200);
             
-            if($feedback->feedback_no == 2)
+            if($count == 2 || $count > 2)
                 return response()->json(['MESSAGE' => 'You already submitted your both feedbacks for this sem.'], 200);
-            elseif($feedback->feedback_no == 1)
+            
+            if($count == 1)
             {
                 $feedback_no = 2;
             }
@@ -244,7 +258,7 @@ class APIsController extends Controller
             $feedback_no = 1;
         }
         Feedback::Create([
-            'student_id' => request('student_id'),
+            'student_id' => bcrypt(request('student_id')),
             'sem' => $student->sem,
             'division' => $student->division,
             'branch' => $student->branch,

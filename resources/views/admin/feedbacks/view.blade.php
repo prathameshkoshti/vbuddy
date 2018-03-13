@@ -9,27 +9,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-4 alert alert-blue" style="margin:20px">
-            <table class="table table-borderless">
-                <tr>
-                    <td>Name:</td><td>{{$student->name}}</td>
-                </tr>
-                <tr>
-                    <td>Roll No.:</td> <td>{{$student->roll}}</td><br>
-                </tr>
-                <tr>
-                    <td>Year/Sem:</td><td>{{$student->year}}/{{$student->sem}}</td><br>
-                </tr>
-                <tr>
-                    <td>Branch:</td><td>{{$student->branch}}</td><br>
-                </tr>
-                <tr>
-                    <td>Email Id:</td><td>{{$student->email}}</td>
-                </tr>
-                <br>
-            </table>
-        </div>
-        <div class="col-md-7 alert alert-teal" style="margin:20px">
+        <div class="col-md-12 alert alert-teal" style="margin:20px">
                 <h5><strong>Self Assessment of Learning Process:    </strong></h5>
                 <table class="table table-borderless">
                     <?php $i=0?>
@@ -252,7 +232,7 @@
             <br>
         </div>
         <div class="col-md-3 alert alert-cyan" style="margin:20px;">
-            <h5><strong>Ratings given by {{$student->name}}</strong></h5>
+            <h5><strong>Ratings given</strong></h5>
             <table class="table table-bordered">
                 <tr>
                     <td>
@@ -293,7 +273,7 @@
                 </tr>
             </table>
             <div>
-                <strong>Overall rating given by {{$student->name}}</strong>
+                <strong>Overall rating given</strong>
                 <br>
                 <br>
                 <?php

@@ -37,6 +37,11 @@
                     <option value="A">A</option>
                     <option value="B">B</option>
                     <option value="C">C</option>
+                </select><br>
+                <select name="feedback_no" class="form-control" required>
+                    <option value="null" disabled selected>Feedback No.</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
                 </select>
                 <br>
                 <input name="submit" type="submit" class="btn btn-success form-control" value="Get Feedbacks">

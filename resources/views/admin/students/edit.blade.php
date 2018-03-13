@@ -34,7 +34,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <input type="password" class="form-control" placeholder="Password" value="{{$student->password}}" name="password">
+                            <input type="password" class="form-control" placeholder="Password(Change only if it is necessary.)" value="" name="password">
                         </td>
                     </tr>
                     <tr>

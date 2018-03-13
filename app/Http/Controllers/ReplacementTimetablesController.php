@@ -12,7 +12,7 @@ class ReplacementTimetablesController extends Controller
 {
     public function index()
     {
-        $replacement_timetables = ReplacementTimetable::paginate(10);
+        $replacement_timetables = ReplacementTimetable::latest()->get();
         // if(count($replacemet_timetables)>0)
             return view('admin.replacement_timetables.index', compact('replacement_timetables'));
         // else

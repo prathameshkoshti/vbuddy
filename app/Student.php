@@ -24,8 +24,4 @@ class Student extends Authenticatable
         return $this->hasMany('App\EventRegistration', 'student_id');
     }
 
-    public function feedback()
-    {
-        return $this->hasMany('App\Feedback', 'student_id');
-    }
 }

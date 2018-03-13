@@ -33,24 +33,22 @@
         <h4 style="text-align:center">You are viewing feedbacks for {{$branch}} > Sem  {{$sem}} > Divison {{$division}}</h4><br>
     </div>
     <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-6 col-md-offset-3">
             <div class="table-responsive">
                 <table id="myTable" class="table table-hover">
 
-                    <tr class="header">
+                    {{--  <tr class="header">
                         <th colspan="5" class="search-wrapper">
                             <div class="search-box">
                                 <input type="text" id="myInput" class="search" onkeyup="myFunction()" placeholder="Search for Name or Roll No...." title="Type in a name" size="100" style=" border-radius: 100px !important;">
                             </div>
                         </th>
-                    </tr>
+                    </tr>  --}}
 
 
                     <tr class="header">
                         <th>ID</th>
-                        <th>Student Id</th>
-                        <th>Student Name</th>
-                        <th>Feedback No.</th>
+                        <th>Student Details(Hashed)</th>
                         <th>Actions</th>
                     </tr>
                     @foreach($feedbacks as $feedback)
@@ -59,13 +57,7 @@
                                 {{$feedback->id}}
                             </td>
                             <td>
-                                {{$feedback->student->roll}}
-                            </td>
-                            <td>
-                                {{$feedback->student->name}}
-                            </td>
-                            <td>
-                                {{$feedback->feedback_no}}
+                                {{$feedback->student_id}}
                             </td>
                             <td>
                                     <a href="/admin/feedbacks/view/{{$feedback->id}}"><i class="fa fa-eye fa-lg" aria-hidden="true"></i></a>

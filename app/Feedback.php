@@ -22,8 +22,4 @@ class Feedback extends Model
         'ques1', 'ques2', 'ques3', 'ques4', 'ques5', 'ques6',
     ];
 
-    public function student()
-    {
-        return $this->belongsTo('App\Student');
-    }
 }

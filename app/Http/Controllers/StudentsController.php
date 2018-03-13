@@ -107,20 +107,54 @@ class StudentsController extends Controller
         $student = Student::find($id);
         if($student)
         {
-            $student->name = request('name');
-            $student->roll = request('roll');
-            $student->email = request('email');
-            $student->password = bcrypt(request('password'));
-            $student->year = request('year');
-            $student->sem = request('sem');
-            $student->branch = request('branch');
-            $student->division = request('division');
-            $student->admission_year = request('admission_year');
-    
-            $student->save();
-    
-            \Session :: flash('update','Updated Successfully!');
-            return redirect('/admin/students/');
+            if(request('password'))
+            {
+                try
+                {
+                    $student->name = request('name');
+                    $student->roll = request('roll');
+                    $student->email = request('email');
+                    $student->password = bcrypt(request('password'));
+                    $student->year = request('year');
+                    $student->sem = request('sem');
+                    $student->branch = request('branch');
+                    $student->division = request('division');
+                    $student->admission_year = request('admission_year');
+            
+                    $student->save();
+            
+                    \Session :: flash('update','Updated Successfully!');
+                    return redirect('/admin/students/');
+                }
+                catch(\Illuminate\Database\QueryException $e)
+                {
+                    \Session::flash('update', $e->errorInfo[1].':'. $e->errorInfo[2]);
+                    return redirect('admin/users/edit/'.$id);
+                }
+            }
+            else{
+                try
+                {
+                    $student->name = request('name');
+                    $student->roll = request('roll');
+                    $student->email = request('email');
+                    $student->year = request('year');
+                    $student->sem = request('sem');
+                    $student->branch = request('branch');
+                    $student->division = request('division');
+                    $student->admission_year = request('admission_year');
+            
+                    $student->save();
+            
+                    \Session :: flash('update','Updated Successfully!');
+                    return redirect('/admin/students/');
+                }
+                catch(\Illuminate\Database\QueryException $e)
+                {
+                    \Session::flash('update', $e->errorInfo[1].':'. $e->errorInfo[2]);
+                    return redirect('admin/users/edit/'.$id);
+                }
+            }
         }
         else
         {
