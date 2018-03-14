@@ -58,6 +58,18 @@
                     </tr>
                     <tr>
                         <td>
+                            File:
+                        </td>
+                        <td>
+                            @if($attachment)
+                                <a href="/admin/placements/download/{{$placement->file_name}}">{{$placement->original_filename}}</a>({{$attachment.' Bytes'}})
+                            @else
+                                No file attached by user.
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             Issued By:
                         </td>
                         <td>

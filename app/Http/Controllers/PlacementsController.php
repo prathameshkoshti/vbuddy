@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Placement;
 use App\User;
+use Storage;
+use File;
 
 class PlacementsController extends Controller
 {
@@ -56,14 +58,35 @@ class PlacementsController extends Controller
         $year = implode(',', $request->get('year'));
         $branch = implode(',', $request->get('branch'));
 
-        Placement::create([
-            'head' => request('head'),
-            'body' => request('body'),
-            'year' => $year,
-            'branch' => $branch,
-            'date' => request('date'),
-            'issued_by' => request('issued_by'), 
-        ]);
+//        Placement::create([
+//            'head' => request('head'),
+//            'body' => request('body'),
+//            'year' => $year,
+//            'branch' => $branch,
+//            'date' => request('date'),
+//            'issued_by' => request('issued_by'),
+//        ]);
+
+        $placement=new Placement();
+        $placement->head=request('head');
+        $placement->body=request('body');
+        $placement->date=request('date');
+        $placement->year=$year;
+        $placement->branch=$branch;
+        $placement->issued_by=request('issued_by');
+
+        if($request->hasFile('attachment'))
+        {
+            $attachment = $request->file('attachment');
+            $extension = $attachment->getClientOriginalExtension();
+
+            $placement->file_name = $attachment->getFilename().'.'.$extension;
+            $placement->file_mime = $attachment->getClientMimeType();
+            $placement->original_filename = $attachment->getClientOriginalName();
+            Storage::put('placements/'.$attachment->getFilename().'.'.$extension,  File::get($attachment));
+
+        }
+        $placement->save();
 
         \Session::flash('create', 'Data stored successfully.');
         return redirect('admin/placements/');
@@ -78,10 +101,16 @@ class PlacementsController extends Controller
     public function show($id)
     {
         $placement = Placement::with('user')->find($id);
+        $attachment = Storage::size('placements/'.$placement->file_name);
         if($placement)
-            return view('admin.placements.view', compact('placement'));
+            return view('admin.placements.view', compact('placement','attachment'));
         else    
             return view('errors.404');
+    }
+
+    public function download($file_name)
+    {
+        return Storage::download('placements/'.$file_name);
     }
 
     /**
@@ -140,6 +169,19 @@ class PlacementsController extends Controller
             $placement->year = $year;
             $placement->branch = $branch;
             $placement->issued_by = request('issued_by');
+
+            if($request->hasFile('attachment'))
+            {
+                Storage::delete('announcements/'.$placement->file_name);
+                $attachment = $request->file('attachment');
+                $extension = $attachment->getClientOriginalExtension();
+
+                $placement->file_name = $attachment->getFilename().'.'.$extension;
+                $placement->file_mime = $attachment->getClientMimeType();
+                $placement->original_filename = $attachment->getClientOriginalName();
+                Storage::put('placements/'.$attachment->getFilename().'.'.$extension,  File::get($attachment));
+            }
+
     
             $placement->save();
     

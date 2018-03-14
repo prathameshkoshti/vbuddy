@@ -115,6 +115,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
 
         Route::get('create', 'PlacementsController@create');
         Route::put('store', 'PlacementsController@store');
+        Route::get('download/{file_name}', 'PlacementsController@download');
+
 
         Route::get('edit/{id}', 'PlacementsController@edit');
         Route::put('update/{id}', 'PlacementsController@update');

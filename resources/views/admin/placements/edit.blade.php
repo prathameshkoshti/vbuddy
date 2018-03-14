@@ -13,7 +13,7 @@
         </div>
     </div>
     <br><br>
-    <form method="post" action="/admin/placements/update/{{$placement->id}}" class="form form-group box-body">
+    <form enctype="multipart/form-data" method="post" action="/admin/placements/update/{{$placement->id}}" class="form form-group box-body">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <table class="table">
@@ -91,6 +91,15 @@
                             </select>
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                           <b> Attach a file: </b>
+                        </td>
+                        <td>
+                            <input type="file" name="attachment">
+                        </td>
+                    </tr>
+                    <tr>
                     <tr>
                         <td colspan=2>
                             <input type="submit" class="form-control btn btn-success" value="Submit" name="submit">
