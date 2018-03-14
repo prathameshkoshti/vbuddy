@@ -129,6 +129,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     */
     Route::prefix('faculty_announcements')->group(function(){
         Route::get('/', 'AnnouncementsController@index');
+        Route::get('download/{file_name}', 'AnnouncementsController@download');
+        
         Route::get('view/{id}', 'AnnouncementsController@show');
 
         Route::get('create', 'AnnouncementsController@create');
@@ -145,7 +147,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     */
     Route::prefix('feedbacks')->group(function(){
         Route::view('/', 'admin.feedbacks.home');
-        
+
         Route::put('index', 'FeedbacksController@index');
         Route::get('view/{id}', 'FeedbacksController@show');
 

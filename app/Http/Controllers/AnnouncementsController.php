@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\Announcement;
 use App\User;
+use Storage;
+use File;
 
 class AnnouncementsController extends Controller
 {
@@ -52,15 +55,34 @@ class AnnouncementsController extends Controller
         $year = implode(',', $request->get('year'));
         $branch = implode(',', $request->get('branch'));
         $division = implode(',', $request->get('division'));
-
-        Announcement::create([
-            'head' => request('head'),
-            'body' => request('body'),
-            'year' => $year,
-            'branch' => $branch,
-            'division' => $division,
-            'issued_by' => request('issued_by'), 
-        ]);
+                 
+        // Announcement::create([
+        //     'head' => request('head'),
+        //     'body' => request('body'),
+        //     'year' => $year,
+        //     'branch' => $branch,
+        //     'division' => $division,
+        //     'issued_by' => request('issued_by'), 
+        // ]);
+        $announcement = new Announcement();
+        $announcement->head = request('head');
+        $announcement->body = request('body');
+        $announcement->year = $year;
+        $announcement->branch = $branch;
+        $announcement->division = $division;
+        $announcement->issued_by = request('issued_by');
+        if($request->hasFile('attachment'))
+        {
+            $attachment = $request->file('attachment');
+            $extension = $attachment->getClientOriginalExtension();
+            
+            $announcement->file_name = $attachment->getFilename().'.'.$extension;
+            $announcement->file_mime = $attachment->getClientMimeType();
+            $announcement->original_filename = $attachment->getClientOriginalName();
+            Storage::put('announcements/'.$attachment->getFilename().'.'.$extension,  File::get($attachment));
+        }
+        
+        $announcement->save();
 
         \Session::flash('create', 'Data stored successfully.');
         return redirect('/admin/faculty_announcements');
@@ -75,10 +97,16 @@ class AnnouncementsController extends Controller
     public function show($id)
     {
         $announcement = Announcement::with('user')->find($id);
+        $attachment = Storage::size('announcements/'.$announcement->file_name);
         if($announcement)
-            return view('admin.announcements.view', compact('announcement'));
+            return view('admin.announcements.view', compact('announcement', 'attachment'));
         else
             return view('errors.404');
+    }
+
+    public function download($file_name)
+    {
+        return Storage::download('announcements/'.$file_name);
     }
 
     /**
@@ -137,6 +165,18 @@ class AnnouncementsController extends Controller
             $announcement->branch = $branch;
             $announcement->division = $division;
             $announcement->issued_by = request('issued_by');
+
+            if($request->hasFile('attachment'))
+            {
+                Storage::delete('announcements/'.$announcement->file_name);
+                $attachment = $request->file('attachment');
+                $extension = $attachment->getClientOriginalExtension();
+                
+                $announcement->file_name = $attachment->getFilename().'.'.$extension;
+                $announcement->file_mime = $attachment->getClientMimeType();
+                $announcement->original_filename = $attachment->getClientOriginalName();
+                Storage::put('announcements/'.$attachment->getFilename().'.'.$extension,  File::get($attachment));
+            }
 
             $announcement->save();
 

@@ -50,6 +50,18 @@
                     </tr>
                     <tr>
                         <td>
+                            File:
+                        </td>
+                        <td>
+                            @if($attachment)
+                                <a href="/admin/faculty_announcements/download/{{$announcement->file_name}}">{{$announcement->original_filename}}</a>({{$attachment.' Bytes'}})
+                            @else
+                                No file attached by user.
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             Issued By:
                         </td>
                         <td>

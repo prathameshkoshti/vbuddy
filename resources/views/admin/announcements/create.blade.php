@@ -13,7 +13,7 @@
         </div>
     </div>
     <br><br>
-    <form method="post" action="/admin/faculty_announcements/store" class="form form-group box-body">
+    <form method="post" action="/admin/faculty_announcements/store" class="form form-group box-body" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <table class="table">
@@ -91,6 +91,14 @@
                                     <option value="{{ $user->id }}">{{ $user->name }}</option>
                                 @endforeach
                             </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Attach a file:
+                        </td>
+                        <td>
+                            <input type="file" name="attachment">
                         </td>
                     </tr>
                     <tr>
