@@ -80,6 +80,13 @@
                             {{$event->location}}
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            Attached file:
+                        </td>
+                        <td>
+                            <a href="/admin/events/download/{{$event->file_name}}">{{$event->original_filename}}({{$attachment.' Bytes'}})</a>
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -89,14 +96,6 @@
                             Rs. {{$event->price}}
                         </td>
                     </tr>
-                    </tr>
-                    <tr>
-                        <td>
-                            Issued By
-                        </td>
-                        <td colspan=2>
-                            {{$event->user->name}}
-                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -112,6 +111,14 @@
                         </td>
                         <td colspan=2>
                             {{$event->contact_no}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Issued By
+                        </td>
+                        <td colspan=2>
+                            {{$event->user->name}}
                         </td>
                     </tr>
                 </table>

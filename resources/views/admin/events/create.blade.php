@@ -13,7 +13,7 @@
         </div>
     </div>
     <br><br>
-    <form method="post" action="/admin/events/store" class="form form-group box-body">
+    <form method="post" action="/admin/events/store" class="form form-group box-body" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <table class="table table-borderless">
@@ -92,15 +92,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan=2>
-                            <select name="issued_by" class="form-control">
-                                <option selected disabled>Issued By</option>
-                                @foreach($event_coordinator as $user)
-                                    <option value="{{$user->id}}">{{$user->name}}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                    </tr>
+                            <td>
+                                Attach a file
+                            </td>
+                            <td>
+                                <input type="file" name="attachment">
+                            </td>
+                        </tr>
                     <tr>
                         <td colspan=2>
                             <input type="text" class="form-control" placeholder="Price" name="price"> 
@@ -113,7 +111,17 @@
                     </tr>
                     <tr>
                         <td colspan=2>
-                            <input type="text" class="form-control" placeholder="Contact No." name="contact_no"> 
+                            <input type="tel" class="form-control" placeholder="Contact No." name="contact_no"> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan=2>
+                            <select name="issued_by" class="form-control">
+                                <option selected disabled>Issued By</option>
+                                @foreach($event_coordinator as $user)
+                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                @endforeach
+                            </select>
                         </td>
                     </tr>
                     <tr>

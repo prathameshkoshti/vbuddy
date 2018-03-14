@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Event;
 use App\User;
+use Storage;
+use File;
 
 class EventsController extends Controller
 {
@@ -63,20 +65,31 @@ class EventsController extends Controller
         $year = implode(',', $request->get('year'));
         $branch = implode(',', $request->get('branch'));
 
-        Event::Create([
-            'name' => request('name'),
-            'details' => request('details'),
-            'commitee_name' => request('commitee_name'),
-            'year' => $year,
-            'branch' => $branch,
-            'date' => request('date'),
-            'time' => request('time'),
-            'location' => request('location'),
-            'issued_by' => request('issued_by'),
-            'price' => request('price'),
-            'contact_name' => request('contact_name'),
-            'contact_no' => request('contact_no'),
-        ]);
+        $event = new Event();
+        $event->name = request('name');
+        $event->details = request('details');
+        $event->commitee_name = request('commitee_name');
+        $event->year = $year;
+        $event->branch = $branch;
+        $event->date = request('date');
+        $event->time = request('time');
+        $event->location = request('location');
+        $event->issued_by = request('issued_by');
+        $event->price = request('price');
+        $event->contact_name = request('contact_name');
+        $event->contact_no = request('contact_no');
+
+        if($request->hasFile('attachment'))
+        {
+            $attachment = $request->file('attachment');
+            $extension = $attachment->getClientOriginalExtension();
+            
+            $event->file_name = $attachment->getFilename().'.'.$extension;
+            $event->file_mime = $attachment->getClientMimeType();
+            $event->original_filename = $attachment->getClientOriginalName();
+            Storage::put('events/'.$attachment->getFilename().'.'.$extension,  File::get($attachment));
+        }
+        $event->save();
         
         \Session::flash('create', 'Data stored successfully.');
         return redirect('admin/events/');    
@@ -91,10 +104,16 @@ class EventsController extends Controller
     public function show($id)
     {
         $event = Event::with('user')->find($id);
+        $attachment = Storage::size('events/'.$event->file_name);        
         if($event)
-            return view('admin.events.view', compact('event'));
+            return view('admin.events.view', compact('event', 'attachment'));
         else
             return view('errors.404');
+    }
+
+    public function download($file_name)
+    {
+        return Storage::download('events/'.$file_name);
     }
 
     /**
@@ -163,6 +182,17 @@ class EventsController extends Controller
             $event->price = request('price');
             $event->contact_name = request('contact_name');
             $event->contact_no = request('contact_no');
+
+            if($request->hasFile('attachment'))
+            {
+                $attachment = $request->file('attachment');
+                $extension = $attachment->getClientOriginalExtension();
+                
+                $event->file_name = $attachment->getFilename().'.'.$extension;
+                $event->file_mime = $attachment->getClientMimeType();
+                $event->original_filename = $attachment->getClientOriginalName();
+                Storage::put('events/'.$attachment->getFilename().'.'.$extension,  File::get($attachment));
+            }
 
             $event->save();
 

@@ -39,17 +39,20 @@ Route::prefix('student')->group(function(){
     Route::prefix('faculty_announcements')->group(function(){
         Route::get('/', 'StudentController@announcement');
         Route::get('view/{id}', 'StudentController@announcementView');
+        Route::get('download/{file_name}', 'StudentController@download');        
     });
 
     Route::prefix('placements')->group(function(){
         Route::get('/', 'StudentController@placement');
         Route::get('view/{id}', 'StudentController@placementView');
+        Route::get('download/{file_name}', 'StudentController@download');
         Route::get('register/{id}', 'StudentController@registerToPlacement');
     });
 
     Route::prefix('events')->group(function(){
         Route::get('', 'StudentController@event');
         Route::get('view/{id}', 'StudentController@eventView');
+        Route::get('download/{file_name}', 'StudentController@download');
         Route::get('enroll/{id}', 'StudentController@enrolToEvent');
     });
 
@@ -128,10 +131,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
         Routes for Faculty Announcemnets
     */
     Route::prefix('faculty_announcements')->group(function(){
-        Route::get('/', 'AnnouncementsController@index');
-        Route::get('download/{file_name}', 'AnnouncementsController@download');
-        
+        Route::get('/', 'AnnouncementsController@index');        
         Route::get('view/{id}', 'AnnouncementsController@show');
+
+        Route::get('download/{file_name}', 'AnnouncementsController@download');
 
         Route::get('create', 'AnnouncementsController@create');
         Route::put('store', 'AnnouncementsController@store');
@@ -200,6 +203,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
         Route::get('/', 'EventsController@index');
         Route::get('view/{id}', 'EventsController@show');
 
+        Route::get('download/{file_name}', 'EventsController@download');
         Route::get('create', 'EventsController@create');
         Route::put('store', 'EventsController@store');
 

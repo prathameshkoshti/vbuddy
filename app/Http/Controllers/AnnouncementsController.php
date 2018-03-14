@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
 use App\Announcement;
 use App\User;
 use Storage;
@@ -56,14 +55,6 @@ class AnnouncementsController extends Controller
         $branch = implode(',', $request->get('branch'));
         $division = implode(',', $request->get('division'));
                  
-        // Announcement::create([
-        //     'head' => request('head'),
-        //     'body' => request('body'),
-        //     'year' => $year,
-        //     'branch' => $branch,
-        //     'division' => $division,
-        //     'issued_by' => request('issued_by'), 
-        // ]);
         $announcement = new Announcement();
         $announcement->head = request('head');
         $announcement->body = request('body');

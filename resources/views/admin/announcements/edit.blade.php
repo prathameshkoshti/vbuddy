@@ -13,7 +13,7 @@
         </div>
     </div>
     <br><br>
-    <form  enctype="multipart/form-data" method="post" action="/admin/faculty_announcements/update/{{$announcement->id}}" class="form form-group box-body">
+    <form enctype="multipart/form-data" method="post" action="/admin/faculty_announcements/update/{{$announcement->id}}" class="form form-group box-body">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <table class="table">
