@@ -21,6 +21,11 @@
                         <p>Year: {{$placement->year}}</p>
                         <p>Branch: {{$placement->branch}}</p>
                         <p style="text-align:right">Issued By: {{$issued_by->name}}</p>
+                        @if($placement->file_name)
+                        <a href="/student/placements/download/{{$placement->file_name}}">
+                            <p>Attached File: {{$placement->original_filename}}</p>
+                        </a>
+                        @endif
                         <hr>
                         @if($isRegistered)
                         <button onClick="parent.location='/student/placements/register/{{$placement->id}}'" type="button" class="student-btn btn btn-success">

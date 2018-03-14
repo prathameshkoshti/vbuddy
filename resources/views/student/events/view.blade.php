@@ -23,6 +23,11 @@
                         <p>Year: {{$event->year}}</p>
                         <p>Branch: {{$event->branch}}</p>
                         <p style="text-align:right">Issued By: {{$issued_by->name}}</p>
+                        @if($event->file_name)
+                        <a href="/student/events/download/{{$event->file_name}}">
+                            <p>Attached File: {{$event->original_filename}}</p>
+                        </a>
+                        @endif
                         <hr>
                         @if($isEnrolled)
                         <button onClick="parent.location='/student/events/enroll/{{$event->id}}'" type="button" class="student-btn btn btn-success">

@@ -35,7 +35,7 @@ class EventsController extends Controller
             ['role', '=', 'Event Coordinator'],
             ['status', '=', 1],
         ])->get();
-        //return dd($event_coordinator);
+
         return view('admin.events.create', compact('event_coordinator'));
     }
 
@@ -104,9 +104,11 @@ class EventsController extends Controller
     public function show($id)
     {
         $event = Event::with('user')->find($id);
-        $attachment = Storage::size('events/'.$event->file_name);        
         if($event)
+        {
+            $attachment = Storage::size('events/'.$event->file_name);
             return view('admin.events.view', compact('event', 'attachment'));
+        }
         else
             return view('errors.404');
     }
@@ -114,6 +116,7 @@ class EventsController extends Controller
     public function download($file_name)
     {
         return Storage::download('events/'.$file_name);
+        //return response()->file(storage_path('app/events/'.$file_name));
     }
 
     /**
@@ -185,6 +188,8 @@ class EventsController extends Controller
 
             if($request->hasFile('attachment'))
             {
+                if($event->file_name)
+                    Storage::delete('events/'.$event->file_name);
                 $attachment = $request->file('attachment');
                 $extension = $attachment->getClientOriginalExtension();
                 

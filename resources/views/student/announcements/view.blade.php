@@ -21,6 +21,11 @@
             <p>Year: {{$announcement->year}}</p>
             <p>Branch: {{$announcement->branch}}</p>
             <p>Branch: {{$announcement->division}}</p>
+            @if($announcement->file_name)
+            <a href="/student/faculty_announcements/download/{{$announcement->file_name}}">
+                <p>Attached File: {{$announcement->original_filename}}</p>
+            </a>
+            @endif
             <hr>
             <br>
             <p style="text-align:right">Issued By: {{$issued_by->name}}</p>

@@ -13,7 +13,7 @@
         </div>
     </div>
     <br><br>
-    <form method="post" action="/faculty/events/update/{{$event->id}}" class="form form-group box-body">
+    <form method="post" action="/faculty/events/update/{{$event->id}}" class="form form-group box-body" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <table class="table table-borderless">
@@ -94,17 +94,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan=2>
-                            <select name="issued_by" class="form-control">
-                                <option disabled>Issued By</option>
-                                @foreach($event_coordinator as $user)
-                                <option value="{{ $user->id }}"
-                                    @if($event->issued_by == $user->id)
-                                        selected="selected"
-                                    @endif
-                                >{{ $user->name }}</option>
-                            @endforeach
-                            </select>
+                        <td>
+                            Attach a file:
+                        </td>
+                        <td>
+                            <input type="file" name="attachment">
                         </td>
                     </tr>
                     <tr>

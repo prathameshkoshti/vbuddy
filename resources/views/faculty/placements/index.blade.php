@@ -35,7 +35,7 @@
             <div class="table-responsive">
                 <table id="myTable" class="table table-hover table-borderless">
                     <tr>
-                        <th colspan="4" class="search-wrapper">
+                        <th colspan="5" class="search-wrapper">
                             <div class="search-box">
                                 <input type="text" id="myInput" class="search" onkeyup="myFunction()" placeholder="Search for Placement News or Year...." title="Type in a name" size="100" style=" border-radius: 100px !important;">
                             </div>

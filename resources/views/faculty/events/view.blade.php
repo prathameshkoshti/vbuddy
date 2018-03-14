@@ -81,6 +81,17 @@
                             {{$event->location}}
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            Attached file:
+                        </td>
+                        <td>
+                            @if($event->file_name)
+                            <a href="/faculty/events/download/{{$event->file_name}}">{{$event->original_filename}}</a> ({{$attachment.' Bytes'}})
+                            @else
+                                No file attached by user.
+                            @endif
+                        </td>
                     </tr>
                     <tr>
                         <td>
@@ -116,6 +127,9 @@
             <div class="col-md-4"><button class="btn btn-block btn-danger" onclick="parent.location='/faculty/events/delete/{{$event->id}}'"><i style="color:white" class="fa fa-trash fa-lg" aria-hidden="true"></i> Delete</button></div>
             <div class="col-md-4"><button class="btn btn-block btn-primary" onclick="parent.location='/faculty/event_registrations/view/{{$event->id}}'"><i style="color:white" class="fa fa-eye fa-lg" aria-hidden="true"></i> Registrations</button></div>
         </div>
+        <br>
+        <br>
+        <br>
         @endif
         {{csrf_field()}}
 		{{method_field('PUT')}}

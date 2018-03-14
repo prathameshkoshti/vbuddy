@@ -13,7 +13,7 @@
         </div>
     </div>
     <br><br>
-    <form method="post" action="/faculty/faculty_announcements/store" class="form form-group box-body">
+    <form method="post" action="/faculty/faculty_announcements/store" class="form form-group box-body" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <table class="table table-borderless">
@@ -61,6 +61,14 @@
                                 <input class="form-check-input" name="division[]" type="checkbox" value="C">
                                 <label class="form-check-label" for="etrx">C</label>
                             </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Attach a file:
+                        </td>
+                        <td>
+                            <input type="file" name="attachment">
                         </td>
                     </tr>
                     <tr>

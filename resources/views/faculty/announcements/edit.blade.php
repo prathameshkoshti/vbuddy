@@ -13,7 +13,7 @@
         </div>
     </div>
     <br><br>
-    <form method="post" action="/faculty/faculty_announcements/update/{{$announcement->id}}" class="form form-group box-body">
+    <form method="post" action="/faculty/faculty_announcements/update/{{$announcement->id}}" class="form form-group box-body" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <table class="table table-borderless">
@@ -62,6 +62,14 @@
                                 <label class="form-check-label" for="extc">C</label>
                                 
                             </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Attach a file:
+                        </td>
+                        <td>
+                            <input type="file" name="attachment">
                         </td>
                     </tr>
                     <tr>

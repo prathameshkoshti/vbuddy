@@ -17,6 +17,8 @@ use App\EventRegistration;
 use App\PlacementRegistration;
 use App\Question;
 use App\Feedback;
+use Storage;
+use File;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -78,6 +80,11 @@ class StudentController extends Controller
             return view('student.placements.index', ['placements' => $paginatedItems]);
         else
             return view('errors.404');
+    }
+
+    public function placementDownload($file_name)
+    {
+        return Storage::download('placements/'.$file_name);
     }
 
     public function placementView($id)
@@ -185,6 +192,11 @@ class StudentController extends Controller
             return view('errors.404');
     }
 
+    public function eventDownload($file_name)
+    {
+        return Storage::download('events/'.$file_name);
+    }
+
     public function eventView($id)
     {
         $year = Auth::user()->year;
@@ -287,6 +299,11 @@ class StudentController extends Controller
             return view('student.announcements.index', ['announcements' => $paginatedItems]);
         else
             return view('errors.404');
+    }
+
+    public function announcementDownload($file_name)
+    {
+        return Storage::download('announcements/'.$file_name);
     }
 
     public function announcementView($id)

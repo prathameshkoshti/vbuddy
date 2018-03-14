@@ -61,6 +61,18 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>
+                            Attached File:
+                        </td>
+                        <td>
+                            @if($placement->file_name)
+                                <a href="/faculty/placements/download/{{$placement->file_name}}">{{$placement->original_filename}}</a>({{$attachment.' Bytes'}})
+                            @else
+                                No file attached by user.
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
                         <td width="100px"></td>
                         <td>
                             <button onclick="window.history.back();" class="btn form-control btn-danger">Back</button>

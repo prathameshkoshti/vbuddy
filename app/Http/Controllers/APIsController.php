@@ -257,6 +257,7 @@ class APIsController extends Controller
         {
             $feedback_no = 1;
         }
+        $suggestion = request('suggestion');
         Feedback::Create([
             'student_id' => bcrypt(request('student_id')),
             'sem' => $student->sem,
@@ -308,7 +309,7 @@ class APIsController extends Controller
             'water_facility' => request('water_facility'),
             'restroom' => request('restroom'),
             'canteen' => request('canteen'),
-            'suggestion' => request('suggestion'),
+            'suggestion' => $suggestion,
 
             'completeness1' => request('completeness1'),
             'systematic_approach1' => request('systematic_approach1'),

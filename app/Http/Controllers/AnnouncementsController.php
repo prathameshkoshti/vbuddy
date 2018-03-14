@@ -88,9 +88,11 @@ class AnnouncementsController extends Controller
     public function show($id)
     {
         $announcement = Announcement::with('user')->find($id);
-        $attachment = Storage::size('announcements/'.$announcement->file_name);
         if($announcement)
+        {
+            $attachment = Storage::size('announcements/'.$announcement->file_name);
             return view('admin.announcements.view', compact('announcement', 'attachment'));
+        }
         else
             return view('errors.404');
     }
@@ -159,7 +161,8 @@ class AnnouncementsController extends Controller
 
             if($request->hasFile('attachment'))
             {
-                Storage::delete('announcements/'.$announcement->file_name);
+                if($announcement->file_name)
+                    Storage::delete('announcements/'.$announcement->file_name);
                 $attachment = $request->file('attachment');
                 $extension = $attachment->getClientOriginalExtension();
                 

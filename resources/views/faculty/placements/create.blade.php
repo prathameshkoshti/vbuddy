@@ -13,7 +13,7 @@
         </div>
     </div>
     <br><br>
-    <form method="post" action="/faculty/placements/store" class="form form-group box-body">
+    <form method="post" action="/faculty/placements/store" class="form form-group box-body" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <table class="table table-borderless">
@@ -73,6 +73,12 @@
                         </td>
                         <td>
                             <input type="date" name="date" class="form-control">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Attach file:</td>
+                        <td>
+                            <input type="file" name="attachment">
                         </td>
                     </tr>
                     <tr>

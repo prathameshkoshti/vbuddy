@@ -85,7 +85,7 @@
                             Attached file:
                         </td>
                         <td>
-                            <a href="/admin/events/download/{{$event->file_name}}">{{$event->original_filename}}({{$attachment.' Bytes'}})</a>
+                            <a href="/admin/events/download/{{$event->file_name}}">{{$event->original_filename}}</a>({{$attachment.' Bytes'}})
                         </td>
                     </tr>
                     <tr>

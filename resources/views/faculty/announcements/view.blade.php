@@ -47,6 +47,18 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>
+                            Attached File:
+                        </td>
+                        <td>
+                            @if($announcement->file_name)
+                                <a href="/faculty/faculty_announcements/download/{{$announcement->file_name}}">{{$announcement->original_filename}}</a>({{$attachment.' Bytes'}})
+                            @else
+                                No file attached by user.
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
                         <td width="100px">
                             <b>Issued By :</b>
                         </td>

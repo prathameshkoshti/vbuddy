@@ -58,22 +58,13 @@ class PlacementsController extends Controller
         $year = implode(',', $request->get('year'));
         $branch = implode(',', $request->get('branch'));
 
-//        Placement::create([
-//            'head' => request('head'),
-//            'body' => request('body'),
-//            'year' => $year,
-//            'branch' => $branch,
-//            'date' => request('date'),
-//            'issued_by' => request('issued_by'),
-//        ]);
-
-        $placement=new Placement();
-        $placement->head=request('head');
-        $placement->body=request('body');
-        $placement->date=request('date');
-        $placement->year=$year;
-        $placement->branch=$branch;
-        $placement->issued_by=request('issued_by');
+        $placement = new Placement();
+        $placement->head = request('head');
+        $placement->body = request('body');
+        $placement->date = request('date');
+        $placement->year = $year;
+        $placement->branch = $branch;
+        $placement->issued_by = request('issued_by');
 
         if($request->hasFile('attachment'))
         {
@@ -84,7 +75,6 @@ class PlacementsController extends Controller
             $placement->file_mime = $attachment->getClientMimeType();
             $placement->original_filename = $attachment->getClientOriginalName();
             Storage::put('placements/'.$attachment->getFilename().'.'.$extension,  File::get($attachment));
-
         }
         $placement->save();
 
@@ -172,7 +162,7 @@ class PlacementsController extends Controller
 
             if($request->hasFile('attachment'))
             {
-                Storage::delete('announcements/'.$placement->file_name);
+                Storage::delete('placements/'.$placement->file_name);
                 $attachment = $request->file('attachment');
                 $extension = $attachment->getClientOriginalExtension();
 
@@ -181,7 +171,6 @@ class PlacementsController extends Controller
                 $placement->original_filename = $attachment->getClientOriginalName();
                 Storage::put('placements/'.$attachment->getFilename().'.'.$extension,  File::get($attachment));
             }
-
     
             $placement->save();
     
