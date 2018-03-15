@@ -82,9 +82,23 @@ class StudentController extends Controller
             return view('errors.404');
     }
 
-    public function placementDownload($file_name)
+    public function placementDownload($id, $file_name)
     {
-        return Storage::download('placements/'.$file_name);
+        $placement = Placement::find($id);
+        $filename = explode(',', $placement->file_name);
+        $filemime = explode(',', $placement->file_mime);
+        $original = explode(',', $placement->original_filename);
+
+        for($i=0; $i<count($filename); $i++)
+        {
+            if($file_name == $filename[$i])
+            {
+                $header = [
+                    'Content-Type' => $filemime[$i],
+                ];
+                return response()->download(storage_path('app/placements/'.$file_name), $original[$i], $header); 
+            }
+        }
     }
 
     public function placementView($id)
@@ -104,8 +118,10 @@ class StudentController extends Controller
                     ['placement_id', '=', $id],
                     ['student_id', '=', Auth::user()->id],
                 ])->first();
+                $file_name = explode(',', $placement->file_name);
+                $original_filename = explode(',', $placement->original_filename);
                 $issued_by = User::where('id', '=', $placement->issued_by)->first();        
-                return view('student.placements.view', compact('placement','issued_by', 'isRegistered'));
+                return view('student.placements.view', compact('placement','issued_by', 'isRegistered', 'attachment', 'file_name', 'original_filename'));
             }
             else{
                 return view('errors.401');
@@ -192,9 +208,23 @@ class StudentController extends Controller
             return view('errors.404');
     }
 
-    public function eventDownload($file_name)
+    public function eventDownload($id, $file_name)
     {
-        return Storage::download('events/'.$file_name);
+        $event = Event::find($id);
+        $filename = explode(',', $event->file_name);
+        $filemime = explode(',', $event->file_mime);
+        $original = explode(',', $event->original_filename);
+
+        for($i=0; $i<count($filename); $i++)
+        {
+            if($file_name == $filename[$i])
+            {
+                $header = [
+                    'Content-Type' => $filemime[$i],
+                ];
+                return response()->download(storage_path('app/events/'.$file_name), $original[$i], $header); 
+            }
+        }
     }
 
     public function eventView($id)
@@ -215,8 +245,10 @@ class StudentController extends Controller
                     ['event_id', '=', $id],
                     ['student_id', '=', Auth::user()->id],
                 ])->first();
+                $file_name = explode(',', $event->file_name);
+                $original_filename = explode(',', $event->original_filename);
                 if($issued_by)
-                    return view('student.events.view', compact('event','issued_by', 'isEnrolled'));
+                    return view('student.events.view', compact('event','issued_by', 'isEnrolled', 'attachment', 'file_name', 'original_filename'));
                 else
                     return view('errors.404');
             }
@@ -301,9 +333,23 @@ class StudentController extends Controller
             return view('errors.404');
     }
 
-    public function announcementDownload($file_name)
+    public function announcementDownload($id, $file_name)
     {
-        return Storage::download('announcements/'.$file_name);
+        $announcement = Announcement::find($id);
+        $filename = explode(',', $announcement->file_name);
+        $filemime = explode(',', $announcement->file_mime);
+        $original = explode(',', $announcement->original_filename);
+
+        for($i=0; $i<count($filename); $i++)
+        {
+            if($file_name == $filename[$i])
+            {
+                $header = [
+                    'Content-Type' => $filemime[$i],
+                ];
+                return response()->download(storage_path('app/announcements/'.$file_name), $original[$i], $header); 
+            }
+        }
     }
 
     public function announcementView($id)
@@ -319,8 +365,10 @@ class StudentController extends Controller
         {
             if(in_array($year, explode(',', $announcement->year)) && in_array($branch, explode(',', $announcement->branch)) && in_array($division, explode(',', $announcement->division)))
             {
+                $file_name = explode(',', $announcement->file_name);
+            $original_filename = explode(',', $announcement->original_filename);
                 $issued_by = User::where('id', '=', $announcement->issued_by)->first();
-                return view('student.announcements.view', compact('announcement','issued_by'));
+                return view('student.announcements.view', compact('announcement','issued_by', 'attachment', 'file_name', 'original_filename'));
             }
             else{
                 return view('errors.401');

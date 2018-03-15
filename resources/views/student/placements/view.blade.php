@@ -22,9 +22,11 @@
                         <p>Branch: {{$placement->branch}}</p>
                         <p style="text-align:right">Issued By: {{$issued_by->name}}</p>
                         @if($placement->file_name)
-                        <a href="/student/placements/download/{{$placement->file_name}}">
-                            <p>Attached File: {{$placement->original_filename}}</p>
-                        </a>
+                            @for($i=0;$i<count($file_name);$i++)
+                                <a href="/student/placements/download/{{$placement->id}}/{{$file_name[$i]}}">{{$original_filename[$i]}}</a><br>
+                            @endfor
+                        @else
+                            No file attached by issuer.
                         @endif
                         <hr>
                         @if($isRegistered)

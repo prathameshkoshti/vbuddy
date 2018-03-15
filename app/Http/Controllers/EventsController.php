@@ -79,16 +79,26 @@ class EventsController extends Controller
         $event->contact_name = request('contact_name');
         $event->contact_no = request('contact_no');
 
+        $file_name = array();
+        $file_mime = array();
+        $original_filename = array();
+
         if($request->hasFile('attachment'))
         {
-            $attachment = $request->file('attachment');
-            $extension = $attachment->getClientOriginalExtension();
+            foreach($request->attachment as $file)
+            {
+                $extension = $file->getClientOriginalExtension();
+                array_push($file_name, $file->getFilename().'.'.$extension);
+                array_push($file_mime, $file->getClientMimeType());
+                array_push($original_filename, $file->getClientOriginalName());
+                Storage::put('events/'.$file->getFilename().'.'.$extension,  File::get($file));            
+            }
             
-            $event->file_name = $attachment->getFilename().'.'.$extension;
-            $event->file_mime = $attachment->getClientMimeType();
-            $event->original_filename = $attachment->getClientOriginalName();
-            Storage::put('events/'.$attachment->getFilename().'.'.$extension,  File::get($attachment));
+            $event->file_name = implode(',', $file_name);
+            $event->file_mime = implode(',', $file_mime);
+            $event->original_filename = implode(',', $original_filename);
         }
+
         $event->save();
         
         \Session::flash('create', 'Data stored successfully.');
@@ -104,22 +114,35 @@ class EventsController extends Controller
     public function show($id)
     {
         $event = Event::with('user')->find($id);
+        
         if($event)
         {
-            $attachment = Storage::size('events/'.$event->file_name);
-            return view('admin.events.view', compact('event', 'attachment'));
+            //$attachment = Storage::size('events/'.$event->file_name);
+            $file_name = explode(',', $event->file_name);
+            $original_filename = explode(',', $event->original_filename);
+            return view('admin.events.view', compact('event', 'attachment', 'file_name', 'original_filename'));
         }
         else
             return view('errors.404');
     }
 
-    public function download($file_name)
+    public function download($id, $file_name)
     {
-        $event = Event::where('file_name', '=', $file_name)->first();
-        $header = [
-            'Content-Type' => $event->file_mime,
-        ];
-        return response()->download(storage_path('app/events/'.$file_name), $event->original_filename, $header); 
+        $event = Event::find($id);
+        $filename = explode(',', $event->file_name);
+        $filemime = explode(',', $event->file_mime);
+        $original = explode(',', $event->original_filename);
+
+        for($i=0; $i<count($filename); $i++)
+        {
+            if($file_name == $filename[$i])
+            {
+                $header = [
+                    'Content-Type' => $filemime[$i],
+                ];
+                return response()->download(storage_path('app/events/'.$file_name), $original[$i], $header); 
+            }
+        }
     }
 
     /**
@@ -191,15 +214,29 @@ class EventsController extends Controller
 
             if($request->hasFile('attachment'))
             {
+                $file_name = array();
+                $file_mime = array();
+                $original_filename = array();
                 if($event->file_name)
-                    Storage::delete('events/'.$event->file_name);
-                $attachment = $request->file('attachment');
-                $extension = $attachment->getClientOriginalExtension();
-                
-                $event->file_name = $attachment->getFilename().'.'.$extension;
-                $event->file_mime = $attachment->getClientMimeType();
-                $event->original_filename = $attachment->getClientOriginalName();
-                Storage::put('events/'.$attachment->getFilename().'.'.$extension,  File::get($attachment));
+                {
+                    $file_name = explode(',', $event->file_name);
+                    for($i=0; $i<count($file_name); $i++)
+                    {
+                        Storage::delete('events/'.$file_name[$i]);
+                    }
+                }
+                $file_name = array();                
+                foreach($request->attachment as $file)
+                {
+                    $extension = $file->getClientOriginalExtension();
+                    array_push($file_name, $file->getFilename().'.'.$extension);
+                    array_push($file_mime, $file->getClientMimeType());
+                    array_push($original_filename, $file->getClientOriginalName());
+                    Storage::put('events/'.$file->getFilename().'.'.$extension,  File::get($file));            
+                }
+                $event->file_name = implode(',', $file_name);
+                $event->file_mime = implode(',', $file_mime);
+                $event->original_filename = implode(',', $original_filename);
             }
 
             $event->save();

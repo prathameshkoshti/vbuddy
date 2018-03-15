@@ -52,7 +52,9 @@
                         </td>
                         <td>
                             @if($announcement->file_name)
-                                <a href="/faculty/faculty_announcements/download/{{$announcement->file_name}}">{{$announcement->original_filename}}</a>({{$attachment.' Bytes'}})
+                                @for($i=0;$i<count($file_name);$i++)
+                                    <a href="/faculty/faculty_announcements/download/{{$announcement->id}}/{{$file_name[$i]}}">{{$original_filename[$i]}}</a><br>
+                                @endfor
                             @else
                                 No file attached by user.
                             @endif

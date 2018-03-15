@@ -39,20 +39,20 @@ Route::prefix('student')->group(function(){
     Route::prefix('faculty_announcements')->group(function(){
         Route::get('/', 'StudentController@announcement');
         Route::get('view/{id}', 'StudentController@announcementView');
-        Route::get('download/{file_name}', 'StudentController@announcementDownload');        
+        Route::get('download/{id}/{file_name}', 'StudentController@announcementDownload');        
     });
 
     Route::prefix('placements')->group(function(){
         Route::get('/', 'StudentController@placement');
         Route::get('view/{id}', 'StudentController@placementView');
-        Route::get('download/{file_name}', 'StudentController@placementDownload');
+        Route::get('download/{id}/{file_name}', 'StudentController@placementDownload');
         Route::get('register/{id}', 'StudentController@registerToPlacement');
     });
 
     Route::prefix('events')->group(function(){
         Route::get('', 'StudentController@event');
         Route::get('view/{id}', 'StudentController@eventView');
-        Route::get('download/{file_name}', 'StudentController@EventDownload');
+        Route::get('download/{id}/{file_name}', 'StudentController@EventDownload');
         Route::get('enroll/{id}', 'StudentController@enrolToEvent');
     });
 
@@ -115,7 +115,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
 
         Route::get('create', 'PlacementsController@create');
         Route::put('store', 'PlacementsController@store');
-        Route::get('download/{file_name}', 'PlacementsController@download');
+        Route::get('download/{id}/{file_name}', 'PlacementsController@download');
 
         Route::get('edit/{id}', 'PlacementsController@edit');
         Route::put('update/{id}', 'PlacementsController@update');
@@ -135,7 +135,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
         Route::get('/', 'AnnouncementsController@index');        
         Route::get('view/{id}', 'AnnouncementsController@show');
 
-        Route::get('download/{file_name}', 'AnnouncementsController@download');
+        Route::get('download/{id}/{file_name}', 'AnnouncementsController@download');
 
         Route::get('create', 'AnnouncementsController@create');
         Route::put('store', 'AnnouncementsController@store');
@@ -204,7 +204,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
         Route::get('/', 'EventsController@index');
         Route::get('view/{id}', 'EventsController@show');
 
-        Route::get('download/{file_name}', 'EventsController@download');
+        Route::get('download/{id}/{file_name}', 'EventsController@download');
         Route::get('create', 'EventsController@create');
         Route::put('store', 'EventsController@store');
 
@@ -273,7 +273,7 @@ Route::group(['prefix' => 'faculty', 'middleware' => 'faculty'], function(){
         Route::get('index', 'FacultiesController@announcementsIndex');
         Route::get('view/{id}', 'FacultiesController@announcementsShow');
         
-        Route::get('download/{file_name}', 'FacultiesController@announcementsDownload');
+        Route::get('download/{id}/{file_name}', 'FacultiesController@announcementsDownload');
 
         Route::get('create', 'FacultiesController@announcementsCreate');
         Route::put('store', 'FacultiesController@announcementsStore');
@@ -290,7 +290,7 @@ Route::group(['prefix' => 'faculty', 'middleware' => 'faculty'], function(){
         Route::get('index', 'FacultiesController@placementsIndex');
         Route::get('view/{id}', 'FacultiesController@placementsShow');
 
-        Route::get('download/{file_name}', 'FacultiesController@placementsDownload');        
+        Route::get('download/{id}/{file_name}', 'FacultiesController@placementsDownload');        
 
         Route::get('create', 'FacultiesController@placementsCreate');
         Route::put('store', 'FacultiesController@placementsStore');
@@ -312,7 +312,7 @@ Route::group(['prefix' => 'faculty', 'middleware' => 'faculty'], function(){
         Route::get('index', 'FacultiesController@eventsIndex');
         Route::get('view/{id}', 'FacultiesController@eventsShow');
         
-        Route::get('download/{file_name}', 'FacultiesController@eventsDownload');        
+        Route::get('download/{id}/{file_name}', 'FacultiesController@eventsDownload');        
 
         Route::view('create', 'faculty.events.create');
         Route::put('store', 'FacultiesController@eventsStore');

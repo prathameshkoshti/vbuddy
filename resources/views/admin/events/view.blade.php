@@ -82,10 +82,16 @@
                     </tr>
                     <tr>
                         <td>
-                            Attached file:
+                            Attached File/s:
                         </td>
                         <td>
-                            <a href="/admin/events/download/{{$event->file_name}}">{{$event->original_filename}}</a>({{$attachment.' Bytes'}})
+                            @if($event->file_name)
+                                @for($i=0;$i<count($file_name);$i++)
+                                    <a href="/admin/events/download/{{$event->id}}/{{$file_name[$i]}}">{{$original_filename[$i]}}</a><br>
+                                @endfor
+                            @else
+                                No file attached by issuer.
+                            @endif
                         </td>
                     </tr>
                     <tr>
@@ -129,6 +135,9 @@
             <div class="col-md-4"><button class="btn btn-danger btn-block" onclick="parent.location='/admin/events/delete/{{$event->id}}'"><i style="color:white" class="fa fa-trash fa-lg" aria-hidden="true"></i> Delete</button></div>
             <div class="col-md-4"><button class="btn btn-primary btn-block" onclick="parent.location='/admin/event_registrations/view/{{$event->id}}'"><i style="color:white" class="fa fa-eye fa-lg" aria-hidden="true"></i> Registrations</button></div>
         </div>
+        <br>
+        <br>
+        <br>
         {{csrf_field()}}
 		{{method_field('PUT')}}
     </form>

@@ -33,7 +33,12 @@ class LoginController extends Controller
     {
         if($user->role == 'Admin')
             return redirect()->intended('/admin/home');
-        elseif($user->role == 'Faculty')
+        elseif($user->role == 'Faculty'
+            || $user->role == 'Event Coordinator'
+            || $user->role == 'Placement Coordinator'
+            || $user->role == 'Academic Coordinator'
+            || $user->role == 'Exam Coordinator'
+        )
             return redirect()->intended('/faculty/home');
     }
     /**

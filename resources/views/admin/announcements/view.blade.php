@@ -50,13 +50,15 @@
                     </tr>
                     <tr>
                         <td>
-                            File:
+                            Attached File/s:
                         </td>
                         <td>
-                            @if($attachment)
-                                <a href="/admin/faculty_announcements/download/{{$announcement->file_name}}">{{$announcement->original_filename}}</a>({{$attachment.' Bytes'}})
+                            @if($announcement->file_name)
+                                @for($i=0;$i<count($file_name);$i++)
+                                    <a href="/admin/faculty_announcements/download/{{$announcement->id}}/{{$file_name[$i]}}">{{$original_filename[$i]}}</a><br>
+                                @endfor
                             @else
-                                No file attached by user.
+                                No file attached by issuer.
                             @endif
                         </td>
                     </tr>

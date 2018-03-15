@@ -62,15 +62,25 @@ class FacultiesController extends Controller
         $announcement->branch = Auth::user()->branch;
         $announcement->division = $division;
         $announcement->issued_by = request('issued_by');
+        
+        $file_name = array();
+        $file_mime = array();
+        $original_filename = array();
+
         if($request->hasFile('attachment'))
         {
-            $attachment = $request->file('attachment');
-            $extension = $attachment->getClientOriginalExtension();
+            foreach($request->attachment as $file)
+            {
+                $extension = $file->getClientOriginalExtension();
+                array_push($file_name, $file->getFilename().'.'.$extension);
+                array_push($file_mime, $file->getClientMimeType());
+                array_push($original_filename, $file->getClientOriginalName());
+                Storage::put('announcements/'.$file->getFilename().'.'.$extension,  File::get($file));            
+            }
             
-            $announcement->file_name = $attachment->getFilename().'.'.$extension;
-            $announcement->file_mime = $attachment->getClientMimeType();
-            $announcement->original_filename = $attachment->getClientOriginalName();
-            Storage::put('announcements/'.$attachment->getFilename().'.'.$extension,  File::get($attachment));
+            $announcement->file_name = implode(',', $file_name);
+            $announcement->file_mime = implode(',', $file_mime);
+            $announcement->original_filename = implode(',', $original_filename);
         }
 
         $announcement->save();        
@@ -85,20 +95,32 @@ class FacultiesController extends Controller
 
         if($announcement)
         {
-            $attachment = Storage::size('announcements/'.$announcement->file_name);
-            return view('faculty.announcements.view', compact('announcement', 'attachment'));
+            //$attachment = Storage::size('announcements/'.$announcement->file_name);
+            $file_name = explode(',', $announcement->file_name);
+            $original_filename = explode(',', $announcement->original_filename);
+            return view('faculty.announcements.view', compact('announcement', 'attachment', 'file_name', 'original_filename'));
         }
         else
             return view('errors.404');
     }
 
-    public function announcementsDownload($file_name)
+    public function announcementsDownload($id, $file_name)
     {
-        $announcement = Announcement::where('file_name', '=', $file_name)->first();
-        $header = [
-            'Content-Type' => $announcement->file_mime,
-        ];
-        return response()->download(storage_path('app/announcements/'.$file_name), $announcement->original_filename, $header); 
+        $announcement = Announcement::find($id);
+        $filename = explode(',', $announcement->file_name);
+        $filemime = explode(',', $announcement->file_mime);
+        $original = explode(',', $announcement->original_filename);
+
+        for($i=0; $i<count($filename); $i++)
+        {
+            if($file_name == $filename[$i])
+            {
+                $header = [
+                    'Content-Type' => $filemime[$i],
+                ];
+                return response()->download(storage_path('app/announcements/'.$file_name), $original[$i], $header); 
+            }
+        }
     }
 
     public function announcementsEdit($id)
@@ -141,15 +163,29 @@ class FacultiesController extends Controller
 
             if($request->hasFile('attachment'))
             {
+                $file_name = array();
+                $file_mime = array();
+                $original_filename = array();
                 if($announcement->file_name)
-                    Storage::delete('announcements/'.$announcement->file_name);
-                $attachment = $request->file('attachment');
-                $extension = $attachment->getClientOriginalExtension();
-                
-                $announcement->file_name = $attachment->getFilename().'.'.$extension;
-                $announcement->file_mime = $attachment->getClientMimeType();
-                $announcement->original_filename = $attachment->getClientOriginalName();
-                Storage::put('announcements/'.$attachment->getFilename().'.'.$extension,  File::get($attachment));
+                {
+                    $file_name = explode(',', $announcement->file_name);
+                    for($i=0; $i<count($file_name); $i++)
+                    {
+                        Storage::delete('announcements/'.$file_name[$i]);
+                    }
+                }
+                $file_name = array();                
+                foreach($request->attachment as $file)
+                {
+                    $extension = $file->getClientOriginalExtension();
+                    array_push($file_name, $file->getFilename().'.'.$extension);
+                    array_push($file_mime, $file->getClientMimeType());
+                    array_push($original_filename, $file->getClientOriginalName());
+                    Storage::put('announcements/'.$file->getFilename().'.'.$extension,  File::get($file));            
+                }
+                $announcement->file_name = implode(',', $file_name);
+                $announcement->file_mime = implode(',', $file_mime);
+                $announcement->original_filename = implode(',', $original_filename);
             }
 
             $announcement->save();
@@ -204,8 +240,10 @@ class FacultiesController extends Controller
         $placement = Placement::find($id);
         if($placement)
         {
-            $attachment = Storage::size('placements/'.$placement->file_name);            
-            return view('faculty.placements.view', compact('placement', 'attachment'));            
+            //$attachment = Storage::size('placements/'.$placement->file_name);
+            $file_name = explode(',', $placement->file_name);
+            $original_filename = explode(',', $placement->original_filename);
+            return view('faculty.placements.view', compact('placement', 'attachment', 'file_name', 'original_filename'));
         }
         else
             return view('errors.404');
@@ -237,15 +275,24 @@ class FacultiesController extends Controller
         $placement->branch = $branch;
         $placement->issued_by = request('issued_by');
 
+        $file_name = array();
+        $file_mime = array();
+        $original_filename = array();
+
         if($request->hasFile('attachment'))
         {
-            $attachment = $request->file('attachment');
-            $extension = $attachment->getClientOriginalExtension();
-
-            $placement->file_name = $attachment->getFilename().'.'.$extension;
-            $placement->file_mime = $attachment->getClientMimeType();
-            $placement->original_filename = $attachment->getClientOriginalName();
-            Storage::put('placements/'.$attachment->getFilename().'.'.$extension,  File::get($attachment));
+            foreach($request->attachment as $file)
+            {
+                $extension = $file->getClientOriginalExtension();
+                array_push($file_name, $file->getFilename().'.'.$extension);
+                array_push($file_mime, $file->getClientMimeType());
+                array_push($original_filename, $file->getClientOriginalName());
+                Storage::put('placements/'.$file->getFilename().'.'.$extension,  File::get($file));            
+            }
+            
+            $placement->file_name = implode(',', $file_name);
+            $placement->file_mime = implode(',', $file_mime);
+            $placement->original_filename = implode(',', $original_filename);
         }
 
         $placement->save();
@@ -297,14 +344,29 @@ class FacultiesController extends Controller
 
             if($request->hasFile('attachment'))
             {
-                Storage::delete('placements/'.$placement->file_name);
-                $attachment = $request->file('attachment');
-                $extension = $attachment->getClientOriginalExtension();
-
-                $placement->file_name = $attachment->getFilename().'.'.$extension;
-                $placement->file_mime = $attachment->getClientMimeType();
-                $placement->original_filename = $attachment->getClientOriginalName();
-                Storage::put('placements/'.$attachment->getFilename().'.'.$extension,  File::get($attachment));
+                $file_name = array();
+                $file_mime = array();
+                $original_filename = array();
+                if($placement->file_name)
+                {
+                    $file_name = explode(',', $placement->file_name);
+                    for($i=0; $i<count($file_name); $i++)
+                    {
+                        Storage::delete('placements/'.$file_name[$i]);
+                    }
+                }
+                $file_name = array();                
+                foreach($request->attachment as $file)
+                {
+                    $extension = $file->getClientOriginalExtension();
+                    array_push($file_name, $file->getFilename().'.'.$extension);
+                    array_push($file_mime, $file->getClientMimeType());
+                    array_push($original_filename, $file->getClientOriginalName());
+                    Storage::put('placements/'.$file->getFilename().'.'.$extension,  File::get($file));            
+                }
+                $placement->file_name = implode(',', $file_name);
+                $placement->file_mime = implode(',', $file_mime);
+                $placement->original_filename = implode(',', $original_filename);
             }
 
             $placement->save();
@@ -316,13 +378,23 @@ class FacultiesController extends Controller
             return view('errors.404');
     }
 
-    public function placementsDownload($file_name)
+    public function placementsDownload($id, $file_name)
     {
-        $placement = Placement::where('file_name', '=', $file_name)->first();
-        $header = [
-            'Content-Type' => $placement->file_mime,
-        ];
-        return response()->download(storage_path('app/placements/'.$file_name), $placement->original_filename, $header);
+        $placement = Placement::find($id);
+        $filename = explode(',', $placement->file_name);
+        $filemime = explode(',', $placement->file_mime);
+        $original = explode(',', $placement->original_filename);
+
+        for($i=0; $i<count($filename); $i++)
+        {
+            if($file_name == $filename[$i])
+            {
+                $header = [
+                    'Content-Type' => $filemime[$i],
+                ];
+                return response()->download(storage_path('app/placements/'.$file_name), $original[$i], $header); 
+            }
+        }
     }
 
     public function placementsDestroy($id)
@@ -428,16 +500,26 @@ class FacultiesController extends Controller
         $event->contact_name = request('contact_name');
         $event->contact_no = request('contact_no');
 
+        $file_name = array();
+        $file_mime = array();
+        $original_filename = array();
+
         if($request->hasFile('attachment'))
         {
-            $attachment = $request->file('attachment');
-            $extension = $attachment->getClientOriginalExtension();
+            foreach($request->attachment as $file)
+            {
+                $extension = $file->getClientOriginalExtension();
+                array_push($file_name, $file->getFilename().'.'.$extension);
+                array_push($file_mime, $file->getClientMimeType());
+                array_push($original_filename, $file->getClientOriginalName());
+                Storage::put('events/'.$file->getFilename().'.'.$extension,  File::get($file));            
+            }
             
-            $event->file_name = $attachment->getFilename().'.'.$extension;
-            $event->file_mime = $attachment->getClientMimeType();
-            $event->original_filename = $attachment->getClientOriginalName();
-            Storage::put('events/'.$attachment->getFilename().'.'.$extension,  File::get($attachment));
+            $event->file_name = implode(',', $file_name);
+            $event->file_mime = implode(',', $file_mime);
+            $event->original_filename = implode(',', $original_filename);
         }
+
         $event->save();
 
         \Session::flash('create', 'Data stored successfully.');
@@ -504,15 +586,29 @@ class FacultiesController extends Controller
 
             if($request->hasFile('attachment'))
             {
+                $file_name = array();
+                $file_mime = array();
+                $original_filename = array();
                 if($event->file_name)
-                    Storage::delete('events/'.$event->file_name);
-                $attachment = $request->file('attachment');
-                $extension = $attachment->getClientOriginalExtension();
-                
-                $event->file_name = $attachment->getFilename().'.'.$extension;
-                $event->file_mime = $attachment->getClientMimeType();
-                $event->original_filename = $attachment->getClientOriginalName();
-                Storage::put('events/'.$attachment->getFilename().'.'.$extension,  File::get($attachment));
+                {
+                    $file_name = explode(',', $event->file_name);
+                    for($i=0; $i<count($file_name); $i++)
+                    {
+                        Storage::delete('events/'.$file_name[$i]);
+                    }
+                }
+                $file_name = array();                
+                foreach($request->attachment as $file)
+                {
+                    $extension = $file->getClientOriginalExtension();
+                    array_push($file_name, $file->getFilename().'.'.$extension);
+                    array_push($file_mime, $file->getClientMimeType());
+                    array_push($original_filename, $file->getClientOriginalName());
+                    Storage::put('events/'.$file->getFilename().'.'.$extension,  File::get($file));            
+                }
+                $event->file_name = implode(',', $file_name);
+                $event->file_mime = implode(',', $file_mime);
+                $event->original_filename = implode(',', $original_filename);
             }
 
             $event->save();
@@ -549,20 +645,32 @@ class FacultiesController extends Controller
         
         if($event)
         {
-            $attachment = Storage::size('events/'.$event->file_name);            
-            return view('faculty.events.view', compact('event', 'attachment'));
+            //$attachment = Storage::size('events/'.$event->file_name);
+            $file_name = explode(',', $event->file_name);
+            $original_filename = explode(',', $event->original_filename);
+            return view('faculty.events.view', compact('event', 'attachment', 'file_name', 'original_filename'));
         }
         else
             return view('errors.404');
     }
 
-    public function eventsDownload($file_name)
+    public function eventsDownload($id, $file_name)
     {
-        $event = Event::where('file_name', '=', $file_name)->first();
-        $header = [
-            'Content-Type' => $event->file_mime,
-        ];
-        return response()->download(storage_path('app/events/'.$file_name), $event->original_filename, $header); 
+        $event = Event::find($id);
+        $filename = explode(',', $event->file_name);
+        $filemime = explode(',', $event->file_mime);
+        $original = explode(',', $event->original_filename);
+
+        for($i=0; $i<count($filename); $i++)
+        {
+            if($file_name == $filename[$i])
+            {
+                $header = [
+                    'Content-Type' => $filemime[$i],
+                ];
+                return response()->download(storage_path('app/events/'.$file_name), $original[$i], $header); 
+            }
+        }
     }
 
     public function eventRegistrationsIndex()

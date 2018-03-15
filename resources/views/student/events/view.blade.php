@@ -24,9 +24,11 @@
                         <p>Branch: {{$event->branch}}</p>
                         <p style="text-align:right">Issued By: {{$issued_by->name}}</p>
                         @if($event->file_name)
-                        <a href="/student/events/download/{{$event->file_name}}">
-                            <p>Attached File: {{$event->original_filename}}</p>
-                        </a>
+                            @for($i=0;$i<count($file_name);$i++)
+                                <a href="/student/events/download/{{$event->id}}/{{$file_name[$i]}}">{{$original_filename[$i]}}</a><br>
+                            @endfor
+                        @else
+                            No file attached by issuer.
                         @endif
                         <hr>
                         @if($isEnrolled)

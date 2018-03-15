@@ -54,7 +54,7 @@ class AnnouncementsController extends Controller
         $year = implode(',', $request->get('year'));
         $branch = implode(',', $request->get('branch'));
         $division = implode(',', $request->get('division'));
-                 
+        
         $announcement = new Announcement();
         $announcement->head = request('head');
         $announcement->body = request('body');
@@ -62,15 +62,25 @@ class AnnouncementsController extends Controller
         $announcement->branch = $branch;
         $announcement->division = $division;
         $announcement->issued_by = request('issued_by');
+
+        $file_name = array();
+        $file_mime = array();
+        $original_filename = array();
+
         if($request->hasFile('attachment'))
         {
-            $attachment = $request->file('attachment');
-            $extension = $attachment->getClientOriginalExtension();
+            foreach($request->attachment as $file)
+            {
+                $extension = $file->getClientOriginalExtension();
+                array_push($file_name, $file->getFilename().'.'.$extension);
+                array_push($file_mime, $file->getClientMimeType());
+                array_push($original_filename, $file->getClientOriginalName());
+                Storage::put('announcements/'.$file->getFilename().'.'.$extension,  File::get($file));            
+            }
             
-            $announcement->file_name = $attachment->getFilename().'.'.$extension;
-            $announcement->file_mime = $attachment->getClientMimeType();
-            $announcement->original_filename = $attachment->getClientOriginalName();
-            Storage::put('announcements/'.$attachment->getFilename().'.'.$extension,  File::get($attachment));
+            $announcement->file_name = implode(',', $file_name);
+            $announcement->file_mime = implode(',', $file_mime);
+            $announcement->original_filename = implode(',', $original_filename);
         }
         
         $announcement->save();
@@ -90,20 +100,32 @@ class AnnouncementsController extends Controller
         $announcement = Announcement::with('user')->find($id);
         if($announcement)
         {
-            $attachment = Storage::size('announcements/'.$announcement->file_name);
-            return view('admin.announcements.view', compact('announcement', 'attachment'));
+            //$attachment = Storage::size('announcements/'.$announcement->file_name);
+            $file_name = explode(',', $announcement->file_name);
+            $original_filename = explode(',', $announcement->original_filename);
+            return view('admin.announcements.view', compact('announcement', 'attachment', 'file_name', 'original_filename'));
         }
         else
             return view('errors.404');
     }
 
-    public function download($file_name)
+    public function download($id, $file_name)
     {
-        $announcement = Announcement::where('file_name', '=', $file_name)->first();
-        $header = [
-            'Content-Type' => $announcement->file_mime,
-        ];
-        return response()->download(storage_path('app/announcements/'.$file_name), $announcement->original_filename, $header); 
+        $announcement = Announcement::find($id);
+        $filename = explode(',', $announcement->file_name);
+        $filemime = explode(',', $announcement->file_mime);
+        $original = explode(',', $announcement->original_filename);
+
+        for($i=0; $i<count($filename); $i++)
+        {
+            if($file_name == $filename[$i])
+            {
+                $header = [
+                    'Content-Type' => $filemime[$i],
+                ];
+                return response()->download(storage_path('app/announcements/'.$file_name), $original[$i], $header); 
+            }
+        }
     }
 
     /**
@@ -165,15 +187,29 @@ class AnnouncementsController extends Controller
 
             if($request->hasFile('attachment'))
             {
+                $file_name = array();
+                $file_mime = array();
+                $original_filename = array();
                 if($announcement->file_name)
-                    Storage::delete('announcements/'.$announcement->file_name);
-                $attachment = $request->file('attachment');
-                $extension = $attachment->getClientOriginalExtension();
-                
-                $announcement->file_name = $attachment->getFilename().'.'.$extension;
-                $announcement->file_mime = $attachment->getClientMimeType();
-                $announcement->original_filename = $attachment->getClientOriginalName();
-                Storage::put('announcements/'.$attachment->getFilename().'.'.$extension,  File::get($attachment));
+                {
+                    $file_name = explode(',', $announcement->file_name);
+                    for($i=0; $i<count($file_name); $i++)
+                    {
+                        Storage::delete('announcements/'.$file_name[$i]);
+                    }
+                }
+                $file_name = array();                
+                foreach($request->attachment as $file)
+                {
+                    $extension = $file->getClientOriginalExtension();
+                    array_push($file_name, $file->getFilename().'.'.$extension);
+                    array_push($file_mime, $file->getClientMimeType());
+                    array_push($original_filename, $file->getClientOriginalName());
+                    Storage::put('announcements/'.$file->getFilename().'.'.$extension,  File::get($file));            
+                }
+                $announcement->file_name = implode(',', $file_name);
+                $announcement->file_mime = implode(',', $file_mime);
+                $announcement->original_filename = implode(',', $original_filename);
             }
 
             $announcement->save();

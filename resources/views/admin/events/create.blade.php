@@ -96,7 +96,7 @@
                                 Attach a file
                             </td>
                             <td>
-                                <input type="file" name="attachment">
+                                <input type="file" name="attachment[]" multiple>
                             </td>
                         </tr>
                     <tr>

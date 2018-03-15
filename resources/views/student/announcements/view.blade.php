@@ -22,9 +22,11 @@
             <p>Branch: {{$announcement->branch}}</p>
             <p>Branch: {{$announcement->division}}</p>
             @if($announcement->file_name)
-            <a href="/student/faculty_announcements/download/{{$announcement->file_name}}">
-                <p>Attached File: {{$announcement->original_filename}}</p>
-            </a>
+                @for($i=0;$i<count($file_name);$i++)
+                    <a href="/student/faculty_announcements/download/{{$announcement->id}}/{{$file_name[$i]}}">{{$original_filename[$i]}}</a><br>
+                @endfor
+            @else
+                No file attached by issuer.
             @endif
             <hr>
             <br>

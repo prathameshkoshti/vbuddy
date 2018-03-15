@@ -87,7 +87,9 @@
                         </td>
                         <td>
                             @if($event->file_name)
-                            <a href="/faculty/events/download/{{$event->file_name}}">{{$event->original_filename}}</a> ({{$attachment.' Bytes'}})
+                                @for($i=0;$i<count($file_name);$i++)
+                                    <a href="/faculty/events/download/{{$event->id}}/{{$file_name[$i]}}">{{$original_filename[$i]}}</a><br>
+                                @endfor
                             @else
                                 No file attached by user.
                             @endif

@@ -66,16 +66,26 @@ class PlacementsController extends Controller
         $placement->branch = $branch;
         $placement->issued_by = request('issued_by');
 
+        $file_name = array();
+        $file_mime = array();
+        $original_filename = array();
+
         if($request->hasFile('attachment'))
         {
-            $attachment = $request->file('attachment');
-            $extension = $attachment->getClientOriginalExtension();
-
-            $placement->file_name = $attachment->getFilename().'.'.$extension;
-            $placement->file_mime = $attachment->getClientMimeType();
-            $placement->original_filename = $attachment->getClientOriginalName();
-            Storage::put('placements/'.$attachment->getFilename().'.'.$extension,  File::get($attachment));
+            foreach($request->attachment as $file)
+            {
+                $extension = $file->getClientOriginalExtension();
+                array_push($file_name, $file->getFilename().'.'.$extension);
+                array_push($file_mime, $file->getClientMimeType());
+                array_push($original_filename, $file->getClientOriginalName());
+                Storage::put('placements/'.$file->getFilename().'.'.$extension,  File::get($file));            
+            }
+            
+            $placement->file_name = implode(',', $file_name);
+            $placement->file_mime = implode(',', $file_mime);
+            $placement->original_filename = implode(',', $original_filename);
         }
+
         $placement->save();
 
         \Session::flash('create', 'Data stored successfully.');
@@ -91,20 +101,34 @@ class PlacementsController extends Controller
     public function show($id)
     {
         $placement = Placement::with('user')->find($id);
-        $attachment = Storage::size('placements/'.$placement->file_name);
         if($placement)
-            return view('admin.placements.view', compact('placement','attachment'));
+        {
+            //$attachment = Storage::size('placements/'.$placement->file_name);
+            $file_name = explode(',', $placement->file_name);
+            $original_filename = explode(',', $placement->original_filename);
+            return view('admin.placements.view', compact('placement', 'attachment', 'file_name', 'original_filename'));
+        }
         else    
             return view('errors.404');
     }
 
-    public function download($file_name)
+    public function download($id, $file_name)
     {
-        $placement = Placement::where('file_name', '=', $file_name)->first();
-        $header = [
-            'Content-Type' => $placement->file_mime,
-        ];
-        return response()->download(storage_path('app/placements/'.$file_name), $placement->original_filename, $header);
+        $placement = Placement::find($id);
+        $filename = explode(',', $placement->file_name);
+        $filemime = explode(',', $placement->file_mime);
+        $original = explode(',', $placement->original_filename);
+
+        for($i=0; $i<count($filename); $i++)
+        {
+            if($file_name == $filename[$i])
+            {
+                $header = [
+                    'Content-Type' => $filemime[$i],
+                ];
+                return response()->download(storage_path('app/placements/'.$file_name), $original[$i], $header); 
+            }
+        }
     }
 
     /**
@@ -166,14 +190,29 @@ class PlacementsController extends Controller
 
             if($request->hasFile('attachment'))
             {
-                Storage::delete('placements/'.$placement->file_name);
-                $attachment = $request->file('attachment');
-                $extension = $attachment->getClientOriginalExtension();
-
-                $placement->file_name = $attachment->getFilename().'.'.$extension;
-                $placement->file_mime = $attachment->getClientMimeType();
-                $placement->original_filename = $attachment->getClientOriginalName();
-                Storage::put('placements/'.$attachment->getFilename().'.'.$extension,  File::get($attachment));
+                $file_name = array();
+                $file_mime = array();
+                $original_filename = array();
+                if($placement->file_name)
+                {
+                    $file_name = explode(',', $placement->file_name);
+                    for($i=0; $i<count($file_name); $i++)
+                    {
+                        Storage::delete('placements/'.$file_name[$i]);
+                    }
+                }
+                $file_name = array();                
+                foreach($request->attachment as $file)
+                {
+                    $extension = $file->getClientOriginalExtension();
+                    array_push($file_name, $file->getFilename().'.'.$extension);
+                    array_push($file_mime, $file->getClientMimeType());
+                    array_push($original_filename, $file->getClientOriginalName());
+                    Storage::put('placements/'.$file->getFilename().'.'.$extension,  File::get($file));            
+                }
+                $placement->file_name = implode(',', $file_name);
+                $placement->file_mime = implode(',', $file_mime);
+                $placement->original_filename = implode(',', $original_filename);
             }
     
             $placement->save();
