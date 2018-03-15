@@ -76,6 +76,10 @@ class APIsController extends Controller
 
         return response()->json(['event' => 'Oops! Data not found.']);
     }
+    public function downloadEvent($file_name)
+    {
+        return response()->file(storage_path('app/events/'.$file_name));
+    }
     //anyone can do registration bug
     public function registerToEvent($event_id, $student_id)
     {
@@ -106,6 +110,11 @@ class APIsController extends Controller
             }
         }
         return response()->json(['placement' => $result], 200);
+    }
+
+    public function downloadPlacement($file_name)
+    {
+        return response()->file(storage_path('app/placements/'.$file_name)); 
     }
 
     public function viewPlacement($year, $branch, $id)
@@ -176,6 +185,10 @@ class APIsController extends Controller
         return response()->json(['announcement' => 'Oops! Data not found'], 200);
     }
 
+    public function downloadAnnouncement($file_name)
+    {
+        return response()->file(storage_path('app/announcements/'.$file_name)); 
+    }
     public function viewIATimetable($branch, $sem)
     {
         $ia_timetable = IATimetable::where([

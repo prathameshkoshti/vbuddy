@@ -23,17 +23,23 @@ Route::get('/placements/{year}/{branch}', 'APIsController@placement');
 
 Route::get('/placements/{year}/{branch}/{id}', 'APIsController@viewPlacement');
 
+Route::get('/placements_donwload/download/{file_name}', 'APIsController@downloadPlacement');
+
 Route::get('/placements_registration/{placement_id}/{student_id}', 'APIsController@registerToPlacement');
 
 Route::get('/announcements/{year}/{branch}/{div}', 'APIsController@announcement');
 
 Route::get('/announcements/{year}/{branch}/{div}/{id}', 'APIsController@viewAnnouncement');
 
+Route::get('/announcements_donwload/download/{file_name}', 'APIsController@downloadAnnouncement');
+
 Route::get('/ia_timetable/{branch}/{sem}', 'APIsController@viewIATimetable');
 
 Route::get('/timetable/{sem}/{branch}/{div}/{day}', 'APIsController@viewTimetable');
 
 Route::get('/events/{year}/{branch}/{commitee}', 'APIsController@event');
+
+Route::get('/events_donwload/download/{file_name}', 'APIsController@downloadEvent');
 
 Route::get('/events/{year}/{branch}/{commitee}/{id}', 'APIsController@viewEvent');
 
