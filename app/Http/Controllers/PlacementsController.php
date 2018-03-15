@@ -100,7 +100,11 @@ class PlacementsController extends Controller
 
     public function download($file_name)
     {
-        return Storage::download('placements/'.$file_name);
+        $placement = Placement::where('file_name', '=', $file_name)->first();
+        $header = [
+            'Content-Type' => $placement->file_mime,
+        ];
+        return response()->download(storage_path('app/placements/'.$file_name), $placement->original_filename, $header);
     }
 
     /**

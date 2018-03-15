@@ -99,7 +99,11 @@ class AnnouncementsController extends Controller
 
     public function download($file_name)
     {
-        return Storage::download('announcements/'.$file_name);
+        $announcement = Announcement::where('file_name', '=', $file_name)->first();
+        $header = [
+            'Content-Type' => $announcement->file_mime,
+        ];
+        return response()->download(storage_path('app/announcements/'.$file_name), $announcement->original_filename, $header); 
     }
 
     /**

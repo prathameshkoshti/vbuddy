@@ -78,7 +78,11 @@ class APIsController extends Controller
     }
     public function downloadEvent($file_name)
     {
-        return response()->file(storage_path('app/events/'.$file_name));
+        $event = Event::where('file_name', '=', $file_name)->first();
+        $header = [
+            'Content-Type' => $event->file_mime,
+        ];
+        return response()->download(storage_path('app/events/'.$file_name), $event->original_filename, $header);
     }
     //anyone can do registration bug
     public function registerToEvent($event_id, $student_id)
@@ -114,7 +118,11 @@ class APIsController extends Controller
 
     public function downloadPlacement($file_name)
     {
-        return response()->file(storage_path('app/placements/'.$file_name)); 
+        $placement = Placement::where('file_name', '=', $file_name)->first();
+        $header = [
+            'Content-Type' => $placement->file_mime,
+        ];
+        return response()->download(storage_path('app/placements/'.$file_name), $placement->original_filename, $header); 
     }
 
     public function viewPlacement($year, $branch, $id)
@@ -187,7 +195,11 @@ class APIsController extends Controller
 
     public function downloadAnnouncement($file_name)
     {
-        return response()->file(storage_path('app/announcements/'.$file_name)); 
+        $announcement = Announcement::where('file_name', '=', $file_name)->first();
+        $header = [
+            'Content-Type' => $announcement->file_mime,
+        ];
+        return response()->download(storage_path('app/announcements/'.$file_name), $announcement->original_filename, $header); 
     }
     public function viewIATimetable($branch, $sem)
     {

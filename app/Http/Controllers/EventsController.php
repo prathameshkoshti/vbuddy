@@ -115,8 +115,11 @@ class EventsController extends Controller
 
     public function download($file_name)
     {
-        return Storage::download('events/'.$file_name);
-        //return response()->file(storage_path('app/events/'.$file_name));
+        $event = Event::where('file_name', '=', $file_name)->first();
+        $header = [
+            'Content-Type' => $event->file_mime,
+        ];
+        return response()->download(storage_path('app/events/'.$file_name), $event->original_filename, $header); 
     }
 
     /**

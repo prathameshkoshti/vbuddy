@@ -55,14 +55,6 @@ class FacultiesController extends Controller
         $year = implode(',', $request->get('year'));
         $division = implode(',', $request->get('division'));
 
-        // Announcement::create([
-        //     'head' => request('head'),
-        //     'body' => request('body'),
-        //     'year' => $year,
-        //     'branch' => Auth::user()->branch,
-        //     'division' => $division,
-        //     'issued_by' => request('issued_by'), 
-        // ]);
         $announcement = new Announcement();
         $announcement->head = request('head');
         $announcement->body = request('body');
@@ -102,7 +94,11 @@ class FacultiesController extends Controller
 
     public function announcementsDownload($file_name)
     {
-        return Storage::download('announcements/'.$file_name);
+        $announcement = Announcement::where('file_name', '=', $file_name)->first();
+        $header = [
+            'Content-Type' => $announcement->file_mime,
+        ];
+        return response()->download(storage_path('app/announcements/'.$file_name), $announcement->original_filename, $header); 
     }
 
     public function announcementsEdit($id)
@@ -322,8 +318,11 @@ class FacultiesController extends Controller
 
     public function placementsDownload($file_name)
     {
-        return Storage::download('placements/'.$file_name);
-        //return response()->download('placements/'.$file_name);
+        $placement = Placement::where('file_name', '=', $file_name)->first();
+        $header = [
+            'Content-Type' => $placement->file_mime,
+        ];
+        return response()->download(storage_path('app/placements/'.$file_name), $placement->original_filename, $header);
     }
 
     public function placementsDestroy($id)
@@ -559,7 +558,11 @@ class FacultiesController extends Controller
 
     public function eventsDownload($file_name)
     {
-        return Storage::download('events/'.$file_name);
+        $event = Event::where('file_name', '=', $file_name)->first();
+        $header = [
+            'Content-Type' => $event->file_mime,
+        ];
+        return response()->download(storage_path('app/events/'.$file_name), $event->original_filename, $header); 
     }
 
     public function eventRegistrationsIndex()
