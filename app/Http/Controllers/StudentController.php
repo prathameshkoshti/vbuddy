@@ -366,7 +366,7 @@ class StudentController extends Controller
             if(in_array($year, explode(',', $announcement->year)) && in_array($branch, explode(',', $announcement->branch)) && in_array($division, explode(',', $announcement->division)))
             {
                 $file_name = explode(',', $announcement->file_name);
-            $original_filename = explode(',', $announcement->original_filename);
+                $original_filename = explode(',', $announcement->original_filename);
                 $issued_by = User::where('id', '=', $announcement->issued_by)->first();
                 return view('student.announcements.view', compact('announcement','issued_by', 'attachment', 'file_name', 'original_filename'));
             }

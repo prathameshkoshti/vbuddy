@@ -153,22 +153,9 @@ return [
         ],
         [
             'text' => 'Feedbacks',
-            'icon' => 'comment',
-            'icon_color' => 'purple',
-            'submenu' => [
-                [
-                    'text' => 'Feedbacks',
-                    'url' => '/admin/feedbacks',
-                    'icon' => 'comments',
-                    'icon_color' => 'purple',
-                ],
-                [
-                    'text' => 'Feedback Statistics',
-                    'url' => '/admin/feedbacks/statistics',
-                    'icon' => 'pie-chart',
-                    'icon_color' => 'purple',
-                ],
-            ],        
+            'url' => '/admin/feedbacks',
+            'icon' => 'comments',
+            'icon_color' => 'purple',      
         ],
         [
             'text'       => 'Events',
