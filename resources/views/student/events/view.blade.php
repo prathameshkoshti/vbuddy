@@ -25,7 +25,7 @@
                         <p style="text-align:right">Issued By: {{$issued_by->name}}</p>
                         @if($event->file_name)
                             @for($i=0;$i<count($file_name);$i++)
-                                <a href="/student/events/download/{{$event->id}}/{{$file_name[$i]}}">{{$original_filename[$i]}}</a><br>
+                                <a href="/student/events/download/{{$event->id}}/{{$file_name[$i]}}">{{$original_filename[$i]}}</a> ({{$attachment[$i]}})<br>
                             @endfor
                         @else
                             No file attached by issuer.

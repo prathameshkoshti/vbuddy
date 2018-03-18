@@ -117,7 +117,21 @@ class EventsController extends Controller
         
         if($event)
         {
-            //$attachment = Storage::size('events/'.$event->file_name);
+            $attachment = array();
+            $file = explode(',', $event->file_name);
+            $size = 0;
+            for($i=0; $i<count($file); $i++)
+            {
+                $bytes = Storage::size('events/'.$file[$i]);
+                if ($bytes > 0)
+                {
+                    $units = array( 'B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+                    $power = $bytes > 0 ? floor(log($bytes, 1024)) : 0;
+                    $size = number_format($bytes / pow(1024, $power), 2, '.', ',') . ' ' . $units[$power];
+                }
+                if($size)
+                    array_push($attachment, $size);
+            }
             $file_name = explode(',', $event->file_name);
             $original_filename = explode(',', $event->original_filename);
             return view('admin.events.view', compact('event', 'attachment', 'file_name', 'original_filename'));

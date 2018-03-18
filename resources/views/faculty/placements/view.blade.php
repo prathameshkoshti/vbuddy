@@ -67,7 +67,7 @@
                         <td>
                             @if($placement->file_name)
                                 @for($i=0;$i<count($file_name);$i++)
-                                    <a href="/faculty/placements/download/{{$placement->id}}/{{$file_name[$i]}}">{{$original_filename[$i]}}</a><br>
+                                    <a href="/faculty/placements/download/{{$placement->id}}/{{$file_name[$i]}}">{{$original_filename[$i]}}</a> ({{$attachment[$i]}})<br>
                                 @endfor
                             @else
                                 No file attached by user.

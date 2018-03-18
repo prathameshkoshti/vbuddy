@@ -99,6 +99,9 @@
                         </td>
                         <td>
                             <input type="file" name="attachment[]" multiple>
+                            @if($event->file_name)
+                                Previously attached files: <br><b>{{$event->original_filename}}</b>
+                            @endif
                         </td>
                     </tr>
                     <tr>

@@ -118,6 +118,21 @@ class StudentController extends Controller
                     ['placement_id', '=', $id],
                     ['student_id', '=', Auth::user()->id],
                 ])->first();
+                $attachment = array();
+                $file = explode(',', $placement->file_name);
+                $size = 0;
+                for($i=0; $i<count($file); $i++)
+                {
+                    $bytes = Storage::size('placements/'.$file[$i]);
+                    if ($bytes > 0)
+                    {
+                        $units = array( 'B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+                        $power = $bytes > 0 ? floor(log($bytes, 1024)) : 0;
+                        $size = number_format($bytes / pow(1024, $power), 2, '.', ',') . ' ' . $units[$power];
+                    }
+                    if($size)
+                        array_push($attachment, $size);
+                }
                 $file_name = explode(',', $placement->file_name);
                 $original_filename = explode(',', $placement->original_filename);
                 $issued_by = User::where('id', '=', $placement->issued_by)->first();        
@@ -245,6 +260,21 @@ class StudentController extends Controller
                     ['event_id', '=', $id],
                     ['student_id', '=', Auth::user()->id],
                 ])->first();
+                $attachment = array();
+                $file = explode(',', $event->file_name);
+                $size = 0;
+                for($i=0; $i<count($file); $i++)
+                {
+                    $bytes = Storage::size('events/'.$file[$i]);
+                    if ($bytes > 0)
+                    {
+                        $units = array( 'B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+                        $power = $bytes > 0 ? floor(log($bytes, 1024)) : 0;
+                        $size = number_format($bytes / pow(1024, $power), 2, '.', ',') . ' ' . $units[$power];
+                    }
+                    if($size)
+                        array_push($attachment, $size);
+                }
                 $file_name = explode(',', $event->file_name);
                 $original_filename = explode(',', $event->original_filename);
                 if($issued_by)
@@ -365,6 +395,21 @@ class StudentController extends Controller
         {
             if(in_array($year, explode(',', $announcement->year)) && in_array($branch, explode(',', $announcement->branch)) && in_array($division, explode(',', $announcement->division)))
             {
+                $attachment = array();
+                $file = explode(',', $announcement->file_name);
+                $size = 0;
+                for($i=0; $i<count($file); $i++)
+                {
+                    $bytes = Storage::size('announcements/'.$file[$i]);
+                    if ($bytes > 0)
+                    {
+                        $units = array( 'B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+                        $power = $bytes > 0 ? floor(log($bytes, 1024)) : 0;
+                        $size = number_format($bytes / pow(1024, $power), 2, '.', ',') . ' ' . $units[$power];
+                    }
+                    if($size)
+                        array_push($attachment, $size);
+                }
                 $file_name = explode(',', $announcement->file_name);
                 $original_filename = explode(',', $announcement->original_filename);
                 $issued_by = User::where('id', '=', $announcement->issued_by)->first();

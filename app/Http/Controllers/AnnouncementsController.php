@@ -100,7 +100,21 @@ class AnnouncementsController extends Controller
         $announcement = Announcement::with('user')->find($id);
         if($announcement)
         {
-            //$attachment = Storage::size('announcements/'.$announcement->file_name);
+            $attachment = array();
+            $file = explode(',', $announcement->file_name);
+            $size = 0;
+            for($i=0; $i<count($file); $i++)
+            {
+                $bytes = Storage::size('announcements/'.$file[$i]);
+                if ($bytes > 0)
+                {
+                    $units = array( 'B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+                    $power = $bytes > 0 ? floor(log($bytes, 1024)) : 0;
+                    $size = number_format($bytes / pow(1024, $power), 2, '.', ',') . ' ' . $units[$power];
+                }
+                if($size)
+                    array_push($attachment, $size);
+            }
             $file_name = explode(',', $announcement->file_name);
             $original_filename = explode(',', $announcement->original_filename);
             return view('admin.announcements.view', compact('announcement', 'attachment', 'file_name', 'original_filename'));

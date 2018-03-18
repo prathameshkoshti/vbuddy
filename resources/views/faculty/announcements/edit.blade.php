@@ -70,6 +70,9 @@
                         </td>
                         <td>
                             <input type="file" name="attachment[]" multiple>
+                            @if($announcement->file_name)
+                                Previously attached files: <br><b>{{$announcement->original_filename}}</b>
+                            @endif
                         </td>
                     </tr>
                     <tr>

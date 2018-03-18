@@ -97,6 +97,9 @@
                         </td>
                         <td>
                             <input type="file" name="attachment[]" multiple>
+                            @if($placement->file_name)
+                                Previously attached files: <br><b>{{$placement->original_filename}}</b>
+                            @endif
                         </td>
                     </tr>
                     <tr>
