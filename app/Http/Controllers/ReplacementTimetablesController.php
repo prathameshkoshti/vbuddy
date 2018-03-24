@@ -26,6 +26,19 @@ class ReplacementTimetablesController extends Controller
             'branch' => 'required',
             'division' => 'required',
         ]);
+        $now = date('Y-m-d');
+        $timestamp = strtotime($request->date);
+        $day = date('l', $timestamp);
+        if($day == 'Sunday' || $day == 'Saturday')
+        {
+            \Session::flash('delete', 'Please select the day other than '.$day);
+            return redirect('admin/replacement_timetables');
+        }
+        if($now > $request->date)
+        {
+            \Session::flash('delete', 'Please enter proper date from '. $now);
+            return redirect('admin/replacement_timetables');
+        }
         $date = request('date');
         $sem = request('sem');
         $branch = request('branch');
@@ -63,6 +76,16 @@ class ReplacementTimetablesController extends Controller
             ['subject', '=', $subject],
         ])->get();
 
+        $now = date("Y-m-d H:i:s");            
+        foreach($timetables as $timetable)
+        {
+            $time = $date.' '.$timetable->start_time;
+            if($now > $time)
+            {
+                \Session::flash('update', 'Please select proper date!');
+                return redirect('admin/replacement_timetables');
+            }
+        }
         return view('admin.replacement_timetables.create', compact('users', 'timetables', 'date'));
     }
 
@@ -72,6 +95,12 @@ class ReplacementTimetablesController extends Controller
             'subject1' => 'required',
             'faculty1' => 'required',
         ]);
+        $date = date("H i");
+        dd($date);
+        if($date)
+        {
+            
+        }
         $replacement = ReplacementTimetable::where([
             ['date', '=', request('date')],
             ['replacement_id', '=', request('replacement_id1')],

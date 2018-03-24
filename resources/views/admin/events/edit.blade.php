@@ -85,7 +85,7 @@
                     </tr>
                     <tr>
                         <td colspan=2>
-                            <input type="text" class="form-control" placeholder="Time" name="time" value="{{$event->time}}"> 
+                            <input type="time" class="form-control" placeholder="Time" name="time" value="{{$event->time}}"> 
                         </td>
                     </tr>
                     <tr>

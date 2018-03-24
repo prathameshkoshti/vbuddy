@@ -83,7 +83,7 @@
                     </tr>
                     <tr>
                         <td colspan=2>
-                            <input type="text" class="form-control" placeholder="Time" name="time"> 
+                            <input type="Time" class="form-control" placeholder="Time" name="time"> 
                         </td>
                     </tr>
                     <tr>
