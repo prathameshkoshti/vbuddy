@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Event;
 use App\User;
+use App\DeviceToken;
+use Edujugon\PushNotification\PushNotification;
 use Storage;
 use File;
 
@@ -99,7 +101,42 @@ class EventsController extends Controller
             $event->original_filename = implode(',', $original_filename);
         }
 
-        $event->save();
+        $event->save();        
+
+        $devices = array();
+        $result = array();
+
+        foreach($request->year as $year)
+        {
+            foreach($request->branch as $branch)
+            {
+                $device = DeviceToken::where([
+                    ['year', '=', $year],
+                    ['branch', '=', $branch],
+                ])->pluck('token')->toArray();
+                array_push($devices, $device);
+            }
+        }
+        foreach ($devices as $key => $value) { 
+            if (is_array($value)) { 
+                $result = array_merge($result, array_flatten($value)); 
+            } 
+            else { 
+                $result[$key] = $value; 
+            } 
+        }
+
+        
+        $push = new PushNotification('fcm');
+        $response = $push->setMessage([
+                    'notification' => [
+                            'title' => $event->name,
+                            'body' => $event->details,
+                            'sound' => 'default'
+                            ]
+                    ])
+                ->setDevicesToken($result)
+                ->send();
         
         \Session::flash('create', 'Data stored successfully.');
         return redirect('admin/events/');    

@@ -7,6 +7,9 @@ use \App\Announcement;
 use \App\Placement;
 use \App\PlacementRegistration;
 use \App\Event;
+use \App\Student;
+use \App\DeviceToken;
+use Edujugon\PushNotification\PushNotification;
 use \App\EventRegistration;
 use Auth;
 use Storage;
@@ -83,7 +86,43 @@ class FacultiesController extends Controller
             $announcement->original_filename = implode(',', $original_filename);
         }
 
-        $announcement->save();        
+        $announcement->save();    
+
+        $devices = array();
+        $result = array();
+
+        foreach($request->year as $year)
+        {
+            foreach($request->division as $div)
+            {
+                $device = DeviceToken::where([
+                    ['year', '=', $year],
+                    ['branch', '=', Auth::user()->branch],
+                    ['division', '=', $div],
+                ])->pluck('token')->toArray();
+                array_push($devices, $device);
+            }
+        }
+        foreach ($devices as $key => $value) { 
+            if (is_array($value)) { 
+                $result = array_merge($result, array_flatten($value)); 
+            } 
+            else { 
+                $result[$key] = $value; 
+            } 
+        }
+
+        
+        $push = new PushNotification('fcm');
+        $response = $push->setMessage([
+                    'notification' => [
+                            'title' => $announcement->head,
+                            'body' => $announcement->body,
+                            'sound' => 'default'
+                            ]
+                    ])
+                ->setDevicesToken($result)
+                ->send();
 
         \Session::flash('create', 'Data stored successfully.');
         return redirect('/faculty/faculty_announcements/index');
@@ -323,6 +362,41 @@ class FacultiesController extends Controller
             $placement->original_filename = implode(',', $original_filename);
         }
 
+        $devices = array();
+        $result = array();
+
+        foreach($request->year as $year)
+        {
+            foreach($request->branch as $branch)
+            {
+                $device = DeviceToken::where([
+                    ['year', '=', $year],
+                    ['branch', '=', $branch],
+                ])->pluck('token')->toArray();
+                array_push($devices, $device);
+            }
+        }
+        foreach ($devices as $key => $value) { 
+            if (is_array($value)) { 
+                $result = array_merge($result, array_flatten($value)); 
+            } 
+            else { 
+                $result[$key] = $value; 
+            } 
+        }
+
+        
+        $push = new PushNotification('fcm');
+        $response = $push->setMessage([
+                    'notification' => [
+                            'title' => $placement->head,
+                            'body' => $placement->body,
+                            'sound' => 'default'
+                            ]
+                    ])
+                ->setDevicesToken($result)
+                ->send();
+
         $placement->save();
 
         \Session::flash('create', 'Data stored successfully.');
@@ -549,6 +623,41 @@ class FacultiesController extends Controller
         }
 
         $event->save();
+
+        $devices = array();
+        $result = array();
+
+        foreach($request->year as $year)
+        {
+            foreach($request->branch as $branch)
+            {
+                $device = DeviceToken::where([
+                    ['year', '=', $year],
+                    ['branch', '=', $branch],
+                ])->pluck('token')->toArray();
+                array_push($devices, $device);
+            }
+        }
+        foreach ($devices as $key => $value) { 
+            if (is_array($value)) { 
+                $result = array_merge($result, array_flatten($value)); 
+            } 
+            else { 
+                $result[$key] = $value; 
+            } 
+        }
+
+        
+        $push = new PushNotification('fcm');
+        $response = $push->setMessage([
+                    'notification' => [
+                            'title' => $event->name,
+                            'body' => $event->details,
+                            'sound' => 'default'
+                            ]
+                    ])
+                ->setDevicesToken($result)
+                ->send();
 
         \Session::flash('create', 'Data stored successfully.');
         return redirect('faculty/events/index');

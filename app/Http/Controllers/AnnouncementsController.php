@@ -7,6 +7,9 @@ use App\Announcement;
 use App\User;
 use Storage;
 use File;
+use App\DeviceToken;
+use Edujugon\PushNotification\PushNotification;
+
 
 class AnnouncementsController extends Controller
 {
@@ -82,8 +85,47 @@ class AnnouncementsController extends Controller
             $announcement->file_mime = implode(',', $file_mime);
             $announcement->original_filename = implode(',', $original_filename);
         }
-        
+
         $announcement->save();
+        
+        $devices = array();
+        $result = array();
+
+        foreach($request->year as $year)
+        {
+            foreach($request->branch as $branch)
+            {
+                foreach($request->division as $division)
+                {
+                    $device = DeviceToken::where([
+                        ['year', '=', $year],
+                        ['branch', '=', $branch],
+                        ['division', '=', $division],
+                    ])->pluck('token')->toArray();
+                    array_push($devices, $device);
+                }
+            }
+        }
+        foreach ($devices as $key => $value) { 
+            if (is_array($value)) { 
+                $result = array_merge($result, array_flatten($value)); 
+            } 
+            else { 
+                $result[$key] = $value; 
+            } 
+        }
+
+        
+        $push = new PushNotification('fcm');
+        $response = $push->setMessage([
+                    'notification' => [
+                            'title' => $announcement->head,
+                            'body' => $announcement->body,
+                            'sound' => 'default'
+                            ]
+                    ])
+                ->setDevicesToken($result)
+                ->send();
 
         \Session::flash('create', 'Data stored successfully.');
         return redirect('/admin/faculty_announcements');

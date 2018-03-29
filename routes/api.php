@@ -13,7 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/login/{email}/{password}', 'APIsController@login');
+Route::get('/login/{email}/{password}/{token}', 'APIsController@login');
+
+Route::get('/logout/{email}', 'APIsController@logout');
 
 Route::get('/holidays', 'APIsController@holiday');
 

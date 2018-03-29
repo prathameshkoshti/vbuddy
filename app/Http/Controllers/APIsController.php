@@ -14,19 +14,38 @@ use App\IATimetable;
 use App\Timetable;
 use App\ReplacementTimetable;
 use App\Feedback;
+use App\DeviceToken;
 use Illuminate\Support\Facades\Hash;
 
 class APIsController extends Controller
 {
-    public function login($email, $password)
+    public function login($email, $password, $regtoken)
     {
         $auth_user = Student::where('email', '=', $email)->first();
         if($auth_user && Hash::check($password, $auth_user->password))
         {
-            return response()->json([
-                'MESSAGE' => 'Login Successful.',
-                'Profile' => $auth_user
-            ], 200);
+            $token = DeviceToken::where('student_id', '=', $auth_user->id)->first();
+            if(!$token)
+            {
+                DeviceToken::create([
+                    'token' => $regtoken,
+                    'student_id' => $auth_user->id,
+                    'year' => $auth_user->year,
+                    'branch' => $auth_user->branch,
+                    'division' => $auth_user->division,
+                ]);
+                return response()->json([
+                    'MESSAGE' => 'Login Successful. Device registered successfully!',
+                    'Profile' => $auth_user
+                ], 200);
+            }
+            else
+            {
+                return response()->json([
+                    'MESSAGE' => 'Login Successful.',
+                    'Profile' => $auth_user
+                ], 200);
+            }
         }
         else
         {
@@ -36,6 +55,14 @@ class APIsController extends Controller
                 'DATA' => null
             ], 200);
         }
+    }
+
+    public function logout($id)
+    {
+        $student = DeviceToken::where('student_id', '=', $id)->first();
+        if($student)
+            $student->delete();
+        return response()->json(['MESSAGE' => 'Successfully logged out.'], 200);
     }
 
     public function holiday()
