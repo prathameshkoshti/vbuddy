@@ -16,7 +16,7 @@ class TimetablesController extends Controller
     {
         $timetable=Timetable::where('branch','=',$branch)->where('sem','=',$semester)->where('division','=',$div)->orderBy('day')->get();
         
-        if($timetable)
+        if(count($timetable)>0)
             return view('admin.timetable.view',compact('timetable'));
         else
             return view('errors.404');
