@@ -61,5 +61,6 @@ class Kernel extends HttpKernel
         'faculty' => \App\Http\Middleware\Faculty::class,
         'event_coordinator' => \App\Http\Middleware\EventCoordinator::class,
         'placement_coordinator' => \App\Http\Middleware\PlacementCoordinator::class,
+        'exam_coodinator' => \App\Http\Middleware\ExamCoordinator::class,
     ];
 }
