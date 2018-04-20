@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Auth;
 use Closure;
 
 class PlacementCoordinator
@@ -19,7 +20,7 @@ class PlacementCoordinator
             return redirect('login');
         }
         if($request->user()->role != 'Placement Coordinator'){
-            return redirect('404');
+            return redirect('401');
         }
         return $next($request);
     }

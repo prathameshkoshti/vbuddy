@@ -120,6 +120,14 @@
                             {{$event->contact_no}}
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            Issued By:
+                        </td>
+                        <td colspan="2">
+                            {{$event->user->name}}
+                        </td>
+                    </tr>
                 </table>
             </div>
         </div>

@@ -50,11 +50,13 @@
     @include('layouts.cards_style')
     <div class="row">
         <div class="col-md-8 col-md-offset-1">
+            @if(Auth::user()->role == 'Event Coordinator')
             <div class="row">
                 <div class="col-sm-offset-4 col-md-offset-12">
                     <button onClick="parent.location='/faculty/events/create'" class="btn btn-success"><i class="fa fa-1x fa-plus"></i> Create</button>
                 </div>
             </div>
+            @endif
             <div class="row">
                 @foreach($events as $event)
                     <div class="col-md-2 col-xs-offset-2 col-xs-6 col-sm-2 card-holder">

@@ -21,10 +21,11 @@ class Faculty
         }
         if($request->user()->role == 'Faculty' || 
             $request->user()->role == 'Event Coordinator' ||
-            $request->user()->role == 'Placement Coordinator'
+            $request->user()->role == 'Placement Coordinator' ||
+            $request->user()->role == 'Exam Coordinator'
         ){
             return $next($request);
         }
-        return redirect('404');
+        return redirect('401');
     }
 }

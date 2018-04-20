@@ -41,7 +41,9 @@
                         <th><p>Start Time</p></th>
                         <th><p>End Time</p></th>
                         <th><p>Subject</p></th>
+                        @if(Auth::user()->role == 'Exam Coordinator')
                         <th><p>Actions</p></th>
+                        @endif
                     </tr>
 
 
@@ -52,7 +54,9 @@
                             <td>{{$day->start_time}}</td>
                             <td>{{$day->end_time}}</td>
                             <td>{{$day->subject}}</td>
+                            @if(Auth::user()->role == 'Exam Coordinator')
                             <td><a href="/faculty/ia_timetables/edit/{{$day->id}}" style="color: orange"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a></td>
+                            @endif
                         </tr>
                             @endforeach
 

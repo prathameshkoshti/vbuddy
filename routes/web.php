@@ -285,47 +285,47 @@ Route::group(['prefix' => 'faculty', 'middleware' => 'faculty'], function(){
     });
 
     Route::prefix('placements')->group(function(){
-        Route::get('/', 'FacultiesController@placementsHome');
+        Route::get('/', 'FacultiesController@placementsHome')->middleware('placement_coordinator');
 
         Route::get('index', 'FacultiesController@placementsIndex');
         Route::get('view/{id}', 'FacultiesController@placementsShow');
 
         Route::get('download/{id}/{file_name}', 'FacultiesController@placementsDownload');        
 
-        Route::get('create', 'FacultiesController@placementsCreate');
-        Route::put('store', 'FacultiesController@placementsStore');
+        Route::get('create', 'FacultiesController@placementsCreate')->middleware('placement_coordinator');
+        Route::put('store', 'FacultiesController@placementsStore')->middleware('placement_coordinator');
 
-        Route::get('edit/{id}', 'FacultiesController@placementsEdit');
-        Route::put('update/{id}', 'FacultiesController@placementsUpdate');
+        Route::get('edit/{id}', 'FacultiesController@placementsEdit')->middleware('placement_coordinator');
+        Route::put('update/{id}', 'FacultiesController@placementsUpdate')->middleware('placement_coordinator');
 
-        Route::get('delete/{id}', 'FacultiesController@placementsDestroy');
+        Route::get('delete/{id}', 'FacultiesController@placementsDestroy')->middleware('placement_coordinator');
     });
 
     Route::prefix('placement_registrations')->group(function(){
-        Route::get('', 'FacultiesController@placementRegistrationsIndex');
-        Route::get('view/{id}', 'FacultiesController@placementRegistrationsShow');
+        Route::get('', 'FacultiesController@placementRegistrationsIndex')->middleware('placement_coordinator');
+        Route::get('view/{id}', 'FacultiesController@placementRegistrationsShow')->middleware('placement_coordinator');
     });
 
     Route::prefix('events')->group(function(){
-        Route::view('/', 'faculty.events.home');
+        Route::view('/', 'faculty.events.home')->middleware('event_coordinator');
 
         Route::get('index', 'FacultiesController@eventsIndex');
         Route::get('view/{id}', 'FacultiesController@eventsShow');
         
         Route::get('download/{id}/{file_name}', 'FacultiesController@eventsDownload');        
 
-        Route::view('create', 'faculty.events.create');
-        Route::put('store', 'FacultiesController@eventsStore');
+        Route::view('create', 'faculty.events.create')->middleware('event_coordinator');
+        Route::put('store', 'FacultiesController@eventsStore')->middleware('event_coordinator');
 
-        Route::get('edit/{id}', 'FacultiesController@eventsEdit');
-        Route::put('update/{id}', 'FacultiesController@eventsUpdate');
+        Route::get('edit/{id}', 'FacultiesController@eventsEdit')->middleware('event_coordinator');
+        Route::put('update/{id}', 'FacultiesController@eventsUpdate')->middleware('event_coordinator');
 
-        Route::get('delete/{id}', 'FacultiesController@eventsDestroy');
+        Route::get('delete/{id}', 'FacultiesController@eventsDestroy')->middleware('event_coordinator');
     });
 
     Route::prefix('event_registrations')->group(function(){
-        Route::get('', 'FacultiesController@eventRegistrationsIndex');
-        Route::get('view/{id}', 'FacultiesController@eventRegistrationsShow');
+        Route::get('', 'FacultiesController@eventRegistrationsIndex')->middleware('event_coordinator');
+        Route::get('view/{id}', 'FacultiesController@eventRegistrationsShow')->middleware('event_coordinator');
     });
 
     Route::prefix('profile')->group(function(){
@@ -342,9 +342,11 @@ Route::group(['prefix' => 'faculty', 'middleware' => 'faculty'], function(){
 
     Route::prefix('ia_timetables')->group(function(){
         Route::get('/', 'IATimetablesController@findex');
+        
         Route::get('view/{branch}/{id}', 'IATimetablesController@fview')->name('view_faculty_ia_timetable');
-        Route::get('edit/{id}','IATimetablesController@fedit');
-        Route::put('update/{id}','IATimetablesController@fupdate');
+        
+        Route::get('edit/{id}','IATimetablesController@fedit')->middleware('exam_coordinator');
+        Route::put('update/{id}','IATimetablesController@fupdate')->middleware('exam_coordinator');
     });
 
 
