@@ -23,8 +23,8 @@
                 </div>
             @endforeach
             <div class="row">
-                <div class="col-md-4 col-md-offset-5">
-                    <div>
+                <div class="pagination-wrapper">
+                    <div class="paginate">
                         {{$announcements->links()}}
                     </div>
                 </div>

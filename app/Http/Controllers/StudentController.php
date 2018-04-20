@@ -70,7 +70,7 @@ class StudentController extends Controller
         }
 
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $perPage = 3;
+        $perPage = 10;
         $placements = collect($data);
         $currentPageItems = $placements->slice(($currentPage * $perPage) - $perPage, $perPage)->all();
         $paginatedItems= new LengthAwarePaginator($currentPageItems , count($placements), $perPage);
@@ -212,7 +212,7 @@ class StudentController extends Controller
         }
 
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $perPage = 3;
+        $perPage = 10;
         $events = collect($data);
         $currentPageItems = $events->slice(($currentPage * $perPage) - $perPage, $perPage)->all();
         $paginatedItems= new LengthAwarePaginator($currentPageItems , count($events), $perPage);
@@ -351,7 +351,7 @@ class StudentController extends Controller
         }
 
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $perPage = 3;
+        $perPage = 10;
         $announcements = collect($data);
         $currentPageItems = $announcements->slice(($currentPage * $perPage) - $perPage, $perPage)->all();
         $paginatedItems= new LengthAwarePaginator($currentPageItems , count($announcements), $perPage);

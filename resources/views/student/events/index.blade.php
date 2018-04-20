@@ -24,12 +24,12 @@
                     </button>
                 </div>
             @endforeach
-            <div class="row">
-                <div class="col-md-4 col-md-offset-5">
-                    <div>
-                        {{$events->links()}}
-                    </div>
-                </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="pagination-wrapper">
+            <div class="paginate">
+                {{$events->links()}}
             </div>
         </div>
     </div>
