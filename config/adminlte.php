@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 2',
+    'title' => 'V-Buddy',
 
     'title_prefix' => '',
 
@@ -155,7 +155,7 @@ return [
             'text' => 'Feedbacks',
             'url' => '/admin/feedbacks',
             'icon' => 'comments',
-            'icon_color' => 'purple',      
+            'icon_color' => 'purple',
         ],
         [
             'text'       => 'Events',
@@ -180,19 +180,19 @@ return [
             'text'       => 'IA Timetable',
             'url'        =>'/admin/ia_timetables',
             'icon'       => 'edit',
-            'icon_color' => 'yellow',            
+            'icon_color' => 'yellow',
         ],
         [
             'text'       => 'Timetable',
             'url'        =>'/admin/timetable',
             'icon'       => 'calendar-plus-o',
-            'icon_color' => 'green',            
+            'icon_color' => 'green',
         ],
         [
             'text'       => 'Replacement Timetable',
             'url'        =>'/admin/replacement_timetables',
             'icon'       => 'refresh',
-            'icon_color' => 'green',            
+            'icon_color' => 'green',
         ],
         [
             'text' => 'Holidays',
@@ -200,7 +200,7 @@ return [
             'icon' => 'calendar',
             'icon_color' => 'blue',
         ],
-        
+
         'Account Settings',
         [
             'text' => 'Profile',
